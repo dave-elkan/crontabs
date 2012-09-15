@@ -1,0 +1,9 @@
+{
+    "name": "crontabs",
+    "version": "1.0",
+    "manifest_version": 2,
+    "description": "An extension for manipulating tabs at certain times.",
+    "permissions": [
+        "tabs"
+    ]
+}
