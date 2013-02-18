@@ -1,0 +1,348 @@
+/* AUI Flat Pack - version 4.2.0 - generated 2012.05.28-14:53:21 */
+
+/**
+* The structure of this file pre-supposes two conditions:
+* - That the file is served via a conditional comment of [if lte IE 8] or [if lt IE 9]
+* - That de-bugging starts with IE8 and moves down through IE7 to IE6
+**/
+
+/** * Fixes for IE8, IE7 and IE6 * - each property should be written
+without CSS hacks * eg: 
+.dashboard {
+    margin: 0 0 2px 1px;
+}
+* **/
+.aui-blanket {
+    background: transparent url(images/bg-000-trans50.png) repeat;
+    position: fixed;
+}
+.aui-blanket-shim {
+    filter: alpha(opacity = 0);
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 2499;
+}
+
+.aui-dialog .dialog-blanket {
+    background: transparent url(images/bg-000-trans20.png) repeat;
+}
+/** * Fixes for IE7 and IE6 * - each property *must* be prefixed with
+an asterisk (*) * eg: 
+.dashboard {
+    *margin: 0 0 4px 2px;
+}
+* **/ 
+.aui-blanket {
+    *height: 100px;
+    *position: absolute;
+}
+
+/** * Fixes for IE6 only * - each property *must* be prefixed with an
+underscore (_) * eg: 
+.dashboard {
+    _margin: 0 0 0 1px;
+    _padding: 0 0
+    -3px 0;
+}
+* **/
+/**
+* The structure of this file pre-supposes two conditions:
+* - That the file is served via a conditional comment of [if lte IE 8] or [if lt IE 9]
+* - That de-bugging starts with IE8 and moves down through IE7 to IE6
+**/
+
+/**
+* Fixes for IE8, IE7 and IE6
+* - each property should be written without CSS hacks
+* eg: 
+.dashboard {
+    margin: 0 0 2px 1px;
+}
+*
+**/
+
+/* dropdown-shim */
+.dropdown-shim {
+    border: none;
+    display: none;
+    position: absolute;
+    z-index: 2000;
+}
+
+/**
+* Fixes for IE7 and IE6
+* - each property *must* be prefixed with an asterisk (*)
+* eg: 
+.dashboard {
+    *margin: 0 0 4px 2px;
+}
+*
+**/
+
+.aui-dd-parent .aui-dropdown {
+    *margin: 0;
+}
+
+/**
+* Fixes for IE6 only
+* - each property *must* be prefixed with an underscore (_)
+* eg: 
+.dashboard {
+    _margin: 0 0 0 1px;
+    _padding: 0 0 -3px 0;
+}
+*
+**/
+/* IE6 spits out screwy heights on the LIs without the zoom for hasLayout - which then blows out the width unless constrained on the parent - and then the hover effects look lame. This remedies all that - somewhat */
+.aui-dd-parent .aui-dropdown {
+    _width: 1%;
+}
+.aui-dd-parent .aui-dropdown li.dropdown-item a.item-link {
+    _zoom: 1;
+}
+.aui-dd-parent .aui-dropdown li.dropdown-item a.item-link:hover,
+.aui-dd-parent .aui-dropdown li.dropdown-item a.item-link:active,
+.aui-dd-parent .aui-dropdown li.dropdown-item a.item-link focus {
+    _background: #fff;
+    _text-decoration: none;
+}
+/**
+* The structure of this file pre-supposes two conditions:
+* - That the file is served via a conditional comment of [if lte IE 8] or [if lt IE 9]
+* - That de-bugging starts with IE8 and moves down through IE7 to IE6
+**/
+
+/**
+* Fixes for IE8, IE7 and IE6
+* - each property should be written without CSS hacks
+* eg: 
+.dashboard {
+    margin: 0 0 2px 1px;
+}
+*
+**/
+
+form.aui div.radio input.radio,
+form.aui div.checkbox input.checkbox {
+    margin-top: 0;
+}
+
+/**
+* Fixes for IE7 and IE6
+* - each property *must* be prefixed with an asterisk (*)
+* eg: 
+.dashboard {
+    *margin: 0 0 4px 2px;
+}
+*
+**/
+form.aui {
+    *min-height: 0; /* min-height prevents a crash bug in IE7. srsly. */
+}
+
+form.aui div.radio input.radio,
+form.aui div.checkbox input.checkbox {
+    *margin-top: -2px;
+}
+
+form.aui.top-label .group legend span,
+form.aui.top-label .date-select legend span {
+    *left: -9px; 
+    *top: -3px;
+}
+form.aui .group .field-value {
+    *padding-top: 3px; 
+    *line-height: 1;
+}
+
+form.aui .field-group label {
+    *line-height: 1.2; /* keeps IE7 from trimming decenders */
+}
+
+
+/**
+* Fixes for IE6 only
+* - each property *must* be prefixed with an underscore (_)
+* eg: 
+.dashboard {
+    _margin: 0 0 0 1px;
+    _padding: 0 0 -3px 0;
+}
+*
+**/
+form.aui .field-group {
+    _height: 1.6em;
+}
+form.aui .group .field-value {
+    _width: 2em;
+}
+form.aui .group label,
+form.aui div.radio label,
+form.aui div.checkbox label {
+    _margin-top: 1px;
+    _position: static;
+}
+form.aui div.radio .error,
+form.aui div.checkbox .error {
+    _margin-left: 20px;
+}
+form.aui div.radio .description,
+form.aui div.checkbox .description {
+    _margin-left: 24px;
+}
+form.aui pre.aui-form {
+    _width: 95%;
+}
+
+/**
+* The structure of this file pre-supposes two conditions:
+* - That the file is served via a conditional comment of [if lte IE 8] or [if lt IE 9]
+* - That de-bugging starts with IE8 and moves down through IE7 to IE6
+**/
+
+/** * Fixes for IE8, IE7 and IE6 * - each property should be written
+without CSS hacks * eg:
+.dashboard {
+    margin: 0 0 2px 1px;
+}
+* **/
+
+
+/** * Fixes for IE7 and IE6 * - each property *must* be prefixed with
+an asterisk (*) * eg:
+.dashboard {
+    *margin: 0 0 4px 2px;
+}
+* **/
+
+span.svg-icon div {
+    *display: inline !important;
+}
+
+
+/** * Fixes for IE6 only * - each property *must* be prefixed with an
+underscore (_) * eg:
+.dashboard {
+    _margin: 0 0 0 1px;
+    _padding: 0 0
+    -3px 0;
+}
+* **/
+/* This file is served to all versions of IE up to IE9, no hacks as all versions need the one thing it contains :) */
+.inline-dialog-shim {
+    border: none;
+    display: block;
+    height: 0;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 0;
+    z-index: -2;
+}
+/* AJS-563 Fix IE7 displaying I-beam cursor on hovering tab */
+*+html
+.aui-tabs ul.tabs-menu li.menu-item strong {
+    cursor: pointer;
+}
+.aui-toolbar .toolbar-dropdown .icon-dropdown,
+.aui-toolbar .toolbar-splitbutton .icon-dropdown {
+    *float: none;
+    *height: 10px; /* we do it this way so all icon spacing is attached to the icon */
+}
+
+.aui-toolbar .toolbar-dropdown .icon-dropdown {
+    background-position: -20px 10px;
+}
+
+.aui-toolbar .toolbar-trigger .icon-dropdown {
+    float: left;
+    margin: 0;
+    height: 24px
+}
+
+.toolbar-splitbutton .icon-dropdown {
+    *background-position: -58px -10px;
+    *border: 0;
+}
+.aui-toolbar .toolbar-group .first .toolbar-trigger,
+.aui-toolbar .toolbar-group .first .toolbar-trigger[aria-disabled="true"]:hover {
+    border-left: 1px solid #ddd;
+}
+
+/* note different selectors for active Dropdown/Dropdown2 */
+.aui-toolbar .toolbar-group .active .toolbar-trigger,
+.aui-toolbar .toolbar-group .toolbar-trigger.active,
+.aui-toolbar .toolbar-group .first .toolbar-trigger:hover {
+    border-left: 1px solid #999;
+}
+
+.aui-toolbar .toolbar-group .toolbar-item-link {
+    border-left: none;
+}
+
+.aui-toolbar .toolbar-group {
+    *padding-bottom: 10px;
+}
+
+.aui-toolbar .toolbar-item,
+.aui-toolbar .toolbar-trigger,
+.aui-toolbar .toolbar-trigger span {
+    *white-space: nowrap !important; 
+}
+
+.aui-toolbar .toolbar-group button.toolbar-trigger,
+.aui-toolbar .toolbar-group input.toolbar-trigger {
+    *width: 1%; /* prevent buttons collapsing in ie7 */
+}
+
+.aui-toolbar .toolbar-group button.toolbar-trigger,
+.aui-toolbar .toolbar-group input.toolbar-trigger {
+    *width: 1%; /* prevent buttons collapsing in ie7 */
+}
+
+/* START IE7 border shenanigins
+   - remove the mysteriously-added black border on buttons
+   - put the border on the item instead
+   - has-buttons added to .toolbar-group containing buttons
+   - multi class selectors purely for human readability, IE7 only reads the last class
+*/
+.aui-toolbar button {
+    *border: 0 !important;
+    *margin: 0;
+    *padding: 0;
+}
+.aui-toolbar .toolbar-item.contains-button {
+    *border: 1px solid #ddd !important;
+    *height: 24px;
+    *padding: 0;
+}
+.aui-toolbar .toolbar-item.toolbar-item-link {
+    *border: 0 !important;
+}
+/* END IE7 border shenanigins */
+
+/* Added by forceRightSplitToRow(), removing float from left split pushes the right split to its own row */
+.toolbar-split-left.force-split {
+    float: none;
+}
+
+/* disabled triggers - IE8 screws up without this */
+
+.aui-toolbar .aui-dropdown2-trigger[aria-disabled="true"],
+.aui-toolbar .toolbar-group.disabled .toolbar-trigger,
+.aui-toolbar .toolbar-item.disabled .toolbar-trigger,
+.aui-toolbar .disabled .toolbar-trigger,
+.aui-toolbar .toolbar-trigger.disabled {
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /*IE8*/
+    filter: alpha(opacity=50); /* IE6-7 */
+}
+
+.aui-toolbar .disabled .first .toolbar-trigger,
+.aui-toolbar .disabled .toolbar-item.first .toolbar-trigger,
+.aui-toolbar .toolbar-group .disabled.first .toolbar-trigger,
+.aui-toolbar .toolbar-group .first .disabled.toolbar-trigger {
+    border-left: 1px solid #ddd;
+}
+

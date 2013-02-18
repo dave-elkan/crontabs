@@ -1,0 +1,18 @@
+{
+	"extName": {
+		"message": "Crontabs",
+		"description": "Name of the extension"
+	},
+	"extDesc": {
+		"message": "An extension for manipulating tabs at certain times.",
+		"description": "The description of the extension"
+	},
+	"actionButtonEnableTitle": {
+		"message": "Enable Crontabs",
+		"description": "The title of the enable/disable button when disabled"
+	},
+	"actionButtonDisableTitle": {
+		"message": "Disable Crontabs",
+		"description": "The title of the enable/disable button when enabled"
+	}
+}

@@ -1,0 +1,2051 @@
+/* AUI Flat Pack - version 4.2.0 - generated 2012.05.28-14:53:21 */
+
+/* Solution from https://github.com/necolas/normalize.css/blob/master/normalize.css */
+/* Corrects block display not defined in IE6/7/8/9 & FF3 */
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section {
+    display: block;
+}
+
+/* Corrects inline-block display not defined in IE6/7/8/9 & FF3 */
+audio, canvas, video {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+/**
+ * RESET
+ */
+html, body, p, div, h1, h2, h3, h4, h5, h6, img, pre, form, fieldset {
+    margin: 0;
+    padding: 0;
+}
+ul, ol, dl {
+    margin: 0;
+}
+
+/**
+ * PAGE LAYOUT
+ */
+.aui-layout #header {
+    clear: both;
+    float: left;
+    width: 100%;
+}
+
+.aui-layout #header ul {
+    list-style: none;
+    margin: 0;
+}
+
+.aui-layout #header .global,
+.aui-layout #header .global .primary,
+.aui-layout #header .global .primary > ul,
+.aui-layout #header .global .primary > ul > li,
+.aui-layout #header .local,
+.aui-layout #header .local .primary,
+.aui-layout #header .local .primary > ul,
+.aui-layout #header .local .primary > ul > li {
+    float: left;
+}
+
+.aui-layout #header .global .secondary,
+.aui-layout #header .global .secondary > ul,
+.aui-layout #header .global .secondary > ul > li,
+.aui-layout #header .local .secondary,
+.aui-layout #header .local .secondary > ul,
+.aui-layout #header .local .secondary > ul > li {
+    float: right;
+}
+
+.aui-layout #logo {
+    margin: 0;
+    padding: 0;
+}
+
+.aui-layout #header .local,
+.aui-layout #header .global {
+    width: 100%;
+}
+
+.aui-layout #content {
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    clear: both;
+    position: relative;
+} 
+
+.aui-layout #footer {
+    clear: both;
+    float: left;
+    margin: 0;
+    padding: 0 0 16px 0;
+    width: 100%;
+} 
+
+.aui-layout #footer .footer-body a {
+    color: #505050;
+}
+
+.aui-layout #footer .footer-body > ul,
+.aui-layout #footer .footer-body > p {
+    margin: 8px 0 0 0;
+}
+
+.aui-layout #footer .footer-body > ul:first-child,
+.aui-layout #footer .footer-body > p:first-child {
+    margin: 0;
+}
+
+.aui-layout #footer .footer-body > ul {
+    display: block;
+    list-style: none;
+    padding: 0;
+}
+
+.aui-layout #footer .footer-body > ul > li {
+    display: inline-block;
+    padding: 0;
+}
+
+.aui-layout #footer .footer-body > ul > li + li {
+    margin-left: 8px;
+}
+
+.aui-layout #footer .footer-body > ul > li + li:before {
+    content: "|";
+    display: inline-block;
+    margin-right: 8px;
+}
+
+
+/**
+ * GROUP/ITEM
+ */
+
+.aui-group {
+    display: table;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-spacing: 0;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.aui-group > .aui-item {
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: table-cell;
+    margin: 0;
+    vertical-align: top;
+}
+
+.aui-group > .aui-item + .aui-item {
+    padding-left: 16px;
+}
+
+/* defensive header allowance */
+.aui-layout .aui-group > header {
+    display: table-caption;
+}
+
+/* .aui-group-split: two items; alignment is left, then right (splits the layout). */
+.aui-group.aui-group-split > .aui-item {
+	text-align: right;
+}
+.aui-group.aui-group-split > .aui-item:first-child {
+	text-align: left;
+}
+
+/* .aui-group-trio: three items; alignment is left, center, right */
+.aui-group.aui-group-trio > .aui-item {
+	text-align: left;
+}
+.aui-group.aui-group-trio > .aui-item + .aui-item {
+	text-align: center;
+}
+.aui-group.aui-group-trio > .aui-item + .aui-item + .aui-item {
+	text-align: right;
+}
+
+/**
+ * DEFAULT THEME SPACING
+ */
+.aui-theme-default #content {
+    margin: 0;
+	padding: 16px;    
+}
+
+/**
+ * PAGE DESIGN
+ */
+.aui-theme-default {
+    background: #F0F0F0;
+    color: #000;
+}
+
+.aui-theme-default a {
+    color: #326ca6;
+    text-decoration: none;
+}
+.aui-theme-default a:focus,
+.aui-theme-default a:hover,
+.aui-theme-default a:active {
+    text-decoration: underline;
+}
+
+.aui-theme-default h1,
+.aui-theme-default h2,
+.aui-theme-default h3,
+.aui-theme-default h4,
+.aui-theme-default h5,
+.aui-theme-default h6 {
+    color: #000;
+}
+
+.aui-theme-default #header .global {
+    background: #036;
+    color: #fff;
+}
+
+.aui-theme-default #header a {
+    color: #fff;
+}
+
+.aui-theme-default #header .local .primary > ul,
+.aui-theme-default #header .global .primary > ul {
+    padding: 0 0 0 8px;
+}
+
+.aui-theme-default #header .local .primary > ul > li,
+.aui-theme-default #header .global .primary > ul > li {
+    margin: 0 8px 0 0;
+}
+
+.aui-theme-default #header .local .primary > ul > li > a,
+.aui-theme-default #header .global .primary > ul > li > a {
+    display: block;
+    padding: 4px;
+    white-space: nowrap;
+}
+
+.aui-theme-default #header .local .secondary > ul,
+.aui-theme-default #header .global .secondary > ul {
+    padding: 0 8px 0 0;
+}
+
+.aui-theme-default #header .local .secondary > ul > li,
+.aui-theme-default #header .global .secondary > ul > li {
+    margin: 0 0 0 8px;
+}
+
+.aui-theme-default #header .local .secondary > ul > li > a,
+.aui-theme-default #header .global .secondary > ul > li > a {
+    display: block;
+    padding: 4px;
+    white-space: nowrap;
+}
+
+.aui-theme-default #header .local {
+    background: #326ca6;
+    border-top: 1px solid #036;
+    color: #fff;
+}
+
+.aui-theme-default #header .local .primary > ul > li > a:hover {
+    background: #fff;
+    color: #333;
+}
+
+.aui-theme-default #header .local .primary > ul > li.selected,
+.aui-theme-default #header .local .primary > ul > li.selected a {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.aui-theme-default #footer .footer-body {
+    background: transparent;
+    color: #505050;
+    font-size: 11px;
+    line-height: 1.364;
+    margin: 0;
+    padding: 0 16px;
+} 
+
+.aui-theme-default #footer .footer-body {
+    text-align: center;    
+}
+
+/**
+ * CONTENT PANEL
+ */
+.aui-theme-default .aui-panel {
+    background: #fff;
+    border: 1px solid #bbb;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 16px;
+}
+
+/**
+ * TABS AS FIRST CHILD IN CONTENT
+ * Explicitly sets bg to white, changes horizontal hovers to work on grey.
+ * Remember these extend the standard component styles.
+ */
+.aui-theme-default #content > .aui-tabs > .tabs-pane {
+    background: #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.aui-theme-default #content > .aui-tabs.horizontal-tabs > .tabs-menu > li.menu-item a {
+    background: #f0f0f0;
+    border-color: #f0f0f0;
+}
+
+.aui-theme-default #content > .aui-tabs.horizontal-tabs > .tabs-menu > li.menu-item a:focus,
+.aui-theme-default #content > .aui-tabs.horizontal-tabs > .tabs-menu > li.menu-item a:hover {
+    background: #fff;
+    border-color: #bbb;
+    border-bottom-color: #fff;
+}
+
+.aui-theme-default #content > .aui-tabs.horizontal-tabs > .tabs-pane {
+    border: 1px solid #bbb;
+    margin: 0;
+    padding: 16px;
+}
+/**
+ * TYPOGRAPHY
+ */
+body {
+    font-family: Arial, FreeSans, Helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 1.3077;    
+}
+
+p, ul, ol, dl,
+h1, h2, h3, h4, h5, h6,
+form.aui,
+table.aui,
+.aui-tabs,
+.aui-panel,
+.aui-group {
+    margin: 16px 0 0 0;
+}
+
+p:first-child,
+ul:first-child,
+ol:first-child,
+dl:first-child,
+h1:first-child,
+h2:first-child,
+h3:first-child,
+h4:first-child,
+h5:first-child,
+h6:first-child,
+form.aui:first-child,
+table.aui:first-child,
+.aui-tabs:first-child,
+.aui-panel:first-child,
+.aui-group:first-child {
+    margin-top: 0;
+}
+
+h1 { font-size: 25px; line-height: 1.16; } /* 29px equiv line-height */
+h2 { font-size: 23px; line-height: 1.174; } /* 27px equiv line-height */
+h3 { font-size: 19px; line-height: 1.2106; } /* 23px equiv line-height */
+h4 { font-size: 17px; line-height: 1.2353; } /* 21px equiv line-height */
+h5 { font-size: 15px; line-height: 1.2667; } /* 19px equiv line-height */
+h6 { font-size: 13px; line-height: 1.3077; } /* 17px equiv line-height */
+/**
+ * AUI Module and Header
+ */
+
+.aui-module,
+.aui-header {
+    margin-top: 16px;
+}
+
+.aui-module:first-child,
+.aui-header:first-child {
+    margin-top: 0;
+}
+
+/* do NOT set aui-header to table-layout: fixed */
+.aui-header,
+.aui-module-header,
+.aui-module-footer {
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-spacing: 0;
+    width: 100%;
+}
+
+/* do NOT set aui-header to display: table. */
+.aui-module-header,
+.aui-module-footer {
+    display:table;
+}
+
+.aui-header .aui-header-main,
+.aui-header .aui-header-image,
+.aui-module-header .aui-header-main {
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: table-cell;
+    margin: 0;
+    vertical-align: top;
+    text-align: left;
+}
+
+.aui-header .aui-header-image {
+    white-space: nowrap;
+}
+.aui-header .aui-header-image img {
+    margin: 0 8px 0 0;
+}
+.aui-header .aui-header-main {
+    /* this does actually work becase we don't set display:table on the parent. */
+    width: 100%;
+}
+
+.aui-header .aui-header-image + .aui-header-main {
+    margin: 0;
+    padding: 0;
+}
+
+.aui-header .aui-header-main .aui-breadcrumbs + h1,
+.aui-header .aui-header-main .aui-breadcrumbs + h2,
+.aui-header .aui-header-main .aui-breadcrumbs + h3,
+.aui-header .aui-header-main .aui-breadcrumbs + h4,
+.aui-header .aui-header-main .aui-breadcrumbs + h5,
+.aui-header .aui-header-main .aui-breadcrumbs + h6 {
+    margin-top: 0;
+}
+
+.aui-header ul.aui-header-actions,
+.aui-module ul.aui-header-actions {
+    display: table-cell;
+    list-style-type: none;
+    text-align: right;
+    vertical-align: top;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0 0 0 8px;
+}
+.aui-header ul.aui-header-actions li,
+.aui-module ul.aui-header-actions li {
+    display: inline;
+}
+
+.aui-module-header > .aui-header-main,
+.aui-module-footer > .aui-header-main,
+.aui-module-header > .aui-header-actions,
+.aui-module-footer > .aui-header-actions {
+    margin: 0;
+}
+
+/**
+ * AUI Breadcrumbs prototype pattern
+ */
+
+.aui-breadcrumbs,
+.aui-breadcrumbs li {
+    margin: 0;
+    padding: 0;
+}
+.aui-breadcrumbs li {
+    display: inline-block;
+}
+.aui-breadcrumbs li:before {
+    content: ">";
+    padding-right: 4px;
+}
+.aui-breadcrumbs li:first-child:before {
+    content: "";
+    padding-right: 0;
+}
+.clear {
+    clear: both;
+}
+.hidden,
+form.aui .hidden,
+form.aui .field-group.hidden,
+form.aui fieldset.hidden {
+    display: none;
+}
+
+.assistive,
+legend.assistive span {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/* light shadow for use on dropdowns, inline dialogs */
+.aui-box-shadow {
+    -moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* heavy shadow for use on blanket */
+.aui-dialog.aui-box-shadow {
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+    -ms-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+}
+.aui-blanket {
+    background: #000;
+    height: 100%;
+    left: 0px;
+    opacity: 0.5;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2500;
+}
+.aui-dialog-shadow-parent {
+    position: fixed;
+    overflow: hidden;
+    left:50%;
+    top:50%;
+}
+.aui-popup {
+    left: 50%;
+    position: fixed;
+    top: 50%;
+    z-index: 3000;
+}
+.aui-dialog {
+    border: 1px solid #666;
+    font-size: 14px;
+    overflow: hidden;
+}
+.aui-dialog h2.dialog-title {
+    background: #f0f0f0;
+    color: #666;
+    font-size: 1.5em;
+    height: 43px;
+    line-height: 43px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0 1em;
+    position: relative;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.aui-dialog .dialog-page-menu {
+    background: #fff;
+    border-right: 1px solid #f0f0f0;
+    float: left;
+    height: 100%;
+    list-style: none;
+    margin: 0 1.17em 0 0;
+    padding: 10px 0 0 0;
+    width: 25%;
+}
+.aui-dialog .dialog-page-menu li.page-menu-item {
+    margin: 0;
+    padding: 0;
+}
+.aui-dialog .dialog-page-menu li.page-menu-item.selected {
+    background: #69c;
+    color: #fff;
+}
+.aui-dialog .dialog-page-menu li.page-menu-item.selected button.item-button {
+    color: #fff;
+    font-weight: 800;
+}
+.aui-dialog .dialog-page-menu li.page-menu-item button.item-button {
+    background: none;
+    border: none;
+    color: #666;
+    font-family: "segoe ui", helvetica, arial, sans-serif;
+    font-size: 1em;
+    padding: .4em 1.2em;
+    text-align: left;
+    width: 100%;
+}
+.aui-dialog .dialog-panel-body {
+    overflow: auto;
+    padding: 10px;
+}
+
+.aui-dialog .dialog-button-panel {
+    background: #fff;
+    border-top: 1px solid #f0f0f0;
+    clear: both;
+    height: 23px;
+    overflow: hidden;
+    padding: 10px 0 10px 0;
+    text-align: right;
+    width: 100%;
+}
+.aui-dialog .dialog-button-panel button.button-panel-button {
+    font-size: 1em;
+    margin-right: 1.65em;
+    margin-top: 2px;
+}
+.aui-dialog .dialog-button-panel button.button-panel-button.left {
+    float: left;
+    margin: 0 0 0 0.5em;
+}
+
+.aui-dialog .dialog-button-panel a.button-panel-link {
+    font-size: 1em;
+    margin-right: 1.65em;
+    margin-top: 2px;
+}
+
+.aui-dialog .dialog-blanket {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.2;
+    background: #000;
+}
+/* Styles for AJS.dropDown */
+.aui-dd-parent {
+    position: relative;
+}
+
+
+/*Default Styled Trigger*/
+.aui-dd-parent span a.aui-dd-trigger,
+.aui-dd-parent a.aui-dd-trigger {
+    background: transparent url(images/icons/aui-icon-tools.gif) no-repeat -13px 0;
+    border: none;
+    color: #000;
+    display: block;
+    height: 13px;
+    padding: 0;
+    text-indent: -9999px;
+    width: 13px;
+}
+.aui-dd-parent a.aui-dd-trigger:link,
+.aui-dd-parent a.aui-dd-trigger:visited {}
+.aui-dd-parent a.aui-dd-trigger.active,
+.aui-dd-parent a.aui-dd-trigger:hover,
+.aui-dd-parent a.aui-dd-trigger:active,
+.aui-dd-parent a.aui-dd-trigger:focus {
+    background: transparent url(images/icons/aui-icon-tools.gif) no-repeat -26px 0;
+    border: none;
+    color: #000;
+}
+
+
+.aui-dd-parent span a.aui-dd-trigger {
+    position: absolute;
+    right: 5px;
+    top: 8px;
+}
+
+/*UNSTYLED TRIGGER*/
+.aui-dd-parent span a.aui-dd-trigger.unstyled,
+.aui-dd-parent a.aui-dd-trigger.unstyled {
+    background: none;
+    border: none;
+    color: auto;
+    display: block;
+    height: auto;
+    padding: auto;
+    text-indent: 0;
+    width: auto;
+
+}
+.aui-dd-parent a.aui-dd-trigger-unstyled:link,
+.aui-dd-parent a.aui-dd-trigger-unstyled:visited {}
+.aui-dd-parent a.aui-dd-trigger-unstyled.active,
+.aui-dd-parent a.aui-dd-trigger-unstyled:hover,
+.aui-dd-parent a.aui-dd-trigger-unstyled:active,
+.aui-dd-parent a.aui-dd-trigger-unstyled:focus {
+    background: none;
+    border: none;
+    color: auto;
+}
+
+.aui-dd-parent span a.aui-dd-trigger-unstyled {
+    position: absolute;
+    right: auto;
+    top: auto;
+}
+
+.aui-dropdown {list-style-type:none;}
+
+.aui-dd-parent .aui-dropdown,
+.aui-dropdown,
+.aui-dd-parent .aui-shadow-parent {
+    background: #fff;
+    border: 1px solid #6A8EB3;
+    color: #000;
+    padding: 4px 0 4px 0;
+    position: absolute;
+    z-index: 2003;  
+    margin-top: -1px;
+}
+
+.aui-dd-parent  .aui-dropdown-left{
+    left:0px;
+}
+
+.aui-dd-parent .aui-dropdown-right{
+    right:0px;
+}
+
+.aui-dd-parent .aui-shadow {
+    right: 5px;
+}
+.aui-dd-parent .aui-dropdown li.dropdown-item,
+.aui-dropdown li.dropdown-item  {
+    background: #fff;
+    color: #000;
+    display: block;
+    float: none;
+    margin: 0;
+    position: static;
+}
+
+.aui-dd-parent .aui-dropdown a.item-link,
+.aui-dropdown a.item-link {
+    background: #fff;
+    color: #036;
+    display: inline-block;
+    float: none;
+    height: auto;
+    position: static;
+    text-indent: 0;
+    white-space: nowrap;
+    width: auto;
+}
+.aui-dd-parent .aui-dropdown a.item-link:link,
+.aui-dd-parent .aui-dropdown a.item-link:visited,
+.aui-dropdown a.item-link:link,
+.aui-dropdown a.item-link:visited {
+    background: #fff;
+    color: #036;
+    padding: 0.3em 0.5em;
+}
+.aui-dd-parent .aui-dropdown li.dropdown-item.active a.item-link,
+.aui-dd-parent .aui-dropdown a.item-link:hover,
+.aui-dd-parent .aui-dropdown a.item-link:active,
+.aui-dd-parent .aui-dropdown a.item-link:focus,
+.aui-dropdown a.item-link:hover,
+.aui-dropdown a.item-link:active,
+.aui-dropdown a.item-link:focus  {
+    background: #f2f2f2;
+    color: #036;
+    padding: 0.3em 0.5em;
+}
+
+.aui-dd-parent .aui-dropdown li.dropdown-item a.item-link span.icon {
+    display: inline-block;
+}
+
+div.shim {
+    position: absolute;
+}/* Functional styles - these are always applied */
+.aui-dropdown2 {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: none;
+    max-width: 256px;
+    min-width: 128px;
+    position: absolute;
+}
+.aui-dropdown2 a {
+    display: block;
+}
+.aui-dropdown2 .aui-list-truncate a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Default style for Dropdown2 */
+.aui-dropdown2.aui-style-default {
+    background-color: #fff;
+    border: 1px solid #bbb;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    -moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+}
+.aui-dropdown2.aui-style-default ul {
+    list-style: none;
+    margin: 4px 0;
+    padding-left: 0;
+}
+.aui-style-default .aui-dropdown2-section {
+    border-top: 1px solid #bbb;
+}
+.aui-style-default .aui-dropdown2-section:first-child {
+    border-top-width: 0;
+}
+.aui-dropdown2.aui-style-default strong {
+    color: #000;
+    display: block;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: 5px 8px -1px;
+}
+.aui-dropdown2.aui-style-default a {
+    color: #000;
+    padding: 7px 8px 6px;
+    text-decoration: none;
+}
+.aui-dropdown2.aui-style-default a:focus,
+.aui-dropdown2.aui-style-default a:hover {
+    text-decoration: none;
+}
+.aui-dropdown2.aui-style-default .active {
+    background-color: #326ca6;
+    color: #fff;
+}
+.aui-dropdown2.aui-style-default .disabled {
+    color: #7F7F7F; /* equivalent of opacity: 0.5 without need for IE8 filter */
+    cursor: default;
+}
+.aui-dropdown2.aui-style-default .aui-icon-container,
+.aui-dropdown2.aui-style-default .aui-dropdown2-radio,
+.aui-dropdown2.aui-style-default .aui-dropdown2-checkbox {
+    padding-left: 28px;
+}
+
+.aui-dropdown2.aui-style-default .aui-icon-container,
+.aui-dropdown2.aui-style-default .aui-dropdown2-radio,
+.aui-dropdown2.aui-style-default .aui-dropdown2-checkbox {
+    background-position: 8px 6px;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.aui-dropdown2.aui-style-default .aui-icon-container > img,
+.aui-dropdown2.aui-style-default .aui-icon-container > span {
+    border-width: 0;
+    left: 8px;
+    position: absolute;
+    top: 6px;
+}
+.aui-dropdown2.aui-style-default .aui-icon-container > span {
+    display: block;
+    overflow: hidden;
+    text-indent: -99999px;
+}
+
+.aui-dropdown2.aui-style-default .checked {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAnklEQVQ4EWP8//8/AyWAiRLNIL0jzQBGRkYrII5HCTdQLBCDgZqsgPgTEP8AYhmYHgzNQElmINaCKQDRQADT/AvIDkSRQ+ZAFS8EKvoMxNaENIPlsRgQANQMsglkSDoQg5yNYTNMH4YXoLaCDPkGxF/xacbqArjJDAyxUANQ/AyTh9GMYFOAKrEBYJSJAeVfYZODieE1AKYIHz3weQEAj0XgHBaJoWwAAAAASUVORK5CYII=");
+}
+.aui-dropdown2.aui-style-default .checked.active {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAmUlEQVQ4EWP8//8/AyWAiRLNIL0j0AAroLfjUcINFAtEYiuguk9A/AOIZWB6sGlmBkpqwRRAaZjmX0B+ILIcNgMWAhV8BmJrqEKcmkHy2AwIAEqAbAIZkg7EIGdj2AwUA+vFZgBIDGTINyD+CsQ4NQPlsLoAZmgs1AAUP4M0IWNGsCko8YLCEQPyXqGIoHEIGYCmHJM78HkBAF5lPMWA9xtVAAAAAElFTkSuQmCC");
+}
+.aui-dropdown2.aui-style-default .checked.disabled {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAwElEQVQ4EWP8//8/AyWAiRLNIL0jzYBJkyZZAXE8crgxEhsLIM1AtTuAmtmYmJhUcnNzn2ANxNWrVzNPnjxZC9kWJM0cjIyMkTDNWA149uzZvH///p2cMGGCNUgBmubwvLy89ciGY0Qj0JkgBexAm3ZMnDgxHepskM0YmkEGYQ0DoO0BQA3LgPKgZMqKSzPIAAwXgAQLCgo2ADWlg9j4NIPkGUCxgAt3d3eL4ZKDiWP1AthkIgmsXiBSL1gZxQYAAIRRewzaTG7XAAAAAElFTkSuQmCC");
+}
+
+
+/* basic in-page dropdown trigger style DEPRECATED as of 4.2 */
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1 {
+    padding: 5px 8px;
+    text-decoration: none;
+}
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1:hover,
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1:focus,
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1.active {
+    background-color: #326ca6;
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+}
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1.active {
+    border-radius: 4px 4px 0 0;
+}
+
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1[aria-disabled="true"],
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1[aria-disabled="true"]:hover,
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1[aria-disabled="true"]:focus,
+.aui-dropdown2-trigger.aui-style-dropdown2triggerlegacy1[aria-disabled="true"]:active {
+    background: inherit;
+    color: #99b6d3; /* equivalent of opacity: 0.5 without need for IE8 filter. */
+    cursor: default;
+}
+
+/* Toolbar integration. Avoid double border: */
+.aui-dropdown2.aui-style-default.aui-dropdown2-in-toolbar,
+.aui-dropdown2.aui-style-default.aui-dropdown2-in-buttons {
+    margin-top: -1px;
+}/* CSS Document for form styling - REQUIRES class of 'aui' to form */
+
+form.aui {
+    color: #333;
+    font-family: arial,tahoma,verdana,sans-serif;
+    font-size: 13px;
+    line-height: 1.4;
+    margin: 0 0 1em 0;
+    position: relative;
+}
+form.aui textarea,form.aui select,form.aui optgroup,form.aui option,form.aui input.text {
+    color: #000;
+    font-family: arial,tahoma,verdana,sans-serif;
+    font-size: 13px;
+}
+form.aui pre.aui-form {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    font-family: monospace;
+    font-size: 13px;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding: 15px;
+}
+form.aui img.aui-form,form.aui a img.aui-form,form.aui fieldset {
+    border: none;
+}
+form.aui span.aui-form {
+    margin-right: 0.25em;
+}
+form.aui p {
+    margin-bottom: 5px;
+    padding: 5px 0 5px 0;
+}
+form.aui fieldset {
+    border: 0;
+    display: block;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    position: relative;
+}
+form.aui input,
+form.aui select {
+    margin-right: 5px;
+    padding: 2px;
+}
+form.aui select {
+    padding: 1px;
+}
+form.aui option {
+    padding: 0 1em;
+}
+form.aui textarea {
+    overflow: auto;
+    padding: 1px 2px;
+}
+form.aui input.button,
+form.aui button {
+    line-height: 1.2;
+    margin: 10px 10px 0 0;
+    padding: 0 0.5em;
+}
+form.aui .buttons a.cancel {
+    line-height: 1.2;
+    margin: 10px 10px 0 0;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    /* Safari 3.0 and Chrome hacks here */
+    form.aui button {
+        padding: 0.1em 0.5em 0.5em;
+    }
+
+}
+form.aui div.error {
+    color: #c00;
+    font-weight: bold;
+}
+form.aui div.description {
+    font-size: 11px;
+}
+form.aui .field-value {
+    color: #000;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1;
+    padding-top: 4px;
+}
+
+/* headings */
+form.aui h2,
+form.aui h3 {
+    border-bottom: 1px solid #ddd;
+    clear: both;
+    color: #222;
+    font-size: 16px;
+    margin: 10px 0;
+}
+form.aui h3 {
+    font-size: 14px;
+}
+
+form.aui.unsectioned h2,
+form.aui.unsectioned h3 {
+    border: none;
+}
+
+
+/* legend,labels left hand width related items */
+form.aui legend {
+    display: none;
+}
+form.aui legend span {
+    color: #333;
+    display: block;
+    left: 0;
+    line-height: 1;
+    position: absolute;
+    top: 3px;
+    white-space: normal;
+    width: 130px;
+    text-align: right;
+}
+form.aui .field-group {
+    clear: both;
+    display: block;
+    margin-bottom: 5px;
+    min-height: 1.6em;
+    padding: 0 0 5px 140px;
+}
+form.aui .field-group:last-child,
+form.aui fieldset fieldset:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+form.aui .field-group label {
+    float: left;
+    display: block;
+    left: -140px;
+    line-height: 1;
+    margin-right: -130px;
+    padding-top: 4px;
+    position: relative;
+    width: 130px;
+    text-align: right;
+}
+form.aui div.matrix {
+    padding-top: 0;
+    width: 780px;
+}
+form.aui div.matrix div.checkbox,
+form.aui div.matrix div.radio {
+    clear: none;
+    float: left;
+    width: 250px;
+}
+
+/* input default and fixed widths */
+form.aui .text,
+form.aui .textarea,
+form.aui .select {
+    width: 250px;
+}
+form.aui .short-field {
+    width: 75px;
+}
+form.aui .medium-field {
+    width: 165px;
+}
+form.aui .long-field {
+    width: 500px;
+}
+/* select */
+form.aui .multi-select {
+    min-width: 250px;
+}
+form.aui .multi-select optgroup {
+    background-color: #f8f8f8;
+    color: #999;
+    font-style: normal;
+    font-weight: normal;
+}
+form.aui .multi-select optgroup option {
+    background-color: #fff;
+    color: #000;
+}
+/* date selects */
+form.aui .date-select legend {
+    display: block;
+}
+form.aui .date-select legend span {
+    left: 0;
+}
+form.aui .date-select .field-group label {
+    display: none;
+}
+/* submit div - outside the fieldsets */
+form.aui .buttons-container {
+    border-top: 1px solid #ddd;
+    clear: both;
+    margin-bottom: 5px;
+    min-height: 2.7em;
+    overflow: auto;
+}
+form.aui.unsectioned .buttons-container {
+    border: none;
+}
+form.aui .buttons {
+    padding: 0 0 5px 140px;
+}
+form.aui .buttons-container.right .buttons {
+    clear: both;
+    float: right;
+    padding: 0 5px 5px 0;
+    width: auto;
+}
+form.aui .buttons-container.left .buttons {
+    padding: 0 5px 5px 0;
+}
+
+/* radios and checkboxes */
+form.aui div.radio input.radio,
+form.aui div.checkbox input.checkbox {
+    border: none;
+    float: left;
+    margin-top: 2px;
+    width: 15px;
+} /* IE */
+
+/* groups */
+form.aui .group {
+    position: relative;
+    clear: both;
+    display: block;
+    margin-bottom: 5px;
+    min-height: 1.6em;
+    padding: 0 0 5px 0;
+}
+form.aui .group .field-value {
+    float: left;
+    margin-right: .25em;
+    min-width: 2.5em;
+    padding-top: 0;
+    line-height: inherit;
+}
+form.aui .group .field-value.checked {
+    color: #693;
+}
+form.aui .group legend {
+    display: block;
+}
+form.aui div.checkbox,
+form.aui div.radio {
+    padding: 0 0 5px 140px;
+} /* IE */
+form.aui .group label,
+form.aui div.radio label,
+form.aui div.checkbox label {
+    float: none;
+    display: inline;
+    left: 0;
+    margin: 0;
+    width: auto;
+}
+form.aui div.radio .error,
+form.aui div.checkbox .error {
+    margin-left: 19px;
+}
+form.aui div.radio .description,
+form.aui div.checkbox .description {
+    clear: both;
+    margin-left: 19px;
+}
+
+
+/* long labels - add long-label class to form "aui long-label" */
+form.aui.long-label .field-group,
+form.aui.long-label .group,
+form.aui.long-label .buttons {
+    padding-left: 250px;
+}
+form.aui.long-label .group label,
+form.aui.long-label .group .field-group,
+form.aui.long-label div.checkbox,
+form.aui.long-label div.radio {
+    padding: 0 0 5px 0;
+}
+
+form.aui.long-label .group label,
+form.aui.long-label .field-group label {
+    left:-200px;
+    margin-right:-190px;
+    width:190px;
+}
+
+
+form.aui.long-label legend span {
+    left: 110px;
+}
+
+/* //long labels */
+
+/* labels on top - add top-label class to form "aui top-label" */
+form.aui.top-label fieldset {
+    margin-bottom: 0;
+}
+form.aui.top-label .field-group {
+    padding-left: 0;
+}
+form.aui.top-label .field-group label {
+    float: none;
+    left: 0;
+    margin: 0 0 2px 0;
+    width: auto;
+    text-align: left;
+}
+form.aui.top-label .group {
+    padding-left: 0;
+    padding-top: 0.5em;
+}
+form.aui.top-label div.checkbox,
+form.aui.top-label div.radio {
+    padding: 0 0 5px 0;
+}
+/* date selects and checkbox / radio groups */
+form.aui.top-label .group legend span,
+form.aui.top-label .date-select legend span {
+    left: 0;
+    position: relative;
+    top: 0;
+    text-align: left;
+    width: auto;
+}
+form.aui.top-label .date-select label {
+    display: none;
+}
+form.aui.top-label .buttons {
+    padding: 0 0 5px 0;
+}
+/* //labels on top */
+
+/* inline for small single line forms - add inline class to fieldset */
+form.aui .inline {
+    padding-bottom: 0;
+}
+form.aui .inline label {
+    font-weight: bold;
+}
+form.aui .inline .aui-icon {
+    margin-right: 3px;
+}
+/* //inline */
+
+form.aui span.content {
+    left: -9999px;
+    position: absolute;
+    top: -9999px;
+}
+
+/**
+* Basic icon styles. Allows you to easily render sprite icons.
+*
+* .aui-icon must be present on all iconified elements
+* All iconified elements must include class names prefixed with 'i-'
+* Icons assume light backgrounds. Icon classnames for dark backgrounds must be suffixed with '-d'
+* For elements whose background changes in app, we advise maintaining light/dark state in the app.
+*
+*/
+
+.aui-icon {
+    background: transparent url(images/icons/aui-icon-tools.gif) no-repeat 0 0;
+    border: none;
+    display: block;
+    height: 13px;
+    padding: 0;
+    text-indent: -9999px;
+    width: 13px;
+}
+
+.icon-move {
+    background-position: 0 0;
+    cursor: move;
+}
+.icon-maximize {
+    background-position: -52px 0;
+}
+.icon-minimize {
+    background-position: -39px 0;
+}
+.icon-minimize-d {
+    background-position: -39px -13px;
+}
+
+/* form icons - add aui-icon class together with the icon class "aui-icon icon-help" */
+form.aui .aui-icon {
+    background-image:url(images/icons/aui-icon-forms.gif);
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 16px;
+    margin: 0 1px 0 1px;
+    overflow: hidden;
+    vertical-align: middle;
+    width: 16px;
+}
+
+/* position icon sprite */
+form.aui .icon-date {
+    background-position: 0 -20px;
+}
+form.aui .icon-range {
+    background-position: 0 -40px;
+}
+form.aui .icon-help {
+    background-position: 0 -60px;
+}
+form.aui .icon-required {
+    background-position: 0 -80px;
+    height: 13px;
+    vertical-align: top;
+    width: 8px;
+}
+form.aui legend span.icon-required {
+    left: auto;
+    position: relative;
+    top: auto;
+}
+form.aui .icon-users {
+    background-position: 0 -100px;
+}
+form.aui .icon-inline-help {
+    background-position: 0 -60px;
+    cursor: help;
+}
+
+/*NEW ICON FOR AUI SANDBOX, added here because they may be added at a later point DO NOT USE*/
+.aui-icon-new {
+    background: transparent url("images/icons/aui-message-icon-sprite.png") no-repeat 0 0;
+    border: none;
+    display: inline-block;
+    height: 14px;
+    padding: 0;
+    text-indent: -9999px;
+    width: 14px;
+}
+
+.aui-icon-new.icon-info {
+    background-position: -96px 0;
+}              
+
+
+.aui-inline-dialog {
+    font-size: 13px;
+    display: none;
+    position: absolute;
+    z-index: 100;
+}
+.aui-inline-dialog .contents {
+    background: white;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    overflow: hidden;
+    width: 300px;
+}
+.aui-inline-dialog .contents form.aui {
+    margin-bottom: 0;
+}
+.aui-inline-dialog .contents .submit {
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+.aui-inline-dialog .arrow {
+    position: absolute;
+    height: 16px;
+    top: -7px; /* matches #inline-dialog-shim */
+    width: 16px;
+}
+#inline-dialog-shim {
+    display: none;
+}
+.aui-message {
+    background: #f0f0f0;
+    border: 1px solid #bbb;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: #333;
+    margin: 0 0 1em 0;
+    min-height: 1em;
+    padding: 1em 1em 1em 35px;
+    position: relative;
+}
+/* Lighter shadow for messages */
+.aui-message.shadowed {
+    -moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+}
+.aui-popup .aui-message.closeable,
+.aui-dialog .aui-message.closeable {
+    z-index: 4000;
+}
+    .aui-message .svg-icon {
+        left: 10px;
+        position: absolute;
+        top: 10px;
+    }
+    .aui-message.closeable .svg-icon.close {
+        cursor: pointer;
+        left: auto;
+        position: absolute;
+        right: 6px;
+        top: 6px;
+    }
+.aui-message.error {
+    background: #ffe7e7; 
+    border-color: #df9898;
+}
+.aui-message.warning {
+    background: #ffd;
+    border-color: #f7df92;
+}
+.aui-message.info {
+    background: #e0efff;
+    border-color: #9eb6d4;
+}
+.aui-message.success {
+    background: #ddfade;
+    border-color: #93c49f;
+}
+.aui-message.hint {
+    background: #dff8fb;
+    border-color: #93bbbf;
+}
+    .aui-message p.title {
+        font-weight: bold;
+    }
+    .aui-message p {
+        margin: 0.5em 0 0 0;
+    }
+    .aui-message p:first-child {
+        margin: 0;
+    }
+    .aui-message ul {
+        margin: 0.5em 0 0 0;
+        padding: 0 0 0 1em;
+    }
+    .aui-message ul:first-child {
+        margin: 0;
+    }
+        .aui-message ul li {
+            margin: 0;
+            padding: 0;
+        }
+        
+/*TEMPORARY ICON CSS FOR MESSAGES, MOVE/REPLACE WHEN AUI ICONS ARE COMPLETED*/
+form.aui .aui-message .aui-icon, .aui-message .aui-icon {
+    background-image: url("images/icons/aui-message-icon-sprite.png");
+    background-repeat: no-repeat;
+    border: none;
+    display: block;
+    height: 14px;
+    padding: 0;
+    text-indent: -9999px;
+    width: 14px;
+    /*message specific positioning*/
+    left: 10px;
+    position: absolute;
+    top: 0.9em;
+}
+
+.aui-message.closeable .aui-icon.icon-close {
+    height: 12px;
+    width: 12px;
+    padding: 1px;
+    cursor: pointer;
+    left: auto;
+    position: absolute;
+    right: 6px;
+    top: 6px;
+}
+
+.aui-message .icon-close {  
+    background-position: 1px 1px;
+}
+              
+.aui-message .icon-error {  
+    background-position:-24px 0;
+}    
+
+.aui-message .icon-generic {
+    background-position:-48px 0;
+}              
+
+.aui-message .icon-hint {   
+    background-position:-72px 0;
+}              
+
+.aui-message .icon-info {
+    background-position:-96px 0;
+}
+
+.aui-message .icon-success {
+    background-position:-120px 0;
+}              
+
+.aui-message .icon-warning {
+    background-position:-144px 0;
+}              
+
+/*END ICONS*/table.aui {
+    border-collapse: collapse;
+    margin: 0 0 1em 0;
+    min-width: 45em;
+    width: 100%;
+}
+
+/*
+table.aui tr:hover,
+table.aui tr:hover th {
+    background: #f0f0f0;
+}
+*/
+
+    table.aui table.aui {
+        margin: 0;
+    }
+    table.aui > caption {
+        padding: 0.5em;
+    }
+    table.aui > tbody > tr,
+    table.aui > tfoot > tr {
+        background: #fff;
+        border-bottom: 1px solid #ddd;
+        color: #111;
+    }
+
+    table.aui > tbody > tr > th {
+        background: #fafafa;
+        color: #111;
+    }
+        table.aui > thead > tr > th,
+        table.aui > tbody > tr > th,
+        table.aui > thead > tr > td,
+        table.aui > tbody > tr > td,
+        table.aui > tfoot > tr > td {
+            padding: 0.5em 0.4em 0.5em 0.6em;
+            text-align: left;
+        }
+    table.aui > thead {
+        border-bottom: 1px solid #bbb;
+    }
+        table.aui > thead > tr > th {
+            background: #f0f0f0;
+            color: #000;
+        }
+    /* Borders on TBODY and TFOOT don't work in IE - whereas these at least work in IE7 & IE8 */
+    table.aui > tbody > tr:first-child > td,
+    table.aui > tbody > tr:first-child > th,
+    table.aui > tfoot > tr:first-child > td {
+        border-top: 1px solid #bbb;
+    }
+        table.aui > thead > tr > th > ul.menu,
+        table.aui > tbody > tr > th > ul.menu,
+        table.aui > tbody > tr > td > ul.menu,
+        table.aui > tfoot > tr > td > ul.menu {
+            list-style-type: none;
+            margin: 0; 
+            padding: 0;
+        }
+        table.aui > thead > tr > th > ul.menu > li,
+        table.aui > tbody > tr > th > ul.menu > li,
+        table.aui > tbody > tr > td > ul.menu > li,
+        table.aui > tfoot > tr > td > ul.menu > li {
+            float: left;
+            margin: 0 0.5em 0 0;
+            width: auto;
+        }
+
+    /* stripes - deprecated */
+    table.aui.aui-zebra tr {
+        border-bottom: 0;
+    }
+    table.aui.aui-zebra > thead > tr:nth-child(even),
+    table.aui.aui-zebra > tbody > tr:nth-child(even),
+    table.aui.aui-zebra > tfoot > tr:nth-child(even) {
+        background: #fafafa;
+        color: #111;
+    }
+    /* must be a separate rule for IE */
+    table.aui-zebra tr.aui-zebra {
+        background: #fafafa;
+        color: #111;
+    }
+    table.aui-zebra tr.aui-zebra th {
+        background: #f0f0f0;
+        color: #000;
+    }
+    table.aui-zebra > tbody > tr:nth-child(even) > th {
+        background: #f0f0f0;
+        color: #000;
+    }
+    /* end stripes - deprecated */
+
+    /* last gasp of ie7 support... it doesn't do borders on TR */
+    *+ html table.aui td {
+        border-bottom: 1px solid #ddd;
+    }
+    *+ html table.aui table td {
+        border-bottom: 0;
+    }
+    *+ html table.aui-zebra td {
+        border-bottom: 0;
+    }
+
+/* AUI Tabs */
+.aui-tabs > ul.tabs-menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 5;
+}
+    .aui-tabs > ul.tabs-menu li.menu-item {
+        margin: 0;
+        padding: 0;
+    }
+        .aui-tabs > ul.tabs-menu li.menu-item a {
+            background: #fff;
+            color: #535353;
+            display: block;
+            text-decoration: none;
+        }
+        .aui-tabs > ul.tabs-menu li.menu-item strong {
+            display: block;
+            overflow: hidden;
+            padding: 0.4em 0.6em 0.2em 0.6em;
+        }
+    .aui-tabs > ul.tabs-menu li.menu-item.active-tab {
+        background: #fff;
+    }
+    .aui-tabs > ul.tabs-menu li.menu-item.active-tab strong {
+        background: #fff;
+        color: #000;
+        cursor: default;
+    }
+    .aui-tabs > ul.tabs-menu li.menu-item.active-tab a {
+        background: #fff;
+        color: #000;
+    }
+.aui-tabs > .tabs-pane {
+    border-top: 1px solid #bbb;
+    display: none;
+    padding: 1em;
+}
+.aui-tabs > .tabs-pane.active-pane {
+    display: block;
+}
+
+/* Vertical Tabs */
+.aui-tabs.vertical-tabs > ul.tabs-menu {
+    float: left;
+    width: 11em;
+}
+    .aui-tabs.vertical-tabs > ul.tabs-menu li.menu-item {
+        border: 1px solid #bbb;
+        border-right: none;
+        margin: -1px 0 0 0;
+    }
+    .aui-tabs.vertical-tabs > ul.tabs-menu li.menu-item:first-child {
+        margin-top: 1em;
+    }
+    .aui-tabs.vertical-tabs > ul.tabs-menu li.menu-item.active-tab {
+        background: #fff;
+        margin-left: -0.5em;
+        margin-right: -1px;
+    }
+        .aui-tabs.vertical-tabs > ul.tabs-menu li.menu-item a,
+        .aui-tabs.vertical-tabs > ul.tabs-menu li.menu-item a:link,
+        .aui-tabs.vertical-tabs > ul.tabs-menu li.menu-item a:visited {
+            background: #f0f0f0;
+            color: #535353;
+        }
+        .aui-tabs.vertical-tabs > ul.tabs-menu li.menu-item a:hover,
+        .aui-tabs.vertical-tabs > ul.tabs-menu li.menu-item a:active,
+        .aui-tabs.vertical-tabs > ul.tabs-menu li.menu-item a:focus {
+            background: #fff;
+            color: #535353;
+        }
+        .aui-tabs.vertical-tabs > ul.tabs-menu li.menu-item strong {
+            font-weight: 700;
+            padding-right: 0;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+    .aui-tabs.vertical-tabs > .tabs-pane {
+        border: 1px solid #bbb;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        margin: 0 0 0 11em;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* legacy tabs override - deprecated, to be remove in aui 5.0 */
+    .aui-tabs.vertical-tabs.aui-legacystyle2011 > ul.tabs-menu li.menu-item strong {
+        text-overflow: clip;
+    }
+    .aui-tabs.vertical-tabs.aui-legacystyle2011 > ul.tabs-menu li.menu-item.active-tab {
+        margin-right: 0;
+    }
+    .aui-tabs.vertical-tabs.aui-legacystyle2011 > .tabs-pane {
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+    }
+
+/* Horizontal Tabs */
+.aui-tabs.horizontal-tabs > ul.tabs-menu {
+    overflow: hidden;
+    top: 2px;
+}
+    .aui-tabs.horizontal-tabs > ul.tabs-menu li.menu-item {
+        border-bottom: 1px solid #bbb;
+        float: left;
+        width: auto;
+    }
+    .aui-tabs.horizontal-tabs > ul.tabs-menu li.menu-item:first-child {
+        margin-left: 1em;
+    }
+        .aui-tabs.horizontal-tabs > ul.tabs-menu li.menu-item a,
+        .aui-tabs.horizontal-tabs > ul.tabs-menu li.menu-item a:link,
+        .aui-tabs.horizontal-tabs > ul.tabs-menu li.menu-item a:visited {
+            border: 1px solid #fff;
+            border-bottom: none;
+        }
+        .aui-tabs.horizontal-tabs > ul.tabs-menu li.menu-item a:hover,
+        .aui-tabs.horizontal-tabs > ul.tabs-menu li.menu-item a:active,
+        .aui-tabs.horizontal-tabs > ul.tabs-menu li.menu-item a:focus {
+            border-color: #ddd;
+        }
+        .aui-tabs.horizontal-tabs > ul.tabs-menu li.menu-item strong {
+            font-weight: 400;
+        }
+    .aui-tabs.horizontal-tabs > ul.tabs-menu li.menu-item.active-tab {
+        border-bottom-color: #fff;
+    }
+        .aui-tabs.horizontal-tabs > ul.tabs-menu li.menu-item.active-tab a {
+            border: none;
+        }
+        .aui-tabs.horizontal-tabs > ul.tabs-menu li.menu-item.active-tab strong {
+            border: 1px solid #bbb;
+            border-bottom-color: #fff;
+        }
+
+/* reloadable tabs (active tab has different cursor affordance) */
+.active-tab.reloadable-tab a,
+.active-tab.reloadable-tab a strong { cursor: pointer !important; }
+.aui-toolbar {
+    clear: both;
+    display: inline-block; /* new rendering context */
+    padding-top: 10px;
+    position: relative;
+    width: 100%; /* emulate normal block */
+}
+
+.aui-toolbar .toolbar-group {
+    display: inline-block;
+    float: left;
+    padding: 0;
+    margin: 0 10px 10px 0;
+    white-space: nowrap;
+}
+
+.aui-toolbar .toolbar-item {
+    display: inline-block;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+.aui-toolbar .aui-dd-parent {
+    position: relative;
+    width: auto;
+}
+
+/* splits set toolbars into multiple sections, eg. left/right split */
+.aui-toolbar .toolbar-split {
+    display: inline-block;
+    float: left;
+    margin-left: 10px;
+}
+
+.aui-toolbar .toolbar-split.toolbar-split-right {
+    float: right;
+}
+
+.aui-toolbar .toolbar-split.toolbar-split-row {
+    clear: both;
+    float: none;
+    width: 100%;
+}
+
+/* Cursor/affordance: looks like a button = pointer, looks like a link = hand */
+.aui-toolbar .toolbar-trigger {
+    cursor: default;
+}
+.aui-toolbar .toolbar-item-link .toolbar-trigger {
+    cursor: pointer;
+}
+
+/* primary buttons */
+.aui-toolbar .primary .toolbar-trigger {
+    font-weight: bold;
+}
+
+/* available/inactive controls */
+.aui-toolbar .toolbar-group .toolbar-trigger,
+.aui-toolbar .aui-dd-parent a.aui-dd-trigger {
+    background: #fff url("images/toolbar/aui-toolbar-button-inactive-bg.png") bottom left repeat-x;
+    border: 1px solid #ddd;
+    border-left: 1px solid #f9f9f9;
+    color: #000;
+    display: inline-block;
+    float: left;
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 22px;
+    line-height: 22px;
+    margin: 0;
+    min-width: 14px;
+    padding: 0 10px;
+    text-align: center;
+    text-decoration: none;
+    text-indent: 0;
+    width: auto;
+}
+
+.aui-toolbar .toolbar-group .toolbar-item.toolbar-item-link .toolbar-trigger {
+    border: 0;
+    padding-top: 1px;
+}
+
+.aui-toolbar .toolbar-group .toolbar-item-link:hover .toolbar-trigger,
+.aui-toolbar .toolbar-group .toolbar-item-link .toolbar-trigger {
+    border: 0;
+    background: transparent;
+    text-decoration: none;
+    color: #3C78B5;
+    padding: 1px 0 2px 0;
+}
+
+/* adjust height of <button>s and <input>s */
+.aui-toolbar .toolbar-group button.toolbar-trigger {
+    height: 24px;
+    padding-bottom: 2px;
+}
+.aui-toolbar .toolbar-group input.toolbar-trigger {
+    height: 24px;
+    padding-bottom: 1px;
+}
+
+.toolbar-group .toolbar-item:first-of-type a,
+.toolbar-group .toolbar-item:first-of-type button,
+.toolbar-group .toolbar-item:first-of-type input[type="button"],
+.toolbar-group .toolbar-item:first-of-type input[type="reset"],
+.toolbar-group .toolbar-item:first-of-type input[type="submit"] {
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.toolbar-group .toolbar-item.toolbar-splitbutton:last-of-type .aui-dd-trigger {
+    -webkit-border-top-left-radius: 0;
+    -webkit-border-bottom-left-radius: 0;
+    -moz-border-radius-topleft: 0;
+    -moz-border-radius-bottomleft: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: 0;
+}
+
+.toolbar-group .toolbar-item.toolbar-splitbutton:last-of-type .aui-dd-trigger,
+.toolbar-group .toolbar-item:last-of-type .toolbar-trigger,
+.toolbar-group .toolbar-item:last-of-type button,
+.toolbar-group .toolbar-item:last-of-type input[type="button"],
+.toolbar-group .toolbar-item:last-of-type input[type="reset"],
+.toolbar-group .toolbar-item:last-of-type input[type="submit"] {
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.toolbar-group .toolbar-splitbutton:last-of-type .toolbar-trigger {
+    -webkit-border-top-right-radius: 0;
+    -webkit-border-bottom-right-radius: 0;
+    -moz-border-radius-topright: 0;
+    -moz-border-radius-bottomright: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.toolbar-group .toolbar-item:first-of-type .toolbar-trigger,
+.toolbar-group .toolbar-item:first-of-type button {
+    border-left: 1px solid #ddd;
+}
+
+.aui-toolbar .toolbar-group .aui-dropdown {
+    border: 1px solid #999;
+}
+
+.aui-toolbar .toolbar-group .aui-dropdown a {
+    border: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+/* hover/focus controls */
+.aui-toolbar .aui-dropdown2-trigger.toolbar-trigger.active,
+.aui-toolbar .toolbar-group .active .toolbar-trigger,
+.aui-toolbar .toolbar-splitbutton:hover .toolbar-trigger,
+.aui-toolbar .toolbar-group .toolbar-trigger:focus,
+.aui-toolbar .toolbar-group .toolbar-trigger:hover,
+.aui-toolbar .toolbar-group button:focus,
+.aui-toolbar .toolbar-group button:hover,
+.aui-toolbar .aui-dd-parent .aui-dd-trigger:focus,
+.aui-toolbar .aui-dd-parent .aui-dd-trigger:hover,
+.aui-toolbar .toolbar-group .active .toolbar-trigger:hover {
+    border-color: #999;
+    outline: 0;
+}
+
+.aui-toolbar .aui-dropdown2-trigger.active,
+.aui-toolbar .aui-dd-parent a.aui-dd-trigger.active {
+    background: #d8e4f0 url("images/toolbar/aui-toolbar-button-active-bg.png") top left repeat-x;
+    border-left: 1px solid #D8E4F0;
+}
+
+.aui-toolbar .toolbar-group .active .toolbar-trigger,
+.aui-toolbar .toolbar-group .toolbar-trigger:active {
+    background: #d8e4f0 url("images/toolbar/aui-toolbar-button-active-bg.png") top left repeat-x;
+    border: 1px solid #999;
+}
+
+/* Note .dropdown-text and .dropdown-icon used by both Dropdown and Dropdown2 */
+.aui-toolbar .toolbar-dropdown .icon-dropdown,
+.aui-toolbar .toolbar-splitbutton .icon-dropdown {
+    background: transparent url("images/toolbar/aui-toolbar-24px.png") 0 0 no-repeat;
+    display: inline-block;
+    float: right;
+    height: 100%;
+    margin-top: 0;
+    margin-left: 5px;
+    margin-right: -5px;
+    padding-right: 5px;
+}
+
+.aui-toolbar .toolbar-dropdown .icon-dropdown {
+    background-position: -24px 10px;
+    width: 7px;
+}
+
+.aui-toolbar .toolbar-dropdown .dropdown-text,
+.aui-toolbar .toolbar-splitbutton .dropdown-text,
+.toolbar-group .toolbar-splitbutton .aui-dd-parent {
+    display: inline-block;
+    float: left;
+}
+
+.aui-toolbar .toolbar-splitbutton .aui-dd-parent .aui-dd-trigger {
+    min-width: 0;
+    margin: 0;
+    padding: 0 2px;
+    width: 9px;
+}
+
+.aui-toolbar .toolbar-splitbutton .icon-dropdown {
+    background-position: -46px 10px;
+    text-indent: -9999px;
+    width: 9px;
+}
+
+.aui-toolbar .toolbar-splitbutton .toolbar-trigger {
+    border-right-style: dotted;
+}
+.aui-toolbar .toolbar-splitbutton .aui-dd-parent .toolbar-trigger {
+    border-right-style: solid;
+}
+
+/* disabled controls */
+.aui-toolbar .aui-dropdown2-trigger[aria-disabled="true"],
+.aui-toolbar .toolbar-group.disabled .toolbar-trigger,
+.aui-toolbar .toolbar-item.disabled .toolbar-trigger,
+.aui-toolbar .toolbar-trigger.disabled {
+    opacity: 0.5;
+}
+
+/* Prevent border highlighting and use normal cursor when disabled.
+   .active classes are to counter a clash with dropdown states. */
+.aui-toolbar .aui-dropdown2-trigger[aria-disabled="true"]:focus,
+.aui-toolbar .aui-dropdown2-trigger[aria-disabled="true"]:hover,
+.aui-toolbar .aui-dropdown2-trigger[aria-disabled="true"]:active,
+.aui-toolbar .disabled .active .toolbar-trigger:hover,
+.aui-toolbar .toolbar-group.disabled .toolbar-trigger,
+.aui-toolbar .toolbar-group.disabled .toolbar-trigger:focus,
+.aui-toolbar .toolbar-group.disabled .toolbar-trigger:hover,
+.aui-toolbar .toolbar-group.disabled .toolbar-trigger:active,
+.aui-toolbar .toolbar-group .disabled .toolbar-trigger,
+.aui-toolbar .toolbar-group .disabled .toolbar-trigger:focus,
+.aui-toolbar .toolbar-group .disabled .toolbar-trigger:hover,
+.aui-toolbar .toolbar-group .disabled .toolbar-trigger:active,
+.aui-toolbar .toolbar-group .toolbar-trigger.disabled,
+.aui-toolbar .toolbar-group .toolbar-trigger.disabled:focus,
+.aui-toolbar .toolbar-group .toolbar-trigger.disabled:hover,
+.aui-toolbar .toolbar-group .toolbar-trigger.disabled:active {
+    background: #fff url("images/toolbar/aui-toolbar-button-inactive-bg.png") bottom left repeat-x;
+    border-color: #ddd;
+    border-left: 1px solid #f9f9f9; /* inner buttons need this to avoid inappropriate hover/click */
+    cursor: default;
+}
+
+.aui-toolbar .aui-dropdown2-trigger[aria-disabled="true"]:focus,
+.aui-toolbar .aui-dropdown2-trigger[aria-disabled="true"]:hover,
+.aui-toolbar .aui-dropdown2-trigger[aria-disabled="true"]:active {
+    border: 1px solid #ddd;
+}
+
+
+.aui-toolbar .toolbar-group.disabled .toolbar-item:first-child .toolbar-trigger,
+.aui-toolbar .toolbar-group .disabled.toolbar-item:first-child .toolbar-trigger,
+.aui-toolbar .toolbar-group .toolbar-item:first-child .disabled.toolbar-trigger {
+    border-left: 1px solid #ddd;
+}
+
+/* prevent disabled split buttons jumping if dropdown clicked */
+.aui-toolbar .toolbar-group.disabled .toolbar-item .aui-dd-trigger,
+.aui-toolbar .toolbar-group .disabled.toolbar-item .aui-dd-trigger,
+.aui-toolbar .toolbar-group .toolbar-item .disabled.aui-dd-trigger {
+    border-left: 0;
+}

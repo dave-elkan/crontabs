@@ -1,9 +1,33 @@
 {
-    "name": "crontabs",
-    "version": "1.0",
+    "name": "__MSG_extName__",
+    "version": "0.1",
     "manifest_version": 2,
-    "description": "An extension for manipulating tabs at certain times.",
+    "description": "__MSG_extDesc__",
+	"icons": {
+		"16": "images/crontabs_16.png",
+		"48": "images/crontabs_48.png",
+		"128": "images/crontabs_128.png"
+	},
+	"default_locale": "en",
+    "background": {
+        "scripts": [
+			"js/lib/jquery.min.js", 
+			"js/lib/underscore.js", 
+			"js/lib/backbone.js", 
+			"js/lib/backbone.brace.js", 
+			"js/lib/laterjs/later.min.js", 
+			"js/background.js"
+		]
+    },
+    "options_page": "crontabs.html",
     "permissions": [
         "tabs"
-    ]
+    ],
+	"browser_action": {
+		"default_icon": {
+			"19": "images/crontabs_19.png",
+			"38": "images/crontabs_38.png"
+		},
+		"default_title": "__MSG_actionButtonEnableTitle__"
+	}
 }
