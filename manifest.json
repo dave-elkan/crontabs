@@ -15,7 +15,8 @@
 			"js/lib/underscore.js", 
 			"js/lib/backbone.js", 
 			"js/lib/backbone.brace.js", 
-			"js/lib/laterjs/later.min.js", 
+			"js/lib/laterjs/later.min.js",
+			"js/lib/requir.js",
 			"js/background.js"
 		]
     },

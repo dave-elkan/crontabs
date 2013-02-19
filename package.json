@@ -1,0 +1,20 @@
+{
+  "name": "crontabs",
+  "version": "0.0.0",
+  "description": "A chrome extension to control tabs with cron expressions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@bitbucket.org/edave/crontabs.git"
+  },
+  "author": "Dave Elkan <dave@edave.net>",
+  "license": "BSD",
+  "gitHead": "aaf6d8f58ae5336dc6332b08a6abe5e5892a5fac",
+  "devDependencies": {
+    "grunt": "0.4.0rc7",
+    "grunt-contrib-qunit": "~0.1.1"
+  }
+}
