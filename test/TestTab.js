@@ -1,4 +1,7 @@
 module("Tab");
-test("Testing Tab", function() {
-	ok(1);
+asyncTest("Testing Tab", function() {
+	require({baseUrl: "../js"}, ["Tab"], function(Tab) {
+		ok(new Tab().toJSON);
+		start();
+	});
 });

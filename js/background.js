@@ -1,3 +1,6 @@
+require(["underscore", "backbone"], function(_, Backbone) {
+	debugger;
+});
 //var crontabs = localStorage["crontabs"];
 var crontabs = [{
 	url: "http://www.edave.net/",
@@ -10,7 +13,7 @@ var crontabs = [{
 		action: "close"
 	}]
 }];
-
+/*
 chrome.browserAction.setBadgeBackgroundColor({
 	"color": "#FF0000"
 });
@@ -52,4 +55,4 @@ function getOrCreateTab(crontab, i, callback) {
 			}, callback);
 		}
 	});
-}
+}*/

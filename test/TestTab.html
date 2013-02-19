@@ -2,21 +2,21 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Basic Test Suite</title>
+  <title>Crontabs test suite</title>
   <!-- Load local QUnit. -->
   <link rel="stylesheet" href="libs/qunit.css" media="screen">
   <script src="libs/qunit.js"></script>
-  <!-- Load local lib and tests. -->
-  <script src="../js/lib/underscore.js"></script>
-  <script src="../js/lib/backbone.js"></script>
-  <script src="TestTab.js"></script>
+  <script src="../js/lib/require.js" data-main="../js/main.js"></script>
+  <script>
+	require(["TestTab.js"]);
+  </script>
 </head>
 <body>
-  <h1 id="qunit-header">Basic Test Suite</h1>
+  <h1 id="qunit-header">Crontabs Test Suite</h1>
   <h2 id="qunit-banner"></h2>
   <div id="qunit-testrunner-toolbar"></div>
   <h2 id="qunit-userAgent"></h2>
   <ol id="qunit-tests"></ol>
-  <div id="qunit-fixture">this had better work.</div>
+  <div id="qunit-fixture"></div>
 </body>
 </html>

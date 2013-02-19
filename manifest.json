@@ -10,15 +10,7 @@
 	},
 	"default_locale": "en",
     "background": {
-        "scripts": [
-			"js/lib/jquery.min.js", 
-			"js/lib/underscore.js", 
-			"js/lib/backbone.js", 
-			"js/lib/backbone.brace.js", 
-			"js/lib/laterjs/later.min.js",
-			"js/lib/requir.js",
-			"js/background.js"
-		]
+		"page": "background.html"
     },
     "options_page": "crontabs.html",
     "permissions": [

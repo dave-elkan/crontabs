@@ -1,3 +1,5 @@
-var Tab = Backbone.Model.extend({
+define(["underscore", "brace"], function(_, Brace) {
+	return Brace.Model.extend({
 
+	});
 });
