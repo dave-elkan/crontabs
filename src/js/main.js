@@ -1,5 +1,5 @@
 requirejs.config({
-	baseUrl: "js",
+	baseUrl: "src/js",
 	paths: {
 		'underscore': 'lib/underscore',
 		'backbone': 'lib/backbone',

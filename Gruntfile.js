@@ -1,9 +1,15 @@
 module.exports = function(grunt) {
-	
+    var testRunner = "TestRunner.html?test=";	
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		qunit: {
-			all: ['test/*.html']
+			all: {
+				options: {
+					urls: [
+						testRunner + 'Tab'
+					]
+				}
+			}
 		}
 	});
 
