@@ -5,7 +5,7 @@ requirejs.config({
 		'backbone': 'lib/backbone',
 		'jquery': 'lib/jquery',
 		'brace': 'lib/backbone.brace',
-		'Tab': 'model/Tab'
+		'hogan': 'lib/hogan-2.0.0'
 	},
 	shim: {
 		'underscore': {
@@ -18,6 +18,9 @@ requirejs.config({
 		'brace': {
 			deps: ['backbone'],
 			exports: 'Brace'
+		},
+		"hogan": {
+			exports: "Hogan"
 		}
 	}
 });

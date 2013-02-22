@@ -10,8 +10,16 @@ module.exports = function(grunt) {
 					]
 				}
 			}
+		},
+		hogan: {
+			crontabs: {
+				templates: "templates/**/*.hogan",
+				output: "src/js/templates.js",
+				binderName: "amd"
+			}
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-qunit');
+	grunt.loadNpmTasks('grunt-hogan');
 };
