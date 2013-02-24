@@ -15,11 +15,18 @@ module.exports = function(grunt) {
 			crontabs: {
 				templates: "templates/**/*.hogan",
 				output: "src/js/templates.js",
-				binderName: "amd"
+				binder: __dirname + "/src/node/amd.js"
 			}
+		},
+		watch: {
+			scripts: {
+				files: "templates/**/*.hogan",
+				tasks: ["hogan"],
+			},
 		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-qunit');
 	grunt.loadNpmTasks('grunt-hogan');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 };
