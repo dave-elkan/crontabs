@@ -1,0 +1,7 @@
+.crons .field-group:first-child .remove-cron {
+	display: none
+}
+
+#tabs fieldset:first-child .remove {
+	display: none
+}

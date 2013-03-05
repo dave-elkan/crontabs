@@ -29,9 +29,9 @@ requirejs.config({
 	}
 });
 
-require(["backbone", "CrontabsRouter", "CrontabsEditor", "CrontabsRunner"], function(Backbone, CrontabsRouter, CrontabsEditor, CrontabsRunner) {
-	var router = new CrontabsRouter();
-	router.on("route:editor", CrontabsEditor);
+require(["backbone", "router", "CrontabsEditor", "CrontabsRunner"], function(Backbone, Router, CrontabsEditor, CrontabsRunner) {
+	var router = new Router();
+	router.on("route:crontabs", CrontabsEditor);
 	router.on("route:background", function() {
 		var runner = new CrontabsRunner();
 		

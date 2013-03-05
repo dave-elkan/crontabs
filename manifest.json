@@ -12,7 +12,7 @@
     "background": {
 		"page": "background.html"
     },
-    "options_page": "crontabs.html",
+    "options_page": "editor.html",
     "permissions": [
         "tabs"
     ],

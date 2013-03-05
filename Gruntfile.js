@@ -6,7 +6,9 @@ module.exports = function(grunt) {
 			all: {
 				options: {
 					urls: [
-						testRunner + 'Tab'
+						testRunner + 'Tab',
+						testRunner + 'Cron',
+						testRunner + 'TabCollection'
 					]
 				}
 			}
@@ -15,7 +17,7 @@ module.exports = function(grunt) {
 			crontabs: {
 				templates: "templates/**/*.hogan",
 				output: "src/js/templates.js",
-				binder: __dirname + "/src/node/amd.js"
+				binderName: "amdWithPartials"
 			}
 		},
 		watch: {

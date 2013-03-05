@@ -1,0 +1,13 @@
+<fieldset data-tab-cid={{cid}}>
+	<div class="field-group">
+		<label for="url-{{cid}}">URL <span class="aui-icon icon-required"> required</span></label>
+		<input class="text long-field url" id="url-{{cid}}" type="text" name="url" value="{{url}}" />
+	</div>
+	<div class="crons"></div>
+	<div class="buttons-container">
+		<div class="buttons">
+			<button class="aui-button add-cron"><a class="aui-icon aui-icon-small aui-iconfont-add" href="">Add</a> Add Cron</button>
+			<button class="aui-button remove"><a class="aui-icon aui-icon-small aui-iconfont-remove" href="">Remove</a> Remove Tab</button>
+		</div>
+	</div>
+</fieldset>

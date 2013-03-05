@@ -1,5 +1,5 @@
 require(["underscore", "backbone"], function(_, Backbone) {
-	debugger;
+//	console.log(
 });
 //var crontabs = localStorage["crontabs"];
 var crontabs = [{

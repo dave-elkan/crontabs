@@ -1,4 +1,4 @@
-define(["underscore", "brace", "Cron"], function(_, Brace, Cron) {
+define(["brace", "Cron"], function(Brace, Cron) {
 	return Brace.Collection.extend({
 		model: Cron
 	});

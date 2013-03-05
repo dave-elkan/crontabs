@@ -14,5 +14,11 @@
 	"actionButtonDisableTitle": {
 		"message": "Disable Crontabs",
 		"description": "The title of the enable/disable button when enabled"
+	},
+	"cronExpressionInvalid": {
+		"message": "Cron Expression invalid."
+	},
+	"cronOperationInvalid": {
+		"message": "Cron Operation invalid."
 	}
 }

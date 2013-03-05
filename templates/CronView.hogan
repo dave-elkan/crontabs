@@ -1,0 +1,10 @@
+<label for="expression-{{cid}}">Expression <span class="aui-icon icon-required"> required</span></label>
+<input class="text" type="text" value="{{expression}}" name="expression" id="expression-{{cid}}">
+<select name="operation-{{cid}}" class="select">
+	{{#operations}} 
+	<option value="{{id}}">{{name}}</option>
+	{{/operations}}
+</select>
+{{#removable}}
+	<button class="aui-button remove-cron" data-cid="{{cid}}"><a class="aui-icon aui-icon-small aui-iconfont-remove" href="" data-cid="{{cid}}">Remove Cron</a> Remove Cron</button>
+{{/removable}}

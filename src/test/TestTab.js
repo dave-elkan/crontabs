@@ -1,4 +1,4 @@
-define(["Tab"], function(Tab) {
+require(["Tab"], function(Tab) {
 	module("Tab", {
 		setup: function() {
 		}
