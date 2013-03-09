@@ -1,4 +1,4 @@
-require(["TabCollection"], function(TabCollection) {
+define(["TabCollection"], function(TabCollection) {
 	module("TabCollection");
 
 	test("Invalid tabs are not returned", function() {

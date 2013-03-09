@@ -3,25 +3,21 @@
 <head>
   <meta charset="utf-8">
   <title>QUnit basic example</title>
-  <link rel="stylesheet" href="src/test/lib/qunit-1.11.0.css" media="screen">
-  <script src="src/test/lib/qunit-1.11.0.js"></script>
-  <script src="src/js/config.js"></script>
-  <script src="src/js/lib/require.js" data-main="src/test/main.js"></script>
+  <link rel="stylesheet" href="libs/qunit-1.11.0.css" media="screen">
+  <script src="libs/qunit-1.11.0.js"></script>
+  <script src="js/lib/require.js" data-main="js/main.js"></script>
   <script>
 	QUnit.config.autostart = false;
 	function getURLParameter(name) {
  	   return decodeURI((RegExp(name + '=' + '(.+?)(&|$)').exec(location.search)||[,null])[1]);
 	}
 	var name = getURLParameter("test"),
-		testFile = "src/test/Test" + name;
-
-	if (!name || name === "null") {
+		testFile = "test/Test" + name;
+	debugger;	
+	require([testFile + ".js"], function(test) {
+		debugger;
 		QUnit.start();
-	} else {
-		require([testFile + ".js"], function() {
-			QUnit.start()
-		});
-	}
+	});
   </script>
 </head>
 <body>

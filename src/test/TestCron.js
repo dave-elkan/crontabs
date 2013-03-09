@@ -1,11 +1,18 @@
-require(["Cron"], function(Cron) {
+define(["Cron"], function(Cron) {
 	module("Cron");
 
-	test("Operation type validation", function() {
+	test("Cron validation", function() {
 		var invalidCronOperation = "Invalid Cron validation";
 		var validCronOperation = "show";
 
-		ok(!Cron.operationIsValid(invalidCronOperation), "Invalid cron is invalid");
-		ok(Cron.operationIsValid(validCronOperation), "valid cron is invalid");
+        var cron = new Cron();
+
+		equal(cron.validate({
+            expression: "",
+        }), "cronExpressionInvalid", "Invalid cron is invalid");
+
+        equal(cron.validate({
+            expression: "asd"
+        }), undefined, "valid cron is invalid");
 	});
 });

@@ -1,4 +1,4 @@
-define(["brace"], function(Brace) {
+define(["brace", "MessageManager"], function(Brace, MessageManager) {
 
 	var validOperations = [{
 			id: "show",
@@ -16,16 +16,21 @@ define(["brace"], function(Brace) {
 
 	return Brace.Model.extend({
 
-		validate: function(attrs) {
-			if (!this.isValid(attrs)) {
-				return chrome.i18n.getMessage("operationInvalid");
+		namedAttributes: [
+			"id",
+			"name"
+		],
+
+		validate: function() {
+			if (!this.isValid()) {
+				return MessageManager("operationInvalid");
 			}
 		},
 
-		isValid: function(attrs) {
+		isValid: function() {
 			return _.filter(validOperations, function(operation) {
-				return operation.id.toLowerCase() === attrs.name.toLowerCase();
-			}).length > 0;
+				return operation.id === this.getId();
+			}, this).length > 0;
 		}
 	}, {
 		getValidOperations: function() {
