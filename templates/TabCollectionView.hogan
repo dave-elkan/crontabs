@@ -2,7 +2,7 @@
 <form class="aui">
 	<div class="buttons-container">
 		<div class="buttons">
-			<button class="aui-button save"><a class="aui-icon aui-icon-small aui-iconfont-success" href="">Save</a> Save</button>
+			<button class="aui-button aui-button-primary save"><a class="aui-icon aui-icon-small aui-iconfont-success" href="">Save</a> Save</button>
 			<button class="aui-button add"><a class="aui-icon aui-icon-small aui-iconfont-add" href="">Add</a> Add Tab</button>
 		</div>
 	</div>

@@ -42,6 +42,14 @@ define(["brace", "jquery", "templates", "Cron", "Operation"], function(Brace, $,
 			this.model.set('expression', $(e.target).val(), {
 				validate: true
 			});
+
+            var error = this.$el.find(".error");
+            if (this.model.validationError) {
+                error.text(this.model.validationError);
+                error.removeClass("hidden");
+            } else {
+                error.addClass("hidden");
+            }
 		},
 
 		actionChanged: function(e) {

@@ -1,4 +1,4 @@
-define(["underscore", "brace", "templates", "TabView"], function(_, Brace, templates, TabView) {
+define(["underscore", "jquery", "brace", "templates", "TabView"], function(_, $, Brace, templates, TabView) {
 	return Brace.View.extend({
 
 		template: templates.TabCollectionView,
@@ -6,7 +6,8 @@ define(["underscore", "brace", "templates", "TabView"], function(_, Brace, templ
 		events: {
 			"click button.add": "addTab",
 			// TODO save button should be disabled until all tabs are valid
-			"click button.save": "validateAndSave"
+			"click button.save": "validateAndSave",
+            "click button.remove": "removeTab"
 		},
 
 		initialize: function() {
@@ -29,26 +30,37 @@ define(["underscore", "brace", "templates", "TabView"], function(_, Brace, templ
 			this.focusLastTabUrl();
 		},
 
+        removeTab: function(e) {
+            e.preventDefault();
+            var target = $(e.target);
+            this.model.remove(this.model.get(target.data("cid")));
+            this.$el.find("input.url:last").focus();
+        },
+
 		appendToTabContainer: function(tab) {
 			this.$el.find("fieldset#tabs").append(tab);
 		},
 
 		tabAdded: function(model) {
-			this.appendToTabContainer(new TabView({
-				model: model
-			}).render());
+			this.appendToTabContainer(this.renderTab(model, true));
 		},
 
 		tabsAdded: function() {
-			var html = this.model.map(function(tab) {
-				return new TabView({
-					model: tab
-				}).render()
-			});
+			var html = this.model.map(function(tab, i) {
+                return this.renderTab(tab, i !== 0);
+			}, this);
 
 			this.appendToTabContainer(html);
 			this.focusFirstTabUrl();
 		},
+
+        renderTab: function(tab, removable) {
+            return new TabView({
+                model: tab
+            }, {
+                removable: removable
+            }).render()
+        },
 
 		tabRemoved: function(model) {
 			this.$el.find("[data-tab-cid='"+ model.cid + "']").remove();

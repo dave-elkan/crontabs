@@ -7,9 +7,13 @@ define(["jquery", "underscore", "brace", "templates", "CronCollectionView", "Cro
 		className: "aui",
 
 		events: {
-			"input input.url": "setUrl",
 			"click .add-cron": "addCron",
+            "input .url": "updateUrl"
 		},
+
+        initialize: function(model, options) {
+            this.removable = options.removable;
+        },
 
 		render: function() {
 			var html = $(this.template(this.buildRenderableModel()));
@@ -27,22 +31,29 @@ define(["jquery", "underscore", "brace", "templates", "CronCollectionView", "Cro
 		buildRenderableModel: function() {
 			var model = this.model.toJSON();
 			model.cid = this.model.cid;
+            model.removable = this.removable;
 
 			return model;
 		},
 
-		// TODO addCron button should only show once first cron is valid
 		addCron: function(e) {
 			e.preventDefault();
 			this.model.getCrons().add({});
 		},
 
-		setUrl: function(event) {
-			var target = $(event.target);
-			var property = target.attr("name");
-			var value = target.val();
-			this.model.set(property, value);
-		}
+        updateUrl: function(e) {
+            var urlField = $(e.target);
+            var errorField = this.$el.find(".error");
+            this.model.setUrl(urlField.val(), {
+                validate: true
+            });
 
+            if (this.model.validationError) {
+                errorField.text(this.model.validationError);
+                errorField.removeClass("hidden")
+            } else {
+                errorField.addClass("hidden")
+            }
+        }
 	});
 });

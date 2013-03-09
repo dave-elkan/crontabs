@@ -14,7 +14,7 @@ define(["underscore", "brace", "CronCollection"], function(_, Brace, CronCollect
 		},
 
 		validate: function(attrs, options) {
-			if (!attrs.url) {
+			if (!attrs.url || attrs.url === ".") {
 				return chrome.i18n.getMessage("tabUrlInvalid");
 			}
 

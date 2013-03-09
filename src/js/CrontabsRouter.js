@@ -1,4 +1,4 @@
-define(["brace"], function(Brace, TabCollection, EditTabView) {
+define(["brace"], function(Brace) {
 	return Brace.Router.extend({
 		routes: {
 			"background.html": "background",

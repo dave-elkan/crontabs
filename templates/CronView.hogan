@@ -1,5 +1,6 @@
 <label for="expression-{{cid}}">Expression <span class="aui-icon icon-required"> required</span></label>
 <input class="text" type="text" value="{{expression}}" name="expression" id="expression-{{cid}}">
+<div class="error hidden"></div>
 <select name="operation-{{cid}}" class="select">
 	{{#operations}} 
 	<option value="{{id}}">{{name}}</option>

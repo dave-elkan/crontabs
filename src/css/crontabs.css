@@ -1,7 +1,12 @@
-.crons .field-group:first-child .remove-cron {
-	display: none
+.crontabs-header {
+	margin: 5px 0 0 0;
+	padding: 10px;
 }
 
-#tabs fieldset:first-child .remove {
-	display: none
+#tabs .field-group .hidden {
+    display: none
+}
+
+button.save a {
+    color: #FFF
 }

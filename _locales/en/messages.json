@@ -20,5 +20,8 @@
 	},
 	"cronOperationInvalid": {
 		"message": "Cron Operation invalid."
-	}
+	},
+    "tabUrlInvalid": {
+        "message": "Tab URL invalid."
+    }
 }

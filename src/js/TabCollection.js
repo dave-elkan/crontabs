@@ -9,6 +9,7 @@ define(["underscore", "brace", "Tab", "TabStorage"], function(_, Brace, Tab, Tab
 
 		save: function() {
 			TabStorage.set(this.toJSON());
+            this.broadcastTabsSaved();
 		},
 
 		broadcastTabsSaved: function() {
