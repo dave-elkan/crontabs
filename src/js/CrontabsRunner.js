@@ -1,4 +1,4 @@
-define(["brace", "TabCollection", "TabStorage", "TabManager", "later"], function(Brace, TabCollection, TabStorage, TabManager, later) {
+define(["brace", "TabCollection", "TabStorage", "TabManager"], function(Brace, TabCollection, TabStorage, TabManager) {
 	return Brace.Model.extend({
 
 		namedEvents: [
@@ -15,19 +15,28 @@ define(["brace", "TabCollection", "TabStorage", "TabManager", "later"], function
 		},
 
 		cronsUpdated: function() {
-			later.stopExec();
+			later().stopExec();
 			this.tabCollection.reset(TabStorage.get());
 		},
 
 		updateOrCreateTabs: function() {
-			_.each(this.tabCollection.getValidTabs(), function(tab) {
-				TabManager.createTab(tab.toChromeTab(), _.bind(function(chromeTab) {
-					tab.setUrl(chromeTab.url);
+			_.each(this.tabCollection.getValidTabs(), function(cronTab) {
+				TabManager.createTab(cronTab.toChromeTab(), _.bind(function(chromeTab) {
+					cronTab.setUrl(chromeTab.url);
+                    this.tabCollection.save();
+                    this.scheduleTab(cronTab, chromeTab);
 				}, this));
 			}, this);
-			_.delay(_.bind(function() {
-				this.tabCollection.save();
-			}, this));
-		}
+		},
+
+        scheduleTab: function(cronTab, chromeTab) {
+            cronTab.getCrons().each(function(cron) {
+                var schedule = cronParser().parse(cron.getExpression());
+                var action = TabManager.getScheduleAction(cron.getOperation());
+                later().exec(schedule, new Date(), function() {
+                    action(chromeTab);
+                });
+            });
+        }
 	});
 });

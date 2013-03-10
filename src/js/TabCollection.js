@@ -7,9 +7,11 @@ define(["underscore", "brace", "Tab", "TabStorage"], function(_, Brace, Tab, Tab
 			this.restore(TabStorage.get());
 		},
 
-		save: function() {
+		save: function(broadcast) {
 			TabStorage.set(this.toJSON());
-            this.broadcastTabsSaved();
+            if (broadcast) {
+                this.broadcastTabsSaved();
+            }
 		},
 
 		broadcastTabsSaved: function() {

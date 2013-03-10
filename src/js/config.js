@@ -5,8 +5,7 @@ var CrontabsConfig = {
 		'backbone': 'lib/backbone',
 		'jquery': 'lib/jquery.min',
 		'brace': 'lib/backbone.brace',
-		'hogan': 'lib/hogan-2.0.0',
-		'later': 'lib/laterjs/later-en.min'
+		'hogan': 'lib/hogan-2.0.0'
 	},
 	shim: {
 		'underscore': {
@@ -22,9 +21,6 @@ var CrontabsConfig = {
 		},
 		"hogan": {
 			exports: "Hogan"
-		},
-		"later": {
-			exports: "later"
 		}
 	}
 }

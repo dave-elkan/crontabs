@@ -5,15 +5,18 @@ define(["underscore"], function(_) {
 			chrome.tabs.update(id, properties, callback);
 		},
 
-		reloadTab: function(id) {
-			chrome.tabs.reload(id);
+		reloadTab: function(chromeTab) {
+			chrome.tabs.reload(chromeTab.id);
 		},
 
 		createTab: function(properties, callback) {
 			this.getTab(properties.url, function(tab) {
 				if (!tab) {
+                    properties.active = false;
 					chrome.tabs.create(properties, callback);
-				}
+				} else {
+                    callback(tab);
+                }
 			})
 		},
 
@@ -27,6 +30,37 @@ define(["underscore"], function(_) {
 					callback(null);
 				}
 			});
-		}
+		},
+
+        showTab: function(tab, callback) {
+            this.updateTab(tab.id, {
+                active: true
+            }, callback);
+        },
+
+        showAndReloadTab: function(tab, callback) {
+            var instance = this;
+            this.updateTab(tab.id, {
+                active: true
+            }, function() {
+                instance.reloadTab(tab);
+                callback();
+            });
+        },
+
+        closeTab: function(tab, callback) {
+            chrome.tabs.remove(tab.id, callback);
+        },
+
+        getScheduleAction: function(action) {
+            var actions = {
+                "show": _.bind(this.showTab, this),
+                "showAndReload": _.bind(this.showAndReloadTab, this),
+                "close": _.bind(this.closeTab, this),
+                "reload": _.bind(this.reloadTab, this)
+            };
+
+            return actions[action];
+        }   
 	}
 });

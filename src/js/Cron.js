@@ -6,6 +6,10 @@ define(["underscore", "brace", "MessageManager", "Operation"], function(_, Brace
 			"operation"
 		],
 
+        defaults: {
+            "operation": "show"
+        },
+
 		validate: function(attrs, options) {
 			if (!attrs.expression) {
 				return MessageManager("cronExpressionInvalid");

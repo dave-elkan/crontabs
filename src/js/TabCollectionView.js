@@ -5,7 +5,6 @@ define(["underscore", "jquery", "brace", "templates", "TabView"], function(_, $,
 
 		events: {
 			"click button.add": "addTab",
-			// TODO save button should be disabled until all tabs are valid
 			"click button.save": "validateAndSave",
             "click button.remove": "removeTab"
 		},
@@ -76,7 +75,7 @@ define(["underscore", "jquery", "brace", "templates", "TabView"], function(_, $,
 
 		validateAndSave: function(e) {
 			e.preventDefault();
-			this.model.save();
+			this.model.save(true);
 		}
 	});
 });
