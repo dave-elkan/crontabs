@@ -21,6 +21,6 @@
 			"19": "images/crontabs_19.png",
 			"38": "images/crontabs_38.png"
 		},
-		"default_title": "__MSG_actionButtonEnableTitle__"
+		"default_title": "__MSG_actionButtonDisableTitle__"
 	}
 }
