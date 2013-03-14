@@ -1,23 +1,17 @@
-define(["brace", "MessageManager"], function(Brace, MessageManager) {
+define(["brace", "ChromeBrowserAction", "MessageManager"], function(Brace, ChromeBrowserAction, MessageManager) {
     return Brace.View.extend({
 
         initialize: function() {
-            var instance = this;
-            chrome.browserAction.onClicked.addListener(function() {
-                instance.model.switchEnablement();
-            });
+            ChromeBrowserAction.onEnableButtonClicked(_.bind(function() {
+                this.model.switchEnablement()
+            }, this));
 
-            if (this.model.getEnabled()) {
-                this.setClickToDisableText();
-            } else {
-                this.setClickToEnableText();
-            }
-
+            this._setButtonText();
             this.model.on("change:enabled", _.bind(this._setButtonText, this));
         },
 
-        _setButtonText: function(model, isEnabled) {
-            if (isEnabled) {
+        _setButtonText: function() {
+            if (this.model.getEnabled()) {
                 this.setClickToDisableText();
             } else {
                 this.setClickToEnableText();
@@ -25,15 +19,11 @@ define(["brace", "MessageManager"], function(Brace, MessageManager) {
         },
 
         setClickToEnableText: function() {
-            chrome.browserAction.setTitle({
-                title: MessageManager("actionButtonEnableTitle")
-            });
+            ChromeBrowserAction.setBrowserActionText(MessageManager("actionButtonEnableTitle"));
         },
 
         setClickToDisableText: function() {
-            chrome.browserAction.setTitle({
-                title: MessageManager("actionButtonDisableTitle") 
-            });
+            ChromeBrowserAction.setBrowserActionText(MessageManager("actionButtonDisableTitle"));
         }
     });
 });
