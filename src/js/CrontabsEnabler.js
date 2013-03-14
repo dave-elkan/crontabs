@@ -3,7 +3,7 @@ define(["brace", "ChromeBrowserAction", "MessageManager"], function(Brace, Chrom
 
         initialize: function() {
             ChromeBrowserAction.onEnableButtonClicked(_.bind(function() {
-                this.model.switchEnablement()
+                this.model.toggleEnablement()
             }, this));
 
             this._setButtonText();

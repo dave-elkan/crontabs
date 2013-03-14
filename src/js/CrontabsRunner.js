@@ -1,9 +1,15 @@
-define(["brace", "TabCollection", "TabStorage", "TabManager", "MessageManager", "CrontabsEnabler"], function(Brace, TabCollection, TabStorage, TabManager, MessageManager, CrontabsEnabler) {
+define(["brace", "TabCollection", "ChromeTabCollection", "TabStorage", "ChromeTabManager"], function(
+        Brace, 
+        TabCollection,
+        ChromeTabCollection,
+        TabStorage, 
+        ChromeTabManager) {
 
+    var schedules = [];
+    
     return Brace.Model.extend({
         namedEvents: [
-            "cronsUpdated",
-            "enablementChanged"
+            "cronsUpdated"
         ],
 
         namedAttributes: [
@@ -13,15 +19,25 @@ define(["brace", "TabCollection", "TabStorage", "TabManager", "MessageManager", 
         initialize: function() {
             this.onCronsUpdated(_.bind(this.cronsUpdated, this));
             this.tabCollection = new TabCollection();
-            //this.tabCollection.on("reset", _.bind(this.updateOrCreateTabs, this));
+            this.chromeTabCollection = new ChromeTabCollection();
             this.on("change:enabled", _.bind(this.onEnableChange, this));
+
+            this.tabCollection.on("reset", this._onReset, this);
+
+            if (this.getEnabled()) {
+                this.updateOrCreateTabs()
+            }
         },
 
-        switchEnablement: function() {
+        _onReset: function(collection, models) {
+        },
+
+        toggleEnablement: function() {
             this.setEnabled(!this.getEnabled());
         }, 
 
         onEnableChange: function() {
+            localStorage["crontabsEnabled"] = JSON.stringify(this.getEnabled());
             if (this.getEnabled()) {
                 this.updateOrCreateTabs();
             } else {
@@ -30,23 +46,31 @@ define(["brace", "TabCollection", "TabStorage", "TabManager", "MessageManager", 
         },
 
         removeTabs: function() {
-            later().stopExec();
+            this._stopSchedules();
             this.tabCollection.each(function(cronTab) {
-                TabManager.getTab(cronTab.getUrl(), function(chromeTab) {
-                    TabManager.closeTab(chromeTab);
+                ChromeTabManager.getTab(cronTab.getUrl(), function(chromeTab) {
+                    ChromeTabManager.closeTab(chromeTab);
                 });
             });
         },
 
         cronsUpdated: function() {
-            later().stopExec();
-            this.tabCollection.reset(TabStorage.get());
+            this._stopSchedules();
+            this.updateOrCreateTabs();
+        },
+
+        _stopSchedules: function() {
+            _.each(schedules, function(schedule) {
+                schedule.stopExec();
+            });
         },
 
         updateOrCreateTabs: function() {
             this.tabCollection.reset(TabStorage.get());
-            this.tabCollection.each(function(cronTab) {
-                TabManager.createTab(cronTab.toChromeTab(), _.bind(function(chromeTab) {
+            this.tabCollection.each(function(cronTab, i) {
+                var chromeTab = cronTab.toChromeTab();
+                chromeTab.active = chromeTab.active || i === 0;
+                ChromeTabManager.createTab(chromeTab, _.bind(function(chromeTab) {
                     cronTab.setUrl(chromeTab.url);
                     this.tabCollection.save();
                     this.scheduleTab(cronTab, chromeTab);
@@ -56,11 +80,19 @@ define(["brace", "TabCollection", "TabStorage", "TabManager", "MessageManager", 
 
         scheduleTab: function(cronTab, chromeTab) {
             cronTab.getCrons().each(function(cron) {
+                var l = later(60);
+                schedules.push(l);
                 var schedule = cronParser().parse(cron.getExpression());
-                var action = TabManager.getScheduleAction(cron.getOperation());
-                later().exec(schedule, new Date(), _.bind(function() {
+                var action = ChromeTabManager.getScheduleAction(cron.getOperation());
+                l.exec(schedule, new Date(), _.bind(function() {
                     if (this.getEnabled()) {
-                        action(chromeTab);
+                        action(chromeTab, function(tab) {
+                            if (tab) {
+                                // TODO Showing a previously closed tab can 
+                                // result in a totally new tab object
+                                // Is this impotant?
+                            }
+                        });
                     }
                 }, this));
             }, this);

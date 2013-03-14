@@ -9,10 +9,20 @@ define(["underscore"], function(_) {
 			chrome.tabs.reload(chromeTab.id);
 		},
 
+        getOrCreateTab: function(properties, callback) {
+            var instance = this;
+            this.getTab(properties.url, function(chromeTab) {
+                if (!chromeTab) {
+                    instance.createTab(properties, callback)
+                } else {
+                    callback.call(instance, chromeTab);
+                }
+            })
+        },
+
 		createTab: function(properties, callback) {
 			this.getTab(properties.url, function(tab) {
 				if (!tab) {
-                    properties.active = false;
 					chrome.tabs.create(properties, callback);
 				} else {
                     callback(tab);
@@ -33,9 +43,11 @@ define(["underscore"], function(_) {
 		},
 
         showTab: function(tab, callback) {
-            this.updateTab(tab.id, {
-                active: true
-            }, callback);
+            this.getOrCreateTab(tab, function(chromeTab) {
+                this.updateTab(chromeTab.id, {
+                    active: true
+                }, callback);
+            });
         },
 
         showAndReloadTab: function(tab, callback) {
