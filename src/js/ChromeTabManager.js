@@ -19,7 +19,7 @@ define(["underscore", "ChromeTabs"], function(_, ChromeTabs) {
 
         _getOrCreateChromeTab: function(properties, callback) {
             this._getChromeTab(properties, _.bind(function(chromeTab) {
-                if (tab) {
+                if (chromeTab) {
                     callback(chromeTab);
                 } else {
                     this._createChromeTab(properties, callback);
