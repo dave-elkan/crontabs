@@ -48,9 +48,7 @@ define(["brace", "TabCollection", "ChromeTabCollection", "TabStorage", "ChromeTa
         removeTabs: function() {
             this._stopSchedules();
             this.tabCollection.each(function(cronTab) {
-                ChromeTabManager.getTab(cronTab.getUrl(), function(chromeTab) {
-                    ChromeTabManager.closeTab(chromeTab);
-                });
+                ChromeTabManager.closeTab(cronTab.toChromeTab());
             });
         },
 
@@ -68,17 +66,17 @@ define(["brace", "TabCollection", "ChromeTabCollection", "TabStorage", "ChromeTa
         updateOrCreateTabs: function() {
             this.tabCollection.reset(TabStorage.get());
             this.tabCollection.each(function(cronTab, i) {
-                var chromeTab = cronTab.toChromeTab();
-                chromeTab.active = chromeTab.active || i === 0;
-                ChromeTabManager.createTab(chromeTab, _.bind(function(chromeTab) {
+                var tabProperties = cronTab.toChromeTab();
+                tabProperties.active = tabProperties.active || i === 0;
+                ChromeTabManager.createTab(tabProperties, _.bind(function(chromeTab) {
                     cronTab.setUrl(chromeTab.url);
                     this.tabCollection.save();
-                    this.scheduleTab(cronTab, chromeTab);
+                    this.scheduleTab(cronTab);
                 }, this));
             }, this);
         },
 
-        scheduleTab: function(cronTab, chromeTab) {
+        scheduleTab: function(cronTab) {
             cronTab.getCrons().each(function(cron) {
                 var l = later(1);
                 schedules.push(l);
@@ -86,13 +84,7 @@ define(["brace", "TabCollection", "ChromeTabCollection", "TabStorage", "ChromeTa
                 var action = ChromeTabManager.getScheduleAction(cron.getOperation());
                 l.exec(schedule, new Date(), _.bind(function() {
                     if (this.getEnabled()) {
-                        action(chromeTab, function(tab) {
-                            if (tab) {
-                                // TODO Showing a previously closed tab can 
-                                // result in a totally new tab object
-                                // Is this impotant?
-                            }
-                        });
+                        action(cronTab.toChromeTab());
                     }
                 }, this));
             }, this);

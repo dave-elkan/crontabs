@@ -8,7 +8,8 @@ module.exports = function(grunt) {
 					urls: [
 						testRunner + 'Tab',
 						testRunner + 'Cron',
-						testRunner + 'TabCollection'
+						testRunner + 'TabCollection',
+                        testRunner + 'ChromeTabManager'
 					]
 				}
 			}
