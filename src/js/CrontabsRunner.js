@@ -80,7 +80,7 @@ define(["brace", "TabCollection", "ChromeTabCollection", "TabStorage", "ChromeTa
 
         scheduleTab: function(cronTab, chromeTab) {
             cronTab.getCrons().each(function(cron) {
-                var l = later(60);
+                var l = later(1);
                 schedules.push(l);
                 var schedule = cronParser().parse(cron.getExpression());
                 var action = ChromeTabManager.getScheduleAction(cron.getOperation());
