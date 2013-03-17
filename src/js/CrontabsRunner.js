@@ -1,9 +1,5 @@
 define(["brace", "TabCollection", "ChromeTabCollection", "TabStorage", "ChromeTabManager"], function(
-        Brace, 
-        TabCollection,
-        ChromeTabCollection,
-        TabStorage, 
-        ChromeTabManager) {
+         Brace, TabCollection, ChromeTabCollection, TabStorage, ChromeTabManager) {
 
     var schedules = [];
     
@@ -22,14 +18,9 @@ define(["brace", "TabCollection", "ChromeTabCollection", "TabStorage", "ChromeTa
             this.chromeTabCollection = new ChromeTabCollection();
             this.on("change:enabled", _.bind(this.onEnableChange, this));
 
-            this.tabCollection.on("reset", this._onReset, this);
-
             if (this.getEnabled()) {
                 this.updateOrCreateTabs()
             }
-        },
-
-        _onReset: function(collection, models) {
         },
 
         toggleEnablement: function() {
@@ -45,16 +36,23 @@ define(["brace", "TabCollection", "ChromeTabCollection", "TabStorage", "ChromeTa
             }
         },
 
-        removeTabs: function() {
+        removeTabs: function(callback) {
             this._stopSchedules();
+            var count = this.tabCollection.length;
             this.tabCollection.each(function(cronTab) {
-                ChromeTabManager.closeTab(cronTab.toChromeTab());
+                ChromeTabManager.closeTab(cronTab.toChromeTab(), function() {
+                    count--;
+                    if (count === 0) {
+                        callback();
+                    }
+                });
             });
         },
 
         cronsUpdated: function() {
-            this._stopSchedules();
-            this.updateOrCreateTabs();
+            this.removeTabs(_.bind(function() {
+                this.updateOrCreateTabs();
+            }, this));
         },
 
         _stopSchedules: function() {

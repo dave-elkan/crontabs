@@ -7,18 +7,20 @@ define(["underscore", "ChromeTabs"], function(_, ChromeTabs) {
             }, this);
         },
 
-        _getAndCloseIfExists: function(properties) {
+        _getAndCloseIfExists: function(properties, callback) {
             this._getChromeTab(properties, _.bind(function(chromeTab) {
                 if (chromeTab) {
-                    this._closeChromeTab(chromeTab);
+                    this._closeChromeTab(chromeTab, callback);
+                } else {
+                    callback();
                 }
             }, this));
         },
 
         _getOrCreateChromeTab: function(properties, callback) {
-            this._getChromeTab(properties, _.bind(function(tab) {
+            this._getChromeTab(properties, _.bind(function(chromeTab) {
                 if (tab) {
-                    callback(tab);
+                    callback(chromeTab);
                 } else {
                     this._createChromeTab(properties, callback);
                 }

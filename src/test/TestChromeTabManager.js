@@ -144,12 +144,15 @@ require(["underscore", "ChromeTabManager", "ChromeTabs"], function(_, ChromeTabM
             url: "url"
         };
 
-        ChromeTabs.query.callsArgWith(1, undefined); 
+        var callback = sinon.spy();
+
+        ChromeTabs.query.callsArgWith(1, undefined);
         
-        closeAction(tab);
+        closeAction(tab, callback);
         
         ok(ChromeTabs.create.notCalled, "Chrome Tab is not created just to close it again.");
         ok(ChromeTabs.remove.notCalled, "Remove is not called to close non-existant tab.");
+        ok(callback.calledOnce, "Callback called once.");
 
     });
 
