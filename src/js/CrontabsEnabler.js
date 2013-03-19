@@ -19,11 +19,19 @@ define(["brace", "ChromeBrowserAction", "MessageManager"], function(Brace, Chrom
         },
 
         setClickToEnableText: function() {
-            ChromeBrowserAction.setBrowserActionText(MessageManager("actionButtonEnableTitle"));
+            ChromeBrowserAction.setBrowserActionText({
+                badgeText: MessageManager("actionButtonBadgeDisabledText"), 
+                titleText: MessageManager("actionButtonEnableTitle"),
+                badgeBackgroundColour: "#FF0000"
+            });
         },
 
         setClickToDisableText: function() {
-            ChromeBrowserAction.setBrowserActionText(MessageManager("actionButtonDisableTitle"));
+            ChromeBrowserAction.setBrowserActionText({
+                badgeText: MessageManager("actionButtonBadgeEnabledText"),
+                titleText: MessageManager("actionButtonDisableTitle"),
+                badgeBackgroundColour: "#458B00"
+            }); 
         }
     });
 });

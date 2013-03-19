@@ -4,9 +4,15 @@ define(function() {
             chrome.browserAction.onClicked.addListener(callback);
         },
 
-        setBrowserActionText: function(text) {
+        setBrowserActionText: function(options) {
+            chrome.browserAction.setBadgeText({
+                text: options.badgeText
+            });
             chrome.browserAction.setTitle({
-                title: text
+                title: options.titleText
+            });
+            chrome.browserAction.setBadgeBackgroundColor({
+                color: options.badgeBackgroundColour
             });
         }
     };

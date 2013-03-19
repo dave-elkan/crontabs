@@ -15,6 +15,14 @@
 		"message": "Disable Crontabs",
 		"description": "The title of the enable/disable button when enabled"
 	},
+	"actionButtonBadgeEnabledText": {
+		"message": "on",
+		"description": "The text of the badge hovering over the enable/disable button when its disabled"
+	},
+	"actionButtonBadgeDisabledText": {
+		"message": "off",
+		"description": "The text of the badge hovering over the enable/disable button when its enabled"
+	},
 	"cronExpressionInvalid": {
 		"message": "Cron Expression invalid."
 	},
