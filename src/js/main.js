@@ -5,7 +5,7 @@ require(["backbone", "CrontabsRouter", "CrontabsEditor", "CrontabsRunner", "Cron
 	router.on("route:editor", CrontabsEditor);
 	router.on("route:background", function() {
 
-        var enabled = JSON.parse(localStorage['crontabsEnabled']);
+        var enabled = CrontabsEnabledState.isEnabled();
         if (enabled !== false) {
             enabled = true;
         }
