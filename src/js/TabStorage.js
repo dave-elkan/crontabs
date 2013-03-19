@@ -1,7 +1,12 @@
 define(function() {
 	return {
 		get: function() {
-			return JSON.parse(localStorage["crontabs"]);
+            var crontabs = localStorage["crontabs"];
+            if (crontabs) {
+                return JSON.parse(crontabs);
+            } else {
+                return [{}];
+            }
 		},
 
 		set: function(crontabs) {
