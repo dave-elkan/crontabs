@@ -15,7 +15,7 @@ require(["backbone", "CrontabsRouter", "CrontabsEditor", "CrontabsRunner", "Cron
         });
 
         runner.on("change:enabled", function(model, enabled) {
-            localStorage['contabsEnabled'] = JSON.stringify(enabled)
+            localStorage['crontabsEnabled'] = JSON.stringify(enabled)
         });
 
         new CrontabsEnabler({
