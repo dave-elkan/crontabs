@@ -1,5 +1,5 @@
-define(["brace", "TabCollection", "ChromeTabCollection", "TabStorage", "ChromeTabManager"], function(
-         Brace, TabCollection, ChromeTabCollection, TabStorage, ChromeTabManager) {
+define(["brace", "TabCollection", "ChromeTabCollection", "TabStorage", "ChromeTabManager", "CrontabsEnabledState"], function(
+         Brace, TabCollection, ChromeTabCollection, TabStorage, ChromeTabManager, CrontabsEnabledState) {
 
     var schedules = [];
     
@@ -28,7 +28,7 @@ define(["brace", "TabCollection", "ChromeTabCollection", "TabStorage", "ChromeTa
         }, 
 
         onEnableChange: function() {
-            localStorage["crontabsEnabled"] = JSON.stringify(this.getEnabled());
+            CrontabsEnabledState.set(this.getEnabled());
             if (this.getEnabled()) {
                 this.updateOrCreateTabs();
             } else {

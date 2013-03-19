@@ -1,6 +1,6 @@
 requirejs.config(CrontabsConfig);
 
-require(["backbone", "CrontabsRouter", "CrontabsEditor", "CrontabsRunner", "CrontabsEnabler"], function(Backbone, CrontabsRouter, CrontabsEditor, CrontabsRunner, CrontabsEnabler) {
+require(["backbone", "CrontabsRouter", "CrontabsEditor", "CrontabsRunner", "CrontabsEnabler", "CrontabsEnabledState"], function(Backbone, CrontabsRouter, CrontabsEditor, CrontabsRunner, CrontabsEnabler, CrontabsEnabledState) {
 	var router = new CrontabsRouter();
 	router.on("route:editor", CrontabsEditor);
 	router.on("route:background", function() {
@@ -15,7 +15,7 @@ require(["backbone", "CrontabsRouter", "CrontabsEditor", "CrontabsRunner", "Cron
         });
 
         runner.on("change:enabled", function(model, enabled) {
-            localStorage['crontabsEnabled'] = JSON.stringify(enabled)
+            CrontabsEnabledState.set(enabled);
         });
 
         new CrontabsEnabler({
