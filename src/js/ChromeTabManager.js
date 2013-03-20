@@ -41,7 +41,7 @@ define(["underscore", "jquery", "ChromeTabs"], function(_, $, ChromeTabs) {
             ChromeTabs.get(id, function(chromeTab) {
                 if (chromeTab) {
                     ChromeTabs.remove(chromeTab.id, callback);
-                } else {
+                } else if (callback) {
                     callback();
                 }
             });
