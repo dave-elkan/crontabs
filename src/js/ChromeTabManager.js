@@ -13,7 +13,7 @@ define(["underscore", "jquery", "ChromeTabs"], function(_, $, ChromeTabs) {
 
                 deferred.done(_.bind(function(chromeTab) {
                     cronTab.setChromeTabId(chromeTab.id);
-                    action.call(this, chromeTab, callback);
+                    action.call(this, chromeTab, cronTab, callback);
                 }, this));
 
                 function resolveWithChromeTab(chromeTab) {
@@ -53,9 +53,10 @@ define(["underscore", "jquery", "ChromeTabs"], function(_, $, ChromeTabs) {
          * @param {ChromeTab} chromeTab The Chrome Tab to show.
          * @param {Function} callback The function to call once the tab has been shown.
          */
-        _showChromeTab: function(chromeTab, callback) {
+        _showChromeTab: function(chromeTab, cronTab, callback) {
             this._updateTab(chromeTab.id, {
-                active: true
+                active: true,
+                url: cronTab.getUrl()
             }, callback);
         },
 
@@ -65,10 +66,8 @@ define(["underscore", "jquery", "ChromeTabs"], function(_, $, ChromeTabs) {
          * @param {ChromeTab} chromeTab The Chrome Tab to show.
          * @param {Function} callback The function to call once the tab has been shown.
          */
-        _showAndReloadChromeTab: function(chromeTab, callback) {
-            this._updateTab(chromeTab.id, {
-                active: true
-            }, _.bind(function() {
+        _showAndReloadChromeTab: function(chromeTab, cronTab, callback) {
+            this._showChromeTab(chromeTab, cronTab, _.bind(function() {
                 this._reloadChromeTab(chromeTab);
                 if (callback) {
                     callback();
