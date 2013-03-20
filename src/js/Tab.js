@@ -3,7 +3,8 @@ define(["underscore", "brace", "CronCollection"], function(_, Brace, CronCollect
 
 		namedAttributes: [
 			"url",
-			"crons"
+			"crons",
+            "chromeTabId"
 		],
 
 		initialize: function(model) {
@@ -30,10 +31,11 @@ define(["underscore", "brace", "CronCollection"], function(_, Brace, CronCollect
 			}
 		},
 
-		toChromeTab: function() {
-			return {
-				url: this.getUrl()
-			}
-		}
+        toChromeTab: function() {
+            return {
+                url: this.getUrl(),
+                id: this.getChromeTabId()
+            };
+        }
 	});
 });

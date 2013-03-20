@@ -44,6 +44,14 @@ define(["underscore", "brace", "Tab", "TabStorage"], function(_, Brace, Tab, Tab
 					url: tab.getUrl()
 				}
 			});
-		}
+		},
+
+        getByChromeTabId: function(chromeTabId) {
+            return this.find(function(tab) {
+                if (tab.getChromeTabId() === chromeTabId) {
+                    return tab;
+                }
+            });
+        }
 	});
 });

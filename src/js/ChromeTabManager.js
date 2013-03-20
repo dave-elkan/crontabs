@@ -1,88 +1,123 @@
-define(["underscore", "ChromeTabs"], function(_, ChromeTabs) {
+define(["underscore", "jquery", "ChromeTabs"], function(_, $, ChromeTabs) {
 	return {
 
+        /**
+         * Gets or creates a tab and performs an action on it.
+         *
+         * @param {Function} action The action to perform. Accepts a ChromeTab and a callback.
+         * @param {Function} callback The callback to call when action completes.
+         */
         _getAndPerform: function(action, callback) {
-            return _.bind(function(tabProperties) {
-                this._getOrCreateChromeTab(tabProperties, _.bind(action, this));
+            return _.bind(function(cronTab) {
+                var deferred = jQuery.Deferred();
+
+                deferred.done(_.bind(function(chromeTab) {
+                    cronTab.setChromeTabId(chromeTab.id);
+                    action.call(this, chromeTab, callback);
+                }, this));
+
+                function resolveWithChromeTab(chromeTab) {
+                    deferred.resolve(chromeTab);
+                }
+
+                if (cronTab.getChromeTabId()) {
+                    ChromeTabs.get(cronTab.getChromeTabId(), resolveWithChromeTab);
+                } else {
+                    ChromeTabs.create({
+                            url: cronTab.getUrl()
+                        }, resolveWithChromeTab);
+                }
+
             }, this);
         },
 
-        _getAndCloseIfExists: function(properties, callback) {
-            this._getChromeTab(properties, _.bind(function(chromeTab) {
+        /**
+         * Closes a Chrome Tab if it exists
+         *
+         * @param {Number} id The Id of the Chrome Tab to close.
+         * @param {Function} callback The callback to call when the tab is closed.
+         */
+        closeTab: function(id, callback) {
+            ChromeTabs.get(id, function(chromeTab) {
                 if (chromeTab) {
-                    this._closeChromeTab(chromeTab, callback);
-                } else {
-                    callback();
-                }
-            }, this));
-        },
-
-        _getOrCreateChromeTab: function(properties, callback) {
-            this._getChromeTab(properties, _.bind(function(chromeTab) {
-                if (chromeTab) {
-                    callback(chromeTab);
-                } else {
-                    this._createChromeTab(properties, callback);
-                }
-            }, this));
-        },
-
-        _getChromeTab: function(properties, callback) {
-            ChromeTabs.query({
-                url: properties.url
-            }, function(tabs) {
-                if (tabs && tabs.length) {
-                    callback(tabs[0]);
+                    ChromeTabs.remove(chromeTab.id, callback);
                 } else {
                     callback();
                 }
             });
         },
 
+        /**
+         * Shows a Chrome Tab
+         *
+         * @param {ChromeTab} chromeTab The Chrome Tab to show.
+         * @param {Function} callback The function to call once the tab has been shown.
+         */
         _showChromeTab: function(chromeTab, callback) {
             this._updateTab(chromeTab.id, {
                 active: true
             }, callback);
         },
 
-        _showAndReloadChromeTab: function(chromeTab) {
+        /**
+         * Shows and reloads a Chrome Tab.
+         *
+         * @param {ChromeTab} chromeTab The Chrome Tab to show.
+         * @param {Function} callback The function to call once the tab has been shown.
+         */
+        _showAndReloadChromeTab: function(chromeTab, callback) {
             this._updateTab(chromeTab.id, {
                 active: true
             }, _.bind(function() {
                 this._reloadChromeTab(chromeTab);
+                if (callback) {
+                    callback();
+                }
             }, this));
         },
 
-        _createChromeTab: function(properties, callback) {
-            ChromeTabs.create(properties, callback);
-		},
-
+        /**
+         * Updates a Chrome Tab.
+         *
+         * @param {Number} id The id of the Chrome Tab to update.
+         * @param {Object} properties The properties to update.
+         * @param {Function} callback The function to call once the tab has been shown.
+         */
 		_updateTab: function(id, properties, callback) {
 			ChromeTabs.update(id, properties, callback);
 		},
 
-        _closeChromeTab: function(chromeTab, callback) {
-            ChromeTabs.remove(chromeTab.id, callback);
-        },
-        
+        /**
+         * Reloads a Chrome Tab.
+         *
+         * @param {ChromeTab} chromeTab The Chrome Tab to reload.
+         */
         _reloadChromeTab: function(chromeTab) {
 			ChromeTabs.reload(chromeTab.id);
 		},
 
-        createTab: function(properties, callback) {
-            this._getOrCreateChromeTab(properties, callback);
+        /**
+         * Closes a Tab as an action.
+         *
+         * @param {Object} cronTab The Tab whose Chrome Tab to close.
+         * @param {Function} callback The function to call once the tab is closed.
+         */
+        _performCloseOperation: function(cronTab, callback) {
+            if (cronTab.getChromeTabId()) {
+                this.closeTab(cronTab.getChromeTabId(), callback);
+            } else {
+                callback();
+            }
         },
 
-        closeTab: function(properties, callback) {
-            this._getAndCloseIfExists(properties, callback);
-        },
-
+        /**
+         * Returns an action.
+         */
         getScheduleAction: function(action) {
-
             var actions = {
                 "show": this._getAndPerform(this._showChromeTab),
                 "showAndReload": this._getAndPerform(this._showAndReloadChromeTab),
-                "close": _.bind(this._getAndCloseIfExists, this),
+                "close": _.bind(this._performCloseOperation, this),
                 "reload": this._getAndPerform(this._reloadChromeTab)
             };
 

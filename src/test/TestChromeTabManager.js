@@ -1,4 +1,4 @@
-require(["underscore", "ChromeTabManager", "ChromeTabs"], function(_, ChromeTabManager, ChromeTabs) {
+require(["underscore", "ChromeTabManager", "ChromeTabs", "Tab"], function(_, ChromeTabManager, ChromeTabs, Tab) {
     module("ChromeTabManager", {
         setup: function() {
             sinon.stub(ChromeTabs);
@@ -13,9 +13,9 @@ require(["underscore", "ChromeTabManager", "ChromeTabs"], function(_, ChromeTabM
 
     test("Showing a non-existant tab creates and shows it", function() {
         var showAction = ChromeTabManager.getScheduleAction("show");
-        var tab = {
+        var tab = new Tab({
             url: "url"
-        };
+        });
         var chromeTab = {
             id: 1,
             url: "url"
@@ -38,15 +38,16 @@ require(["underscore", "ChromeTabManager", "ChromeTabs"], function(_, ChromeTabM
 
     test("Showing an existant tab shows it", function() {
         var showAction = ChromeTabManager.getScheduleAction("show");
-        var tab = {
-            url: "url"
-        };
+        var tab = new Tab({
+            url: "url",
+            chromeTabId: 1
+        });
         var chromeTab = {
             id: 1,
             url: "url"
         };
 
-        ChromeTabs.query.callsArgWith(1, [chromeTab]); 
+        ChromeTabs.get.callsArgWith(1, chromeTab); 
         
         showAction(tab);
         
@@ -59,17 +60,17 @@ require(["underscore", "ChromeTabManager", "ChromeTabs"], function(_, ChromeTabM
 
     test("Showing and Reloading a non-existant tab, creates it, shows it and reloads it", function() {
         var showAndReloadAction = ChromeTabManager.getScheduleAction("showAndReload");
-        var tab = {
+        var tab = new Tab({
             url: "url"
-        };
+        });
         var chromeTab = {
             id: 1,
             url: "url"
         };
 
         ChromeTabs.query.callsArgWith(1, undefined); 
-        ChromeTabs.update.callsArgWith(2, chromeTab);
         ChromeTabs.create.callsArgWith(1, chromeTab);
+        ChromeTabs.update.callsArgWith(2, chromeTab);
         
         showAndReloadAction(tab);
         
@@ -90,15 +91,16 @@ require(["underscore", "ChromeTabManager", "ChromeTabs"], function(_, ChromeTabM
 
     test("Showing and Reloading an existing tab shows it and reloads it", function() {
         var showAndReloadAction = ChromeTabManager.getScheduleAction("showAndReload");
-        var tab = {
-            url: "url"
-        };
+        var tab = new Tab({
+            url: "url",
+            chromeTabId: 1
+        });
         var chromeTab = {
             id: 1,
             url: "url"
         };
 
-        ChromeTabs.query.callsArgWith(1, [chromeTab]);
+        ChromeTabs.get.callsArgWith(1, chromeTab);
         ChromeTabs.update.callsArgWith(2, chromeTab);
         
         showAndReloadAction(tab);
@@ -117,15 +119,16 @@ require(["underscore", "ChromeTabManager", "ChromeTabs"], function(_, ChromeTabM
 
     test("Closing an existing tab closes it", function() {
         var closeAction = ChromeTabManager.getScheduleAction("close");
-        var tab = {
-            url: "url"
-        };
+        var tab = new Tab({
+            url: "url",
+            chromeTabId: 1
+        });
         var chromeTab = {
             id: 1,
             url: "url"
         };
 
-        ChromeTabs.query.callsArgWith(1, [chromeTab]);
+        ChromeTabs.get.callsArgWith(1, chromeTab);
         
         closeAction(tab);
         
@@ -134,15 +137,11 @@ require(["underscore", "ChromeTabManager", "ChromeTabs"], function(_, ChromeTabM
 
     });
    
-    test("Closing a non-existant tab doesn't create tabe to close it again.", function() {
+    test("Closing a non-existant tab doesn't create tab just to close it again.", function() {
         var closeAction = ChromeTabManager.getScheduleAction("close");
-        var tab = {
+        var tab = new Tab({
             url: "url"
-        };
-        var chromeTab = {
-            id: 1,
-            url: "url"
-        };
+        });
 
         var callback = sinon.spy();
 
@@ -158,15 +157,16 @@ require(["underscore", "ChromeTabManager", "ChromeTabs"], function(_, ChromeTabM
 
     test("Reloading an existing tab shows it and reloads it", function() {
         var reloadAction = ChromeTabManager.getScheduleAction("reload");
-        var tab = {
-            url: "url"
-        };
+        var tab = new Tab({
+            url: "url",
+            chromeTabId: 1
+        });
         var chromeTab = {
             id: 1,
             url: "url"
         };
 
-        ChromeTabs.query.callsArgWith(1, [chromeTab]);
+        ChromeTabs.get.callsArgWith(1, chromeTab);
         ChromeTabs.update.callsArgWith(2, chromeTab);
         
         reloadAction(tab);
@@ -181,9 +181,9 @@ require(["underscore", "ChromeTabManager", "ChromeTabs"], function(_, ChromeTabM
 
     test("Reloading a non-existant tab creates it and reloads it", function() {
         var reloadAction = ChromeTabManager.getScheduleAction("reload");
-        var tab = {
+        var tab = new Tab({
             url: "url"
-        };
+        });
         var chromeTab = {
             id: 1,
             url: "url"

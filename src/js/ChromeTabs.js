@@ -5,6 +5,7 @@ define(function() {
         remove: chrome.tabs.remove,
         reload: chrome.tabs.reload,
         update: chrome.tabs.update,
-        query: chrome.tabs.query
+        query: chrome.tabs.query,
+        onRemoved: chrome.tabs.onRemoved
     };
 });

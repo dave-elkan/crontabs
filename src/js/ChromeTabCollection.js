@@ -1,11 +1,12 @@
-define(["brace", "ChromeTabManager", "Tab"], function(Brace, Tab, ChromeTabManager) {
-
+define(["brace", "ChromeTabManager", "ChromeTab"], function(Brace, ChromeTabManager, ChromeTab) {
     return Brace.Collection.extend({
 
-        model: Tab,
-
-        initialize: function() {
-
+        model: ChromeTab 
+   
+        getByCronTab: function(crontab) {
+            return this.find(function(model) {
+                model.cid === crontab.cid
+            });
         }
     });
 });
