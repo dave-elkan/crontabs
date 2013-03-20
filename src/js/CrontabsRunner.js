@@ -18,7 +18,7 @@ define(["underscore", "brace", "TabCollection", "TabStorage", "ChromeTabManager"
             this.on("change:enabled", _.bind(this.onEnableChange, this));
 
             if (this.getEnabled()) {
-                this.updateOrCreateTabs()
+                this._scheduleTabs()
             }
 
             ChromeTabs.onRemoved.addListener(_.bind(function(id, props) {
@@ -35,20 +35,20 @@ define(["underscore", "brace", "TabCollection", "TabStorage", "ChromeTabManager"
 
         onEnableChange: function() {
             if (this.getEnabled()) {
-                this.updateOrCreateTabs();
+                this._scheduleTabs();
             } else {
+                this._stopSchedules();
                 this.removeTabs()
             }
         },
 
         removeTabs: function(callback) {
-            this._stopSchedules();
             var count = this.tabCollection.length;
             this.tabCollection.each(function(cronTab) {
                 var chromeTabId = cronTab.getChromeTabId();
-                if (cronTabId) {
+                if (chromeTabId) {
                     ChromeTabManager.closeTab(chromeTabId, function() {
-                        if (--count === 0) {
+                        if (--count === 0 && callback) {
                             callback();
                         }
                     });
@@ -58,7 +58,7 @@ define(["underscore", "brace", "TabCollection", "TabStorage", "ChromeTabManager"
 
         cronsUpdated: function() {
             this.removeTabs(_.bind(function() {
-                this.updateOrCreateTabs();
+                this._scheduleTabs();
             }, this));
         },
 
@@ -68,7 +68,7 @@ define(["underscore", "brace", "TabCollection", "TabStorage", "ChromeTabManager"
             });
         },
 
-        updateOrCreateTabs: function() {
+        _scheduleTabs: function() {
             this.tabCollection.reset(TabStorage.get());
             this.tabCollection.each(_.bind(this.scheduleTab, this));
         },
