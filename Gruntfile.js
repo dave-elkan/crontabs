@@ -18,7 +18,7 @@ module.exports = function(grunt) {
 			crontabs: {
 				templates: "templates/**/*.hogan",
 				output: "src/js/templates.js",
-				binderName: "amdWithPartials"
+				binderName: "amd"
 			}
 		},
 		watch: {
