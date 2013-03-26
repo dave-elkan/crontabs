@@ -10,24 +10,27 @@ define(["brace", "CronView"], function(Brace, CronView) {
 		},
 
 		render: function() {
-			this.model.each(function(cron, i) {
-				var cronView = new CronView({
-					model: cron
-				});
 
-				this.$el.append(cronView.render(i));
+			var html = this.model.map(function(cron, i) {
+                return this._renderCron(cron);
 			}, this);
+
+            this.$el.append(html);
 
 			return this.$el;
 		},
 
-		cronAdded: function(model) {
-			var cron = new CronView({
-				model: model
-			}).render();
-			this.$el.append(cron);
-			cron.find("input:first").focus();
+		cronAdded: function(cron) {
+			var html = this._renderCron(cron);
+			this.$el.append(html);
+			html.find("input:first").focus();
 		},
+
+        _renderCron: function(cron) {
+            return new CronView({
+                model: cron
+            }).render(this.model.length > 1);
+        },
 		
 		removeCron: function(e) {
 			e.preventDefault();

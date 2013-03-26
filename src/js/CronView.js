@@ -11,14 +11,17 @@ define(["brace", "jquery", "templates", "Cron", "Operation", "MessageManager"], 
 
 		initialize: function() {
 			this.model.on("remove", this.cronRemoved, this);
+            this.model.on("changed", function(removable) {
+                this.$el.find(".remove").toggleClass("hidden", !removable);
+            }, this);
 		},
 
 		cronRemoved: function(m) {
 			this.remove();
 		},
 
-		render: function(i) {
-			var html = $(this.template(this.buildRenderableModel(i)));
+		render: function(removable) {
+			var html = $(this.template(this.buildRenderableModel(removable)));
 			var operation = this.model.getOperation();
 
 			html.find("option[value='" + this.model.getOperation() + "']").attr("selected", true);
@@ -29,11 +32,11 @@ define(["brace", "jquery", "templates", "Cron", "Operation", "MessageManager"], 
 			return this.$el;
 		},
 
-		buildRenderableModel: function(i) {
+		buildRenderableModel: function(removable) {
 			var model = this.model.toJSON();
 			model.operations = Operation.getValidOperations();
 			model.cid = this.model.cid;
-			model.removable = (i !== 0);
+			model.removable = removable;
             model.type = (model.type === "text") ? MessageManager("cronTypeText") : MessageManager("cronTypeCron");
 
 			return model;
