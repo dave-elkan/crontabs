@@ -23,7 +23,7 @@ button.remove {
     clear: left;
 }
 
-button.remove a.aui-icon {
+button.remove span.aui-icon {
     color: #CC0000
 }
 

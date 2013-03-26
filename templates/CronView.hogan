@@ -7,6 +7,6 @@
         {{/operations}}
     </select>
     {{#removable}}
-        <button class="aui-button aui-button-subtle remove" data-cid="{{cid}}"><span class="aui-icon aui-icon-small aui-iconfont-remove"></span> Remove</button>
+        <button class="aui-button aui-button-subtle remove" data-cid="{{cid}}"><span class="aui-icon aui-icon-small aui-iconfont-remove" data-cid="{{cid}}"></span> Remove</button>
     {{/removable}}
 </div>
