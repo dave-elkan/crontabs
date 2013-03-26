@@ -10,3 +10,24 @@
 button.save a {
     color: #FFF
 }
+
+form.aui .select {
+    width: 121px;
+}
+
+div.buttons {
+    margin-top: 1em;
+}
+
+button.remove {
+    clear: left;
+}
+
+button.remove a.aui-icon {
+    color: #CC0000
+}
+
+form.aui fieldset {
+    border-bottom: 1px solid #ccc;
+    padding: 15px 0;
+}

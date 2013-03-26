@@ -77,7 +77,8 @@ define(["underscore", "brace", "TabCollection", "TabStorage", "ChromeTabManager"
             cronTab.getCrons().each(function(cron) {
                 var l = later(1);
                 schedules.push(l);
-                var schedule = cronParser().parse(cron.getExpression());
+                var parser = (cron.getType() === "text") ? enParser : cronParser;
+                var schedule = parser().parse(cron.getExpression());
                 var action = ChromeTabManager.getScheduleAction(cron.getOperation());
                 l.exec(schedule, new Date(), _.bind(function() {
                     if (this.getEnabled()) {

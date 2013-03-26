@@ -1,9 +1,9 @@
-<fieldset id="tabs"></fieldset>
 <form class="aui">
+    <div class="tabs"></div>
 	<div class="buttons-container">
 		<div class="buttons">
-			<button class="aui-button aui-button-primary save"><a class="aui-icon aui-icon-small aui-iconfont-success" href="">Save</a> Save</button>
-			<button class="aui-button add"><a class="aui-icon aui-icon-small aui-iconfont-add" href="">Add</a> Add Tab</button>
+			<button class="aui-button aui-button-primary save"><span class="aui-icon aui-icon-small aui-iconfont-success"></span> Save</button>
+			<button class="aui-button add"><span class="aui-icon aui-icon-small aui-iconfont-add"></span> Add Tab</button>
 		</div>
 	</div>
 </form>

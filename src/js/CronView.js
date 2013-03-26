@@ -1,13 +1,12 @@
-define(["brace", "jquery", "templates", "Cron", "Operation"], function(Brace, $, templates, Cron, Operation) {
+define(["brace", "jquery", "templates", "Cron", "Operation", "MessageManager"], function(Brace, $, templates, Cron, Operation, MessageManager) {
 	return Brace.View.extend({
 
 		template: templates.CronView,
 
-		className: "field-group cron",
-
 		events: {
 			"input input[name='expression']": "expressionChanged",
-			"change select": "actionChanged"
+			"change select.type": "typeChanged",
+			"change select.operation": "operationChanged"
 		},
 
 		initialize: function() {
@@ -23,8 +22,9 @@ define(["brace", "jquery", "templates", "Cron", "Operation"], function(Brace, $,
 			var operation = this.model.getOperation();
 
 			html.find("option[value='" + this.model.getOperation() + "']").attr("selected", true);
+			html.find("option[value='" + this.model.getType() + "']").attr("selected", true);
 
-			this.$el.html(html);
+			this.setElement(html);
 
 			return this.$el;
 		},
@@ -34,6 +34,7 @@ define(["brace", "jquery", "templates", "Cron", "Operation"], function(Brace, $,
 			model.operations = Operation.getValidOperations();
 			model.cid = this.model.cid;
 			model.removable = (i !== 0);
+            model.type = (model.type === "text") ? MessageManager("cronTypeText") : MessageManager("cronTypeCron");
 
 			return model;
 		},
@@ -52,10 +53,12 @@ define(["brace", "jquery", "templates", "Cron", "Operation"], function(Brace, $,
             }
 		},
 
-		actionChanged: function(e) {
-			this.model.set('operation', $(e.target).val(), {
-				validate: true
-			});
+		typeChanged: function(e) {
+			this.model.set('type', $(e.target).val())
+		},
+
+		operationChanged: function(e) {
+			this.model.set('operation', $(e.target).val());
 		}
 	});
 });

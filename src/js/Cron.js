@@ -3,11 +3,13 @@ define(["underscore", "brace", "MessageManager", "Operation"], function(_, Brace
 
 		namedAttributes: [
 			"expression",
-			"operation"
+			"operation",
+            "type"
 		],
 
         defaults: {
-            "operation": "show"
+            "operation": "show",
+            "type": "cron"
         },
 
 		validate: function(attrs, options) {

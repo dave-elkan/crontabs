@@ -37,7 +37,7 @@ define(["underscore", "jquery", "brace", "templates", "TabView"], function(_, $,
         },
 
 		appendToTabContainer: function(tab) {
-			this.$el.find("fieldset#tabs").append(tab);
+			this.$el.find(".tabs").append(tab);
 		},
 
 		tabAdded: function(model) {

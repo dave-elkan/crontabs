@@ -3,11 +3,8 @@ define(["jquery", "underscore", "brace", "templates", "CronCollectionView", "Cro
 
 		template: templates.TabView,
 
-		tagName: "form",
-		className: "aui",
-
 		events: {
-			"click .add-cron": "addCron",
+			"click .addSchedule": "addSchedule",
             "input .url": "updateUrl"
 		},
 
@@ -23,7 +20,7 @@ define(["jquery", "underscore", "brace", "templates", "CronCollectionView", "Cro
 				model: this.model.getCrons()
 			}).render();
 
-			this.$el.html(html);
+            this.setElement(html);
 			
 			return this.$el;
 		},
@@ -36,9 +33,12 @@ define(["jquery", "underscore", "brace", "templates", "CronCollectionView", "Cro
 			return model;
 		},
 
-		addCron: function(e) {
+		addSchedule: function(e) {
 			e.preventDefault();
-			this.model.getCrons().add({});
+            var type = $(e.target).data("type");
+			this.model.getCrons().add({
+                type: type
+            });
 		},
 
         updateUrl: function(e) {

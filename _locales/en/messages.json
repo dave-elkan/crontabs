@@ -29,6 +29,14 @@
 	"cronOperationInvalid": {
 		"message": "Cron Operation invalid."
 	},
+	"cronTypeCron": {
+		"message": "Cron Expression",
+        "description": "The name of a Cron Schedule"
+	},
+	"cronTypeText": {
+		"message": "Text Expression",
+        "description": "The name of a Text Expresson Schedule"
+	},
     "tabUrlInvalid": {
         "message": "Tab URL invalid."
     }

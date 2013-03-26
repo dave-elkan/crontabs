@@ -1,11 +1,12 @@
-<label for="expression-{{cid}}">Expression <span class="aui-icon icon-required"> required</span></label>
-<input class="text" type="text" value="{{expression}}" name="expression" id="expression-{{cid}}">
-<div class="error hidden"></div>
-<select name="operation-{{cid}}" class="select">
-	{{#operations}} 
-	<option value="{{id}}">{{name}}</option>
-	{{/operations}}
-</select>
-{{#removable}}
-	<button class="aui-button remove-cron" data-cid="{{cid}}"><a class="aui-icon aui-icon-small aui-iconfont-remove" href="" data-cid="{{cid}}">Remove Cron</a> Remove Cron</button>
-{{/removable}}
+<div class="field-group cron">
+    <label for="expression-{{cid}}">{{type}} <span class="aui-icon icon-required"> required</span></label>
+    <input class="text long-field" type="text" value="{{expression}}" name="expression" id="expression-{{cid}}">
+    <select name="operation-{{cid}}" class="operation select">
+        {{#operations}} 
+        <option value="{{id}}">{{name}}</option>
+        {{/operations}}
+    </select>
+    {{#removable}}
+        <button class="aui-button aui-button-subtle remove" data-cid="{{cid}}"><span class="aui-icon aui-icon-small aui-iconfont-remove"></span> Remove</button>
+    {{/removable}}
+</div>

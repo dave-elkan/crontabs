@@ -2,7 +2,7 @@ define(["brace", "CronView"], function(Brace, CronView) {
 	return Brace.View.extend({
 	
 		events: {
-			"click .remove-cron": "removeCron"
+			"click .cron": "removeCron"
 		},
 
 		initialize: function() {
