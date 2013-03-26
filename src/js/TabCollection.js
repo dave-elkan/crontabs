@@ -3,9 +3,19 @@ define(["underscore", "brace", "Tab", "TabStorage"], function(_, Brace, Tab, Tab
 
 		model: Tab,
 
+        initialize: function() {
+            this.on("add remove", this._tabAdded, this);
+        },
+
 		load: function() {
 			this.restore(TabStorage.get());
 		},
+
+        _tabAdded: function() {
+            this.each(function(model) {
+                model.trigger("changed", this.length > 1);
+            }, this);
+        },
 
 		save: function(broadcast) {
 			TabStorage.set(this.toJSON());

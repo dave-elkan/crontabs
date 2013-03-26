@@ -41,12 +41,12 @@ define(["underscore", "jquery", "brace", "templates", "TabView"], function(_, $,
 		},
 
 		tabAdded: function(model) {
-			this.appendToTabContainer(this.renderTab(model, true));
+			this.appendToTabContainer(this.renderTab(model));
 		},
 
 		tabsAdded: function() {
 			var html = this.model.map(function(tab, i) {
-                return this.renderTab(tab, i !== 0);
+                return this.renderTab(tab);
 			}, this);
 
 			this.appendToTabContainer(html);
@@ -56,9 +56,7 @@ define(["underscore", "jquery", "brace", "templates", "TabView"], function(_, $,
         renderTab: function(tab, removable) {
             return new TabView({
                 model: tab
-            }, {
-                removable: removable
-            }).render()
+            }).render(this.model.length > 1);
         },
 
 		tabRemoved: function(model) {

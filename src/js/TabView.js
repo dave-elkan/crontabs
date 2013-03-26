@@ -9,11 +9,13 @@ define(["jquery", "underscore", "brace", "templates", "CronCollectionView", "Cro
 		},
 
         initialize: function(model, options) {
-            this.removable = options.removable;
+            this.model.on("changed", function(removable) {
+                this.$el.find(".remove-button").toggleClass("hidden", !removable);
+            }, this);
         },
 
-		render: function() {
-			var html = $(this.template(this.buildRenderableModel()));
+		render: function(removable) {
+			var html = $(this.template(this.buildRenderableModel(removable)));
 			
 			new CronCollectionView({
 				el: html.find(".crons"),
@@ -25,10 +27,10 @@ define(["jquery", "underscore", "brace", "templates", "CronCollectionView", "Cro
 			return this.$el;
 		},
 
-		buildRenderableModel: function() {
+		buildRenderableModel: function(removable) {
 			var model = this.model.toJSON();
 			model.cid = this.model.cid;
-            model.removable = this.removable;
+            model.removable = removable;
 
 			return model;
 		},
