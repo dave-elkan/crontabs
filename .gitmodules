@@ -1,3 +1,0 @@
-[submodule "src/js/lib/laterjs"]
-	path = src/js/lib/laterjs
-	url = https://github.com/bunkat/later.git
