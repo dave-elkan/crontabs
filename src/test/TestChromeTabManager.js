@@ -28,8 +28,7 @@ require(["underscore", "ChromeTabManager", "ChromeTabs", "Tab"], function(_, Chr
         
         ok(ChromeTabs.update.calledOnce, "Update is called once");
         ok(ChromeTabs.update.calledWith(chromeTab.id, {
-            active: true,
-            url: "url"
+            active: true
         }),"Chrome tab is updated with active:true flag"); 
         ok(ChromeTabs.create.calledOnce, "Chrome Tab created when it doesn't exist.");
         ok(ChromeTabs.create.calledWith({
@@ -54,8 +53,7 @@ require(["underscore", "ChromeTabManager", "ChromeTabs", "Tab"], function(_, Chr
         
         ok(ChromeTabs.update.calledOnce, "Update is called once");
         ok(ChromeTabs.update.calledWith(chromeTab.id, {
-            active: true,
-            url: "url"
+            active: true
         }),"Chrome tab is updated with active:true flag"); 
         ok(ChromeTabs.create.notCalled, "Chrome Tab is not created when one exists.");
     });
@@ -83,8 +81,7 @@ require(["underscore", "ChromeTabManager", "ChromeTabs", "Tab"], function(_, Chr
 
         ok(ChromeTabs.update.calledOnce, "Update is called once");
         ok(ChromeTabs.update.calledWith(chromeTab.id, {
-            active: true,
-            url: "url"
+            active: true
         }),"Chrome tab is updated with active:true flag");
 
         ok(ChromeTabs.reload.calledOnce, "Reload is called once");
@@ -112,8 +109,7 @@ require(["underscore", "ChromeTabManager", "ChromeTabs", "Tab"], function(_, Chr
 
         ok(ChromeTabs.update.calledOnce, "Update is called once");
         ok(ChromeTabs.update.calledWith(chromeTab.id, {
-            active: true,
-            url: "url"
+            active: true
         }),"Chrome tab is updated with active:true flag");
 
         ok(ChromeTabs.reload.calledOnce, "Reload is called once");

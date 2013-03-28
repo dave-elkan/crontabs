@@ -55,8 +55,7 @@ define(["underscore", "jquery", "ChromeTabs"], function(_, $, ChromeTabs) {
          */
         _showChromeTab: function(chromeTab, cronTab, callback) {
             this._updateTab(chromeTab.id, {
-                active: true,
-                url: cronTab.getUrl()
+                active: true
             }, callback);
         },
 
