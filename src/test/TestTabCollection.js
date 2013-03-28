@@ -6,14 +6,16 @@ define(["TabCollection"], function(TabCollection) {
 			url: "Some url",
 			crons: [{
 				expression: "expression",
-				operation: "operation" 
+				operation: "operation",
+                type: "cron"
 			}]
 		};
 
 		var invalidTab = {
 			crons: [{
 				expression: "expression",
-				operation: "operation"
+				operation: "operation",
+                type: "cron"
 			}]
 		};
 		
