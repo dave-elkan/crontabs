@@ -2,7 +2,7 @@ define(["brace", "CronView"], function(Brace, CronView) {
 	return Brace.View.extend({
 	
 		events: {
-			"click .cron": "removeCron"
+			"click button.remove": "removeCron"
 		},
 
 		initialize: function() {
@@ -37,7 +37,7 @@ define(["brace", "CronView"], function(Brace, CronView) {
 			var cid = $(e.target).data("cid");
 			var cron = this.model.get(cid);
 			this.model.remove(cron);
-			this.$el.find(".cron:last input:first").focus();
+			this.$el.find("input:last").focus();
 		}
 
 	});
