@@ -3,6 +3,10 @@
 	padding: 10px;
 }
 
+.aui-header-primary h1 {
+    margin: 6px 0;
+}
+
 #tabs .field-group .hidden {
     display: none
 }
