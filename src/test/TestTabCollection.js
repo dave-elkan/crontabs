@@ -1,7 +1,7 @@
-define(["TabCollection"], function(TabCollection) {
+define(["TabCollection", "Tab"], function(TabCollection, Tab) {
 	module("TabCollection");
 
-	test("Invalid tabs are not returned", function() {
+	test("Getting Chrome Tabs Returns tab with URL", function() {
 		var validTab = {
 			url: "Some url",
 			crons: [{
@@ -11,17 +11,32 @@ define(["TabCollection"], function(TabCollection) {
 			}]
 		};
 
-		var invalidTab = {
-			crons: [{
-				expression: "expression",
-				operation: "operation",
-                type: "cron"
-			}]
-		};
-		
-		var tabs = [validTab, invalidTab];
+		var tabs = [validTab];
+
+        var expectedTabs = [{
+            url: "Some url"
+        }];
 		var collection = new TabCollection(tabs);
-		ok(collection.getValidTabs().length === 1, "There is one valid tab");
-		deepEqual(collection.getValidTabs()[0].toJSON(), validTab, "There is one valid tab");
+		deepEqual(collection.getChromeTabs(), expectedTabs); 
+	});
+
+	test("Getting tab by Chrome Tab Id returns correct tab", function() {
+        var cronTab1 = {
+            url: "Some Url",
+			chromeTabId: 1
+		};
+        
+        var cronTab2 = {
+            url: "Some other URL",
+            chromeTabId: 2
+        };
+
+		var collection = new TabCollection([
+            cronTab1,
+            cronTab2
+        ]);
+
+        var chromeTab = collection.getByChromeTabId(1);
+		deepEqual(chromeTab.getChromeTabId(), 1); 
 	});
 });

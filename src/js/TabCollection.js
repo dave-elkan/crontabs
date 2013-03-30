@@ -35,7 +35,8 @@ define(["underscore", "brace", "Tab", "TabStorage"], function(_, Brace, Tab, Tab
 		 */
 		getValidTabs: function() {
 			return this.filter(function(tab) {
-				return tab.getUrl() && tab.getCrons().length;
+                var hasValidationErrorMessage = tab.validate(tab.toJSON());
+				return !hasValidationErrorMessage;
 			});
 		},
 
