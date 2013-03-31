@@ -1,18 +1,6 @@
 require(["underscore", "CrontabsEnabledState", "EnableButtonView"], function(_, CrontabsEnabledState, EnableButtonView) {
 
-    module("EnableButtonView", {
-        setup: function() {
-            
-        },
-
-        teardown: function() {
-            _.each(CrontabsEnabledState, function(f) {
-                if (f.restore) {
-                    f.restore();
-                }
-            });
-        }
-    });
+    module("EnableButtonView");
 
     test("Click to Disable text is shown when Enabled.", function() {
         var stub = sinon.stub(CrontabsEnabledState, "isEnabled").returns(true);
