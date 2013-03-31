@@ -6,7 +6,6 @@ module.exports = function(grunt) {
 			all: {
 				options: {
 					urls: [
-						testRunner + 'Tab',
 						testRunner + 'Cron',
 						testRunner + 'TabCollection',
                         testRunner + 'ChromeTabManager',
