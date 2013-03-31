@@ -1,4 +1,4 @@
-require(["underscore", "CrontabsEnabledState", "EnableButtonView"], function(_, CrontabsEnabledState, EnableButtonView) {
+define(["underscore", "CrontabsEnabledState", "EnableButtonView"], function(_, CrontabsEnabledState, EnableButtonView) {
 
     module("EnableButtonView", {
         teardown: function() {

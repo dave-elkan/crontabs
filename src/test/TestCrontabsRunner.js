@@ -1,4 +1,4 @@
-require(["underscore", "CrontabsRunner", "ChromeTabs", "CrontabsEnabledState"], function(_, CrontabsRunner, ChromeTabs, CrontabsEnabledState) {
+define(["underscore", "CrontabsRunner", "ChromeTabs", "CrontabsEnabledState"], function(_, CrontabsRunner, ChromeTabs, CrontabsEnabledState) {
     module("CrontabsRunner",  {
         setup: function() {
             sinon.stub(ChromeTabs);

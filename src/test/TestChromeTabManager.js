@@ -1,4 +1,4 @@
-require(["underscore", "ChromeTabManager", "ChromeTabs", "Tab"], function(_, ChromeTabManager, ChromeTabs, Tab) {
+define(["underscore", "ChromeTabManager", "ChromeTabs", "Tab"], function(_, ChromeTabManager, ChromeTabs, Tab) {
     module("ChromeTabManager", {
         setup: function() {
             sinon.stub(ChromeTabs);
