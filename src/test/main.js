@@ -1,7 +1,8 @@
 CrontabsConfig.map = {
 	"*": {
 		"MessageManager": "stubMessageManager",
-        "ChromeTabs": "stubChromeTabs"
+        "ChromeTabs": "stubChromeTabs",
+        "ChromeBrowserAction": "stubChromeBrowserAction"
 	}
 };
 
@@ -22,4 +23,11 @@ define("stubChromeTabs", function() {
         "update": function(){},
         "query": function(){}
     };
+});
+
+define("stubChromeBrowserAction", function() {
+    return {
+        onEnableButtonClicked: function() {},
+        setBrowserActionText: function() {}
+    }
 });

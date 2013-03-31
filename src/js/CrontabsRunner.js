@@ -1,5 +1,5 @@
-define(["underscore", "brace", "TabCollection", "TabStorage", "ChromeTabManager", "ChromeTabs"], function(
-         _, Brace, TabCollection, TabStorage, ChromeTabManager, ChromeTabs) {
+define(["underscore", "brace", "TabCollection", "TabStorage", "ChromeTabManager", "ChromeTabs", "CrontabsEnabledState"], function(
+         _, Brace, TabCollection, TabStorage, ChromeTabManager, ChromeTabs, CrontabsEnabledState) {
 
     var schedules = [];
     
@@ -15,9 +15,9 @@ define(["underscore", "brace", "TabCollection", "TabStorage", "ChromeTabManager"
         initialize: function() {
             this.onCronsUpdated(_.bind(this.cronsUpdated, this));
             this.tabCollection = new TabCollection();
-            this.on("change:enabled", _.bind(this.onEnableChange, this));
+            this.listenTo(CrontabsEnabledState, "change", this.onEnableChange, this);
 
-            if (this.getEnabled()) {
+            if (CrontabsEnabledState.isEnabled()) {
                 this._scheduleTabs()
             }
 
@@ -29,12 +29,8 @@ define(["underscore", "brace", "TabCollection", "TabStorage", "ChromeTabManager"
             }, this));
         },
 
-        toggleEnablement: function() {
-            this.setEnabled(!this.getEnabled());
-        }, 
-
-        onEnableChange: function() {
-            if (this.getEnabled()) {
+        onEnableChange: function(model, enabled) {
+            if (enabled) {
                 this._scheduleTabs();
             } else {
                 this._stopSchedules();
@@ -81,7 +77,7 @@ define(["underscore", "brace", "TabCollection", "TabStorage", "ChromeTabManager"
                 var schedule = parser().parse(cron.getExpression());
                 var action = ChromeTabManager.getScheduleAction(cron.getOperation());
                 l.exec(schedule, new Date(), _.bind(function() {
-                    if (this.getEnabled()) {
+                    if (CrontabsEnabledState.isEnabled()) {
                         action(cronTab);
                     }
                 }, this));

@@ -1,17 +1,18 @@
-define(["brace", "ChromeBrowserAction", "MessageManager"], function(Brace, ChromeBrowserAction, MessageManager) {
-    return Brace.View.extend({
+define(["brace", "ChromeBrowserAction", "MessageManager", "CrontabsEnabledState"], function(Brace, ChromeBrowserAction, MessageManager, CrontabsEnabledState) {
+    
+    var EnableButtonView = Brace.Model.extend({
 
         initialize: function() {
             ChromeBrowserAction.onEnableButtonClicked(_.bind(function() {
-                this.model.toggleEnablement()
+                CrontabsEnabledState.toggleEnablement()
             }, this));
 
             this._setButtonText();
-            this.model.on("change:enabled", _.bind(this._setButtonText, this));
+            this.listenTo(CrontabsEnabledState, "change", this._setButtonText, this);
         },
 
         _setButtonText: function() {
-            if (this.model.getEnabled()) {
+            if (CrontabsEnabledState.isEnabled()) {
                 this.setClickToDisableText();
             } else {
                 this.setClickToEnableText();
@@ -34,4 +35,6 @@ define(["brace", "ChromeBrowserAction", "MessageManager"], function(Brace, Chrom
             }); 
         }
     });
+
+    return new EnableButtonView();
 });
