@@ -9,7 +9,8 @@ module.exports = function(grunt) {
 						testRunner + 'Tab',
 						testRunner + 'Cron',
 						testRunner + 'TabCollection',
-                        testRunner + 'ChromeTabManager'
+                        testRunner + 'ChromeTabManager',
+                        testRunner + 'EnableButtonView'
 					]
 				}
 			}
