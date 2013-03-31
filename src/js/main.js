@@ -9,10 +9,6 @@ require(["backbone", "CrontabsRouter", "CrontabsEditor", "CrontabsRunner", "Enab
             enabled: CrontabsEnabledState.isEnabled()
         });
 
-        runner.on("change:enabled", function(model, enabled) {
-            CrontabsEnabledState.set(enabled);
-        });
-
 		chrome.extension.onMessage.addListener(function() {
 			runner.triggerCronsUpdated();
 		});
