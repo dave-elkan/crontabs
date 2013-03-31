@@ -8,20 +8,16 @@ define(["underscore", "brace", "TabCollection", "TabStorage", "ChromeTabManager"
             "cronsUpdated"
         ],
 
-        namedAttributes: [
-            "enabled"
-        ],
-
         initialize: function() {
             this.onCronsUpdated(_.bind(this.cronsUpdated, this));
             this.tabCollection = new TabCollection();
             this.listenTo(CrontabsEnabledState, "change", this.onEnableChange, this);
 
             if (CrontabsEnabledState.isEnabled()) {
-                this._scheduleTabs()
+                this._scheduleTabs();
             }
 
-            ChromeTabs.onRemoved.addListener(_.bind(function(id, props) {
+            ChromeTabs.onRemoved(_.bind(function(id, props) {
                 var cronTab = this.tabCollection.getByChromeTabId(id);
                 if (cronTab) {
                     cronTab.setChromeTabId(null);
@@ -29,8 +25,8 @@ define(["underscore", "brace", "TabCollection", "TabStorage", "ChromeTabManager"
             }, this));
         },
 
-        onEnableChange: function(model, enabled) {
-            if (enabled) {
+        onEnableChange: function() {
+            if (CrontabsEnabledState.isEnabled()) {
                 this._scheduleTabs();
             } else {
                 this._stopSchedules();

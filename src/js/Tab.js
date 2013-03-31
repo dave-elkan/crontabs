@@ -9,13 +9,10 @@ define(["underscore", "brace", "CronCollection"], function(_, Brace, CronCollect
 
 		initialize: function(model) {
 			this.setCrons(new CronCollection(model.crons));
-			if (!this.getCrons().length) {
-				this.getCrons().add({});
-			}
 		},
 
 		validate: function(attrs, options) {
-			if (!attrs.url || attrs.url === ".") {
+			if (!attrs.url) {
 				return chrome.i18n.getMessage("tabUrlInvalid");
 			}
 

@@ -4,6 +4,10 @@ define(["brace", "Cron"], function(Brace, Cron) {
 
         initialize: function() {
             this.on("add remove", this._onChanged, this);
+
+            if (!this.length) {
+                this.add(new Cron());
+            }
         },
 
         _onChanged: function() {

@@ -6,16 +6,13 @@ define(["brace"], function(Brace) {
             "enabled"
         ],
 
-        defaults: {
-            "enabled": false
-        },
-
         initialize: function() {
-            this.on("change:enabled", this.persistEnablement, this);
+            this.setEnabled(this.isEnabled());
+            this.on("change", this.persistEnablement, this);
         },
 
-        persistEnablement: function(enabled) {
-            localStorage[key] = JSON.stringify(enabled);
+        persistEnablement: function() {
+            localStorage[key] = JSON.stringify(this.getEnabled());
         },
 
         isEnabled: function() {
@@ -23,7 +20,7 @@ define(["brace"], function(Brace) {
         },
 
         toggleEnablement: function() {
-            this.setEnabled(!this.isEnabled());
+            this.setEnabled(!this.getEnabled());
         },
 
         valueIsEnabled: function(value) {

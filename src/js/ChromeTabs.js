@@ -6,6 +6,8 @@ define(function() {
         reload: chrome.tabs.reload,
         update: chrome.tabs.update,
         query: chrome.tabs.query,
-        onRemoved: chrome.tabs.onRemoved
+        onRemoved: function(callback) {
+            chrome.tabs.onRemoved.addListener(callback);
+        }
     };
 });

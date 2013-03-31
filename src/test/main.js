@@ -21,7 +21,8 @@ define("stubChromeTabs", function() {
         "remove": function(){},
         "reload": function(){},
         "update": function(){},
-        "query": function(){}
+        "query": function(){},
+        "onRemoved": function() {}
     };
 });
 

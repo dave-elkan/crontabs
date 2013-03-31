@@ -1,4 +1,4 @@
-define(["brace", "CronView"], function(Brace, CronView) {
+define(["brace", "CronView", "Cron"], function(Brace, CronView, Cron) {
 	return Brace.View.extend({
 	
 		events: {
@@ -10,7 +10,6 @@ define(["brace", "CronView"], function(Brace, CronView) {
 		},
 
 		render: function() {
-
 			var html = this.model.map(function(cron, i) {
                 return this._renderCron(cron);
 			}, this);
