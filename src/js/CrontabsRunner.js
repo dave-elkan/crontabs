@@ -49,15 +49,18 @@ define(["underscore", "brace", "TabCollection", "TabStorage", "ChromeTabManager"
         },
 
         cronsUpdated: function() {
-            this.removeTabs(_.bind(function() {
+            this.removeTabs();
+            this._stopSchedules();
+            if (CrontabsEnabledState.isEnabled()) {
                 this._scheduleTabs();
-            }, this));
+            }
         },
 
         _stopSchedules: function() {
             _.each(schedules, function(schedule) {
                 schedule.stopExec();
             });
+            schedules = [];
         },
 
         _scheduleTabs: function() {
