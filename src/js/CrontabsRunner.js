@@ -70,16 +70,18 @@ define(["underscore", "brace", "TabCollection", "TabStorage", "ChromeTabManager"
 
         scheduleTab: function(cronTab, chromeTab) {
             cronTab.getCrons().each(function(cron) {
-                var l = later(1);
-                schedules.push(l);
-                var parser = (cron.getType() === "text") ? enParser : cronParser;
-                var schedule = parser().parse(cron.getExpression());
-                var action = ChromeTabManager.getScheduleAction(cron.getOperation());
-                l.exec(schedule, new Date(), _.bind(function() {
-                    if (CrontabsEnabledState.isEnabled()) {
-                        action(cronTab);
-                    }
-                }, this));
+                if (cron.getExpression() && cron.getExpression() != "") {
+                    var l = later(1);
+                    schedules.push(l);
+                    var parser = (cron.getType() === "text") ? enParser : cronParser;
+                    var schedule = parser().parse(cron.getExpression());
+                    var action = ChromeTabManager.getScheduleAction(cron.getOperation());
+                    l.exec(schedule, new Date(), _.bind(function() {
+                        if (CrontabsEnabledState.isEnabled()) {
+                            action(cronTab);
+                        }
+                    }, this));
+                }
             }, this);
         }
     });
