@@ -104,7 +104,9 @@ define(["underscore", "jquery", "ChromeTabs"], function(_, $, ChromeTabs) {
             if (cronTab.getChromeTabId()) {
                 this.closeTab(cronTab.getChromeTabId(), callback);
             } else {
-                callback();
+                if (callback) {
+                    callback();
+                }
             }
         },
 

@@ -1,6 +1,6 @@
 {
   "name": "crontabs",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A chrome extension to control tabs with cron expressions.",
   "main": "index.js",
   "scripts": {
