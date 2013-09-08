@@ -1,7 +1,7 @@
 define(["underscore", "brace", "later", "TabCollection", "TabStorage", "ChromeTabManager", "ChromeTabs", "CrontabsEnabledState"], function(
          _, Brace, later, TabCollection, TabStorage, ChromeTabManager, ChromeTabs, CrontabsEnabledState) {
 
-    var schedules = [];
+    var intervals = [];
     
     return Brace.Model.extend({
         namedEvents: [
@@ -57,10 +57,10 @@ define(["underscore", "brace", "later", "TabCollection", "TabStorage", "ChromeTa
         },
 
         _stopSchedules: function() {
-            _.each(schedules, function(schedule) {
-                schedule.stopExec();
+            _.each(intervals, function(interval) {
+                interval.clear();
             });
-            schedules = [];
+            intervals = [];
         },
 
         _scheduleTabs: function() {
@@ -81,8 +81,7 @@ define(["underscore", "brace", "later", "TabCollection", "TabStorage", "ChromeTa
                             action(cronTab);
                         }
                     }, this);
-                    var interval = later.setInterval(callback, schedule);
-                    schedules.push(interval);
+                    intervals.push(later.setInterval(callback, schedule));
                 }
             }, this);
         }
