@@ -71,7 +71,7 @@ define(["underscore", "brace", "later", "TabCollection", "TabStorage", "ChromeTa
         scheduleTab: function(cronTab, chromeTab) {
             cronTab.getCrons().each(function(cron) {
                 if (cron.getExpression() && cron.getExpression() != "") {
-                    later.date.UTC();
+                    later.date.localTime();
 
                     var parser = (cron.getType() === "text") ? later.parse.text : later.parse.cron;
                     var schedule = parser(cron.getExpression(), true);
