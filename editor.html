@@ -1,39 +1,71 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Crontabs Options</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script src="src/js/config.js"></script>
-		<script src="src/js/lib/require.js" data-main="src/js/main.js"></script>
-		<link href="src/css/aui-all.css" rel="stylesheet" media="screen">
-		<link href="src/css/crontabs.css" rel="stylesheet" media="screen">
-	</head>
-	<body class="aui-layout aui-theme-default aui-page-fixed">
-		<div id="page">
-			<header id="header" role="banner">
-				<nav class="aui-header" role="navigation">
-					<div class="aui-header-inner">
-						<div class="aui-header-primary">
-							<h1>Crontabs</h1>
-						</div>
-					</div><!-- .aui-header-inner-->
-				</nav><!-- .aui-header -->
-			</header>
-			<section id="content" role="main">
-				<header class="aui-page-header">
-					<div class="aui-page-header-inner">
-						<div class="aui-page-header-main">
-							<h1>Tabs</h1>
-						</div><!-- .aui-page-header-main -->
-					</div><!-- .aui-page-header-inner -->
-				</header>
-				<div class="aui-page-panel">
-					<div class="aui-page-panel-inner">
-						<section class="aui-page-panel-content"></section>
-					</div>
-				</div>
-			</section>
-		</div>
-	</body>
+<!doctype html>
+<html ng-app="" ng-csp>
+<head>
+    <title>Crontabs Options</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="src/lib/bower_components/angular/angular.js"></script>
+    <script src="src/lib/bower_components/ngstorage/ngStorage.js"></script>
+    <script src="src/js/tabs/tabs.js"></script>
+    <link href="src/css/aui-all.css" rel="stylesheet" media="screen">
+    <link href="src/css/crontabs.css" rel="stylesheet" media="screen">
+</head>
+<body class="aui-layout aui-theme-default aui-page-fixed">
+<div id="page">
+    <header id="header" role="banner">
+        <nav class="aui-header" role="navigation">
+            <div class="aui-header-inner">
+                <div class="aui-header-primary">
+                    <h1>Crontabs</h1>
+                </div>
+            </div><!-- .aui-header-inner-->
+        </nav><!-- .aui-header -->
+    </header>
+    <section id="content" role="main">
+        <header class="aui-page-header">
+            <div class="aui-page-header-inner">
+                <div class="aui-page-header-main">
+                    <h1>Tabs</h1>
+                    <form class="aui" ng-controller="TabCtrl" ng-submit="onSubmit()">
+                        <div class="tabs" ng-repeat="tab in tabs">
+                            <fieldset>
+                                <div class="field-group">
+                                    <label for="url-{{tab.$$hashKey}}">URL <span class="aui-icon icon-required"> required</span></label>
+                                    <input class="text long-field url" id="url-{{tab.$$hashKey}}" type="text" name="url" value="{{tab.url}}" />
+                                </div>
+                                <div class="crons" ng-repeat="cron in tab.crons">
+                                    <div class="field-group cron">
+                                        <select class="operation select" style="margin-left: -125px" ng-model="cron.type" ng-options="type.id as type.name for type in types"></select>
+                                        <input class="text long-field" type="text" value="{{cron.expression}}" name="expression" id="expression-{{cron.$$hashKey}}">
+                                        <select class="operation select" ng-model="cron.operation" ng-options="operation.id as operation.name for operation in operations"></select>
+                                        <button type="button" class="aui-button aui-button-subtle remove" ng-click="removeCron(tab, cron)"><span class="aui-icon aui-icon-small aui-iconfont-remove"></span></button>
+                                    </div>
+                                </div>
+                                <div class="buttons-container">
+                                    <button type="button" class="aui-button aui-button-subtle" ng-click="addCron(tab)"><span class="aui-icon aui-icon-small aui-iconfont-add" data-type="cron"></span> Add Cron</button>
+                                    <button type="button" class="aui-button aui-button-subtle" ng-click="addTextExpression(tab)"><span class="aui-icon aui-icon-small aui-iconfont-add" data-type="text"></span> Add Text Expression</button>
+                                </div>
+                                <div class="remove-button buttons-container">
+                                    <button type="button" class="aui-button remove" ng-click="removeTab(tab)"><span class="aui-icon aui-icon-small aui-iconfont-remove"></span> Remove Tab</button>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="buttons-container">
+                            <div class="buttons">
+                                <button type="submit" class="aui-button aui-button-primary save"><span class="aui-icon aui-icon-small aui-iconfont-success"></span> Save</button>
+                                <button type="button" class="aui-button add" ng-click="addTab()"><span class="aui-icon aui-icon-small aui-iconfont-add"></span> Add Tab</button>
+                            </div>
+                        </div>
+                    </form>
+                </div><!-- .aui-page-header-main -->
+            </div><!-- .aui-page-header-inner -->
+        </header>
+        <div class="aui-page-panel">
+            <div class="aui-page-panel-inner">
+                <section class="aui-page-panel-content"></section>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
 </html>

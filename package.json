@@ -17,6 +17,7 @@
     "grunt": "0.4.1",
     "grunt-contrib-qunit": "~0.1.1",
     "grunt-hogan": "~0.2.2-1",
-    "grunt-contrib-watch": "~0.3.1"
+    "grunt-contrib-watch": "~0.3.1",
+    "bower": "~1.2.7"
   }
 }
