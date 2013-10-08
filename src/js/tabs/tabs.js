@@ -30,7 +30,8 @@ function TabCtrl($scope) {
             "type": "cron",
             "operation": "show",
             "expression": "45 9 * * MON-FRI"
-        }]
+        }],
+        unremovable: true
     }];
 
     $scope.addCron = function(tab) {
@@ -47,6 +48,10 @@ function TabCtrl($scope) {
             expression: "",
             operation: $scope.operations[0].id
         })
+    };
+
+    $scope.isRemovable = function(first, length) {
+        return !first || length > 1;
     };
 
     $scope.removeCron = function(tab, cronToRemove) {
