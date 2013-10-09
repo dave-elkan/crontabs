@@ -1,6 +1,8 @@
 "use strict";
 
-function TabCtrl($scope) {
+var crontabs = angular.module('crontabs', ['webStorageModule']);
+
+crontabs.controller("TabCtrl", function($scope, webStorage) {
 
     $scope.operations = [{
         id: "show",
@@ -24,14 +26,13 @@ function TabCtrl($scope) {
         name: "Text"
     }];
 
-    $scope.tabs = [{
-        "url":"http://dailyjs.com",
-        "crons": [{
+    $scope.tabs = webStorage.get("crontabs") || [{
+        url: "",
+        crons: [{
             "type": "cron",
             "operation": "show",
-            "expression": "45 9 * * MON-FRI"
-        }],
-        unremovable: true
+            "expression": ""
+        }]
     }];
 
     $scope.addCron = function(tab) {
@@ -97,6 +98,6 @@ function TabCtrl($scope) {
     };
 
     $scope.onSubmit = function() {
-        debugger
+        webStorage.add("crontabs", angular.copy($scope.tabs));
     };
-}
+});
