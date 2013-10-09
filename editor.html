@@ -36,11 +36,11 @@
                         <fieldset ng-repeat="tab in tabs">
                             <div class="field-group">
                                 <label for="url-{{tab.$$hashKey}}">URL <span class="aui-icon icon-required"> required</span></label>
-                                <input class="text long-field url" id="url-{{tab.$$hashKey}}" type="text" name="url" value="{{tab.url}}" />
+                                <input class="text long-field url" id="url-{{tab.$$hashKey}}" type="text" name="url" value="{{tab.url}}" ng-model="tab.url">
                             </div>
                             <div class="field-group cron" ng-repeat="cron in tab.crons">
                                 <select class="operation select" style="margin-left: -125px" ng-model="cron.type" ng-options="type.id as type.name for type in types"></select>
-                                <input class="text long-field" type="text" value="{{cron.expression}}" name="expression" id="expression-{{cron.$$hashKey}}">
+                                <input class="text long-field" type="text" value="{{cron.expression}}" name="expression" id="expression-{{cron.$$hashKey}}" ng-model="cron.expression">
                                 <select class="operation select" ng-model="cron.operation" ng-options="operation.id as operation.name for operation in operations"></select>
                                 <button type="button" class="aui-button aui-button-subtle remove" ng-click="removeCron(tab, cron)" ng-show="isRemovable($first, tab.crons.length)"><span class="aui-icon aui-icon-small aui-iconfont-remove"></span></button>
                             </div>
