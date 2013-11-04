@@ -1,89 +1,82 @@
-define(["underscore", "brace", "later", "TabCollection", "TabStorage", "ChromeTabManager", "ChromeTabs", "CrontabsEnabledState"], function(
-         _, Brace, later, TabCollection, TabStorage, ChromeTabManager, ChromeTabs, CrontabsEnabledState) {
+var CrontabRunner = function(ChromeTabs, ChromeTabManager, CrontabsEnabledState, tabs) {
+    this.ChromeTabs = ChromeTabs;
+    this.ChromeTabManager = ChromeTabManager;
+    this.CrontabsEnabledState = CrontabsEnabledState;
+    this.tabs = tabs;
+    this.intervals = [];
 
-    var intervals = [];
-    
-    return Brace.Model.extend({
-        namedEvents: [
-            "cronsUpdated"
-        ],
+    ChromeTabs.onRemoved(this._onTabRemoved);
+    CrontabsEnabledState.onChange(this._onEnableChange);
+};
 
-        initialize: function() {
-            this.onCronsUpdated(_.bind(this.cronsUpdated, this));
-            this.tabCollection = new TabCollection();
-            this.listenTo(CrontabsEnabledState, "change", this.onEnableChange, this);
+CrontabRunner.prototype = {
 
-            if (CrontabsEnabledState.isEnabled()) {
-                this._scheduleTabs();
-            }
-
-            ChromeTabs.onRemoved(_.bind(function(id, props) {
-                var cronTab = this.tabCollection.getByChromeTabId(id);
-                if (cronTab) {
-                    cronTab.setChromeTabId(null);
-                }
-            }, this));
-        },
-
-        onEnableChange: function() {
-            if (CrontabsEnabledState.isEnabled()) {
-                this._scheduleTabs();
-            } else {
-                this._stopSchedules();
-                this.removeTabs()
-            }
-        },
-
-        removeTabs: function(callback) {
-            var count = this.tabCollection.length;
-            this.tabCollection.each(function(cronTab) {
-                var chromeTabId = cronTab.getChromeTabId();
-                if (chromeTabId) {
-                    ChromeTabManager.closeTab(chromeTabId, function() {
-                        if (--count === 0 && callback) {
-                            callback();
-                        }
-                    });
-                }
-            });
-        },
-
-        cronsUpdated: function() {
-            this.removeTabs();
+    _onEnableChange: function() {
+        if (CrontabsEnabledState.isEnabled()) {
+            this._scheduleTabs();
+        } else {
             this._stopSchedules();
-            if (CrontabsEnabledState.isEnabled()) {
-                this._scheduleTabs();
-            }
-        },
-
-        _stopSchedules: function() {
-            _.each(intervals, function(interval) {
-                interval.clear();
-            });
-            intervals = [];
-        },
-
-        _scheduleTabs: function() {
-            this.tabCollection.reset(TabStorage.get());
-            this.tabCollection.each(_.bind(this.scheduleTab, this));
-        },
-
-        scheduleTab: function(cronTab, chromeTab) {
-            cronTab.getCrons().each(function(cron) {
-                if (cron.getExpression() && cron.getExpression() != "") {
-                    later.date.localTime();
-
-                    var parser = (cron.getType() === "text") ? later.parse.text : later.parse.cron;
-                    var schedule = parser(cron.getExpression(), true);
-                    var action = ChromeTabManager.getScheduleAction(cron.getOperation());
-                    var callback = _.bind(function() {
-                        if (CrontabsEnabledState.isEnabled()) {
-                            action(cronTab);
-                        }
-                    }, this);
-                    intervals.push(later.setInterval(callback, schedule));
-                }
-            }, this);
+            this.removeTabs()
         }
-    });
-});
+    },
+
+    /**
+     * Closes all currently opened tabs.
+     * @private
+     */
+    _closeAllTabs: function() {
+        _.each(this.tabs, function(tab) {
+            if (tab.chromeTabId) {
+                this.ChromeTabs.closeTab(tab.chromeTabId);
+            }
+        }, this);
+    },
+
+    onCronsUpdated: function() {
+        this._closeAllTabs();
+        this._stopSchedules();
+        if (this._isEnabled()) {
+            this._scheduleTabs();
+        }
+    },
+
+    _onTabRemoved: function(id) {
+        _.each(this.tabs, function(cronTab) {
+            if (cronTab.chromeTabId === id) {
+                cronTab.chromeTabId = null;
+            }
+        });
+    },
+
+    _stopSchedules: function() {
+        _.each(this.intervals, function(interval) {
+            interval.clear();
+        });
+        this.intervals = [];
+    },
+
+    _scheduleTabs: function() {
+        _.each(this.tabs, this._scheduleTab, this);
+    },
+
+    _scheduleTab: function(cronTab) {
+        _.each(cronTab.crons, function(cron) {
+            var expression = cron.expression;
+            if (expression && expression != "") {
+                var parser = (cron.type === "text") ? later.parse.text : later.parse.cron;
+                var schedule = parser(expression, true);
+                var action = ChromeTabManager.getScheduleAction(cron.getOperation());
+                var callback = _.bind(function() {
+                    if (this._isEnabled()) {
+                        action(cronTab);
+                    }
+                }, this);
+                this.intervals.push(later.setInterval(callback, schedule));
+            }
+        }, this);
+    },
+
+    _isEnabled: function() {
+        return this.CrontabsEnabledState.isEnabled();
+    }
+};

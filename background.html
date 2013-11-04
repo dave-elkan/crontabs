@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="crontabs.background">
 	<head>
-		<script src="src/js/config.js"></script>
-		<script src="src/js/lib/later.js"></script>
-		<script src="src/js/lib/require.js" data-main="src/js/main.js"></script>
-	</head>
+        <script src="src/lib/bower_components/underscore/underscore-min.js"></script>
+        <script src="src/lib/bower_components/angular/angular.js"></script>
+        <script src="src/lib/bower_components/angular-webstorage/angular-webstorage.js"></script>
+        <script src="src/js/lib/later.js"></script>
+        <script src="src/js/services.js"></script>
+        <script src="src/js/CrontabsRunner.js"></script>
+        <script src="src/js/CrontabsEnabledState.js"></script>
+        <script src="src/js/ChromeTabManager.js"></script>
+        <script src="src/js/background.js"></script>
+    </head>
 	<body></body>
 </html>

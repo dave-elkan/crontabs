@@ -18,6 +18,7 @@
   ],
   "dependencies": {
     "angular": "~1.0.8",
-    "angular-webstorage": "~0.9.3"
+    "angular-webstorage": "~0.9.3",
+    "underscore": "~1.5.2"
   }
 }

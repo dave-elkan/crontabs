@@ -1,36 +1,31 @@
-define(["brace"], function(Brace) {
+services.factory("CrontabsEnabledState", function(webStorage) {
     var key = "crontabsEnabled";
-    var EnabledState = Brace.Model.extend({
+    var enabled = _getEnablement();
+    var callback = function() {};
 
-        namedAttributes: [
-            "enabled"
-        ],
+    if (!enabled && enabled !== false) {
+        _setEnablement(false);
+    }
 
-        initialize: function() {
-            this.setEnabled(this.isEnabled());
-            this.on("change", this.persistEnablement, this);
-        },
+    function _getEnablement() {
+        return webStorage.get(key);
+    }
 
-        persistEnablement: function() {
-            localStorage[key] = JSON.stringify(this.getEnabled());
-        },
+    function _setEnablement(enabled) {
+        webStorage.add(key, enabled);
+        cb();
+    }
 
-        isEnabled: function() {
-            return this.valueIsEnabled(localStorage[key]);
-        },
+    return {
+
+        isEnabled: _getEnablement,
 
         toggleEnablement: function() {
-            this.setEnabled(!this.getEnabled());
+            _setEnablement(!_getEnablement());
         },
 
-        valueIsEnabled: function(value) {
-            if (value === "true") {
-                return true;
-            }
-
-            return false;
+        onChange: function(cb) {
+            callback = cb;
         }
-    });
-
-    return new EnabledState();
+    };
 });

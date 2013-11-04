@@ -1,5 +1,6 @@
-define(["underscore", "jquery", "ChromeTabs"], function(_, $, ChromeTabs) {
-	return {
+services.factory("ChromeTabManager", function(ChromeTabs) {
+
+    return {
 
         /**
          * Gets or creates a tab and performs an action on it.
@@ -12,7 +13,7 @@ define(["underscore", "jquery", "ChromeTabs"], function(_, $, ChromeTabs) {
                 var deferred = jQuery.Deferred();
 
                 deferred.done(_.bind(function(chromeTab) {
-                    cronTab.setChromeTabId(chromeTab.id);
+                    cronTab.chromeTabId = chromeTab.id;
                     action.call(this, chromeTab, cronTab, callback);
                 }, this));
 
@@ -20,12 +21,12 @@ define(["underscore", "jquery", "ChromeTabs"], function(_, $, ChromeTabs) {
                     deferred.resolve(chromeTab);
                 }
 
-                if (cronTab.getChromeTabId()) {
-                    ChromeTabs.get(cronTab.getChromeTabId(), resolveWithChromeTab);
+                if (cronTab.cronTabId) {
+                    ChromeTabs.get(cronTab.cronTabId, resolveWithChromeTab);
                 } else {
                     ChromeTabs.create({
-                            url: cronTab.getUrl()
-                        }, resolveWithChromeTab);
+                        url: cronTab.url
+                    }, resolveWithChromeTab);
                 }
 
             }, this);
@@ -81,9 +82,9 @@ define(["underscore", "jquery", "ChromeTabs"], function(_, $, ChromeTabs) {
          * @param {Object} properties The properties to update.
          * @param {Function} callback The function to call once the tab has been shown.
          */
-		_updateTab: function(id, properties, callback) {
-			ChromeTabs.update(id, properties, callback);
-		},
+        _updateTab: function(id, properties, callback) {
+            ChromeTabs.update(id, properties, callback);
+        },
 
         /**
          * Reloads a Chrome Tab.
@@ -91,8 +92,8 @@ define(["underscore", "jquery", "ChromeTabs"], function(_, $, ChromeTabs) {
          * @param {ChromeTab} chromeTab The Chrome Tab to reload.
          */
         _reloadChromeTab: function(chromeTab) {
-			ChromeTabs.reload(chromeTab.id);
-		},
+            ChromeTabs.reload(chromeTab.id);
+        },
 
         /**
          * Closes a Tab as an action.
@@ -101,8 +102,8 @@ define(["underscore", "jquery", "ChromeTabs"], function(_, $, ChromeTabs) {
          * @param {Function} callback The function to call once the tab is closed.
          */
         _performCloseOperation: function(cronTab, callback) {
-            if (cronTab.getChromeTabId()) {
-                this.closeTab(cronTab.getChromeTabId(), callback);
+            if (cronTab.cronTabId) {
+                this.closeTab(cronTab.cronTabId, callback);
             } else {
                 if (callback) {
                     callback();
@@ -122,6 +123,6 @@ define(["underscore", "jquery", "ChromeTabs"], function(_, $, ChromeTabs) {
             };
 
             return actions[action];
-        }   
-	}
+        }
+    }
 });
