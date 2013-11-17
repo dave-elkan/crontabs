@@ -17,8 +17,11 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.0.8",
+    "angular": "~1.2.1",
+    "angular-mocks": "~1.2.1",
     "angular-webstorage": "~0.9.3",
+    "jquery": "~2.0.3",
+    "later": "*",
     "underscore": "~1.5.2"
   }
 }
