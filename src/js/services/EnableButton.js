@@ -1,4 +1,4 @@
-angular.module("crontabs").factory("EnableButton", function(ChromeBrowserAction, MessageManager, CrontabsEnabledState) {
+angular.module("crontabs").factory("EnableButton", function(ChromeBrowserAction, i18nManager, CrontabsEnabledState) {
 
     function EnableButton() {
         CrontabsEnabledState.onChange(_.bind(this.onEnablementChanged, this));
@@ -19,16 +19,16 @@ angular.module("crontabs").factory("EnableButton", function(ChromeBrowserAction,
 
         _setClickToEnableText: function() {
             ChromeBrowserAction.setBrowserActionText({
-                badgeText: MessageManager("actionButtonBadgeDisabledText"),
-                titleText: MessageManager("actionButtonEnableTitle"),
+                badgeText: i18nManager("actionButtonBadgeDisabledText"),
+                titleText: i18nManager("actionButtonEnableTitle"),
                 badgeBackgroundColour: "#FF0000"
             });
         },
 
         _setClickToDisableText: function() {
             ChromeBrowserAction.setBrowserActionText({
-                badgeText: MessageManager("actionButtonBadgeEnabledText"),
-                titleText: MessageManager("actionButtonDisableTitle"),
+                badgeText: i18nManager("actionButtonBadgeEnabledText"),
+                titleText: i18nManager("actionButtonDisableTitle"),
                 badgeBackgroundColour: "#458B00"
             });
         }
