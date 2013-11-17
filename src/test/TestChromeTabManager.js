@@ -1,7 +1,5 @@
 "use strict";
 
-var mockChromeTabs;
-
 describe("ChromeTabeManager", function() {
 
 
@@ -9,18 +7,16 @@ describe("ChromeTabeManager", function() {
 
     beforeEach(function() {
 
-        mockChromeTabs = sinon.stub({
-            create: function() {},
-            get: function() {},
-            remove: function() {},
-            reload: function() {},
-            update: function() {},
-            query: function() {},
-            onRemoved: function() {}
-        });
-
         module(function($provide) {
-            $provide.value("ChromeTabs", mockChromeTabs);
+            $provide.value("ChromeTabs", sinon.stub({
+                create: function() {},
+                get: function() {},
+                remove: function() {},
+                reload: function() {},
+                update: function() {},
+                query: function() {},
+                onRemoved: function() {}
+            }));
         });
 
     });
