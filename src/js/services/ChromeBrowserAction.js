@@ -1,4 +1,4 @@
-define(function() {
+angular.module("crontabs").factory("ChromeBrowserAction", function() {
     return {
         onEnableButtonClicked: function(callback) {
             chrome.browserAction.onClicked.addListener(callback);
