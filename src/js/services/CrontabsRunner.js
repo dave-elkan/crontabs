@@ -1,4 +1,4 @@
-angular.module("crontabs").factory("CrontabsRunner", function(ChromeTabs, ChromeTabManager, CrontabsEnabledState, TabStorage) {
+angular.module("crontabs").factory("CrontabsRunner", function(ChromeTabs, ChromeTabManager, CrontabsEnabledState, TabStorage, LaterService) {
 
     var CrontabsRunner = function() {
         this.tabs = TabStorage.getTabs();
@@ -15,6 +15,14 @@ angular.module("crontabs").factory("CrontabsRunner", function(ChromeTabs, Chrome
 
     CrontabsRunner.prototype = {
 
+        /**
+         * Triggered when crontabs enablement is toggled.
+         *
+         * When enabled, schedule all tabs.
+         * When disabled, stop all schedules and close all tabs.
+         *
+         * @private
+         */
         _onEnableChange: function() {
             if (CrontabsEnabledState.isEnabled()) {
                 this._scheduleTabs();
@@ -26,6 +34,7 @@ angular.module("crontabs").factory("CrontabsRunner", function(ChromeTabs, Chrome
 
         /**
          * Closes all currently opened tabs.
+         *
          * @private
          */
         _closeAllTabs: function() {
@@ -36,6 +45,14 @@ angular.module("crontabs").factory("CrontabsRunner", function(ChromeTabs, Chrome
             }, this);
         },
 
+        /**
+         * Tabs update handler.
+         *
+         * Closes all tabs, stops all schedules and schedules new tabs.
+         *
+         * @param tabs
+         * @private
+         */
         _onCronsUpdated: function(tabs) {
             this.tabs = tabs;
             this._closeAllTabs();
@@ -45,6 +62,17 @@ angular.module("crontabs").factory("CrontabsRunner", function(ChromeTabs, Chrome
             }
         },
 
+        /**
+         * Triggered when a tab is removed.
+         *
+         * Triggered when a tab is manually removed by the user.
+         * Triggered when a tab is removed by a schedule.
+         *
+         * Remoes the chromeTabId property from the tab reference.
+         *
+         * @param id
+         * @private
+         */
         _onTabRemoved: function(id) {
             _.each(this.tabs, function(cronTab) {
                 if (cronTab.chromeTabId === id) {
@@ -53,6 +81,11 @@ angular.module("crontabs").factory("CrontabsRunner", function(ChromeTabs, Chrome
             });
         },
 
+        /**
+         * Clears all schedules.
+         *
+         * @private
+         */
         _stopSchedules: function() {
             _.each(this.intervals, function(interval) {
                 interval.clear();
@@ -60,15 +93,26 @@ angular.module("crontabs").factory("CrontabsRunner", function(ChromeTabs, Chrome
             this.intervals = [];
         },
 
+        /**
+         * Schedules all tabs.
+         *
+         * @private
+         */
         _scheduleTabs: function() {
             _.each(this.tabs, this._scheduleTab, this);
         },
 
+        /**
+         * Schedules a tab.
+         *
+         * @param cronTab
+         * @private
+         */
         _scheduleTab: function(cronTab) {
             _.each(cronTab.crons, function(cron) {
                 var expression = cron.expression;
                 if (expression && expression != "") {
-                    var parser = (cron.type === "text") ? later.parse.text : later.parse.cron;
+                    var parser = (cron.type === "text") ? LaterService.parse.text : LaterService.parse.cron;
                     var schedule = parser(expression, true);
                     var action = ChromeTabManager.getScheduleAction(cron.operation);
                     var callback = _.bind(function() {
@@ -76,7 +120,7 @@ angular.module("crontabs").factory("CrontabsRunner", function(ChromeTabs, Chrome
                             action(cronTab);
                         }
                     }, this);
-                    this.intervals.push(later.setInterval(callback, schedule));
+                    this.intervals.push(LaterService.setInterval(callback, schedule));
                 }
             }, this);
         }
