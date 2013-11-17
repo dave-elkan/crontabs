@@ -1,25 +1,42 @@
-require(["CrontabsEnabledState"], function(CrontabsEnabledState) {
-   test("string 'true' is enabled", function() {
-       equal(CrontabsEnabledState.valueIsEnabled("true"), true);
-   });
+"use strict";
 
-   test("string 'false' is disabled", function() {
-       equal(CrontabsEnabledState.valueIsEnabled("false"), false);
-   });
+describe("CrontabsEnabledState", function() {
 
-   test("undefined is disabled", function() {
-       equal(CrontabsEnabledState.valueIsEnabled(undefined), false);
-   });
+    beforeEach(module("crontabs"));
 
-   test("null is disabled", function() {
-       equal(CrontabsEnabledState.valueIsEnabled(null), false);
-   });
+    beforeEach(function() {
+        module(function($provide) {
+            $provide.value("webStorage", sinon.stub({
+                get: function() {},
+                add: function() {}
+            }));
+        });
+    });
 
-   test("nothing (undefined) is disabled", function() {
-       equal(CrontabsEnabledState.valueIsEnabled(), false);
-   });
+   it("should return true when crontabs is enabled", inject(function(CrontabsEnabledState, webStorage) {
+       webStorage.get.returns(true);
+       expect(CrontabsEnabledState.isEnabled()).toBeTruthy();
+   }));
 
-   test("Strange string is disabled", function() {
-       equal(CrontabsEnabledState.valueIsEnabled("asdasd"), false);
-   });
+   it("should be false when crontabs is disabled", inject(function(CrontabsEnabledState, webStorage) {
+       webStorage.get.returns(false);
+       expect(CrontabsEnabledState.isEnabled()).toBeFalsy();
+   }));
+
+   it("will toggle the enabled state to enabled from true to false", inject(function(CrontabsEnabledState, webStorage) {
+       webStorage.get.returns(true);
+       CrontabsEnabledState.onChange(function(enabled) {
+           expect(enabled).toBeFalsy();
+       });
+       CrontabsEnabledState.toggleEnabled();
+   }));
+
+   it("will toggle the enabled state to enabled from false to true", inject(function(CrontabsEnabledState, webStorage) {
+        webStorage.get.returns(false);
+        CrontabsEnabledState.onChange(function(enabled) {
+            expect(enabled).toBeTruthy();
+        });
+        CrontabsEnabledState.toggleEnabled();
+   }));
+
 });

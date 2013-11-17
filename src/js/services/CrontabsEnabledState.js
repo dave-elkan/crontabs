@@ -1,7 +1,10 @@
 angular.module("crontabs").factory("CrontabsEnabledState", function(webStorage) {
 
-    var enabled = webStorage.get("crontabsEnabled") || false;
     var callbacks = [];
+
+    function getEnabledState() {
+        return webStorage.get("crontabsEnabled") || false;
+    }
 
     return {
 
@@ -10,11 +13,11 @@ angular.module("crontabs").factory("CrontabsEnabledState", function(webStorage) 
         },
 
         isEnabled: function() {
-            return !!enabled;
+            return getEnabledState();
         },
 
         toggleEnabled: function() {
-            enabled = !enabled;
+            var enabled = !getEnabledState();
             webStorage.add("crontabsEnabled", enabled);
             _.each(callbacks, function(cb) {
                 cb(enabled);
