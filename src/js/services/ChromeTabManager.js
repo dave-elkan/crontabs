@@ -1,4 +1,4 @@
-services.factory("ChromeTabManager", function(ChromeTabs) {
+angular.module("crontabs").factory("ChromeTabManager", function(ChromeTabs) {
 
     return {
 
@@ -21,8 +21,8 @@ services.factory("ChromeTabManager", function(ChromeTabs) {
                     deferred.resolve(chromeTab);
                 }
 
-                if (cronTab.cronTabId) {
-                    ChromeTabs.get(cronTab.cronTabId, resolveWithChromeTab);
+                if (cronTab.chromeTabId) {
+                    ChromeTabs.get(cronTab.chromeTabId, resolveWithChromeTab);
                 } else {
                     ChromeTabs.create({
                         url: cronTab.url
@@ -51,11 +51,12 @@ services.factory("ChromeTabManager", function(ChromeTabs) {
         /**
          * Shows a Chrome Tab
          *
-         * @param {ChromeTab} chromeTab The Chrome Tab to show.
+         * @param {Object} chromeTab The Chrome Tab to show.
+         * @param {Object} cronTab The Crontab reference to show.
          * @param {Function} callback The function to call once the tab has been shown.
          */
         _showChromeTab: function(chromeTab, cronTab, callback) {
-            this._updateTab(chromeTab.id, {
+            ChromeTabs.update(chromeTab.id, {
                 active: true
             }, callback);
         },
@@ -63,7 +64,8 @@ services.factory("ChromeTabManager", function(ChromeTabs) {
         /**
          * Shows and reloads a Chrome Tab.
          *
-         * @param {ChromeTab} chromeTab The Chrome Tab to show.
+         * @param {Object} chromeTab The Chrome Tab to show.
+         * @param {Object} cronTab The Cron Tab to show.
          * @param {Function} callback The function to call once the tab has been shown.
          */
         _showAndReloadChromeTab: function(chromeTab, cronTab, callback) {
@@ -76,20 +78,9 @@ services.factory("ChromeTabManager", function(ChromeTabs) {
         },
 
         /**
-         * Updates a Chrome Tab.
-         *
-         * @param {Number} id The id of the Chrome Tab to update.
-         * @param {Object} properties The properties to update.
-         * @param {Function} callback The function to call once the tab has been shown.
-         */
-        _updateTab: function(id, properties, callback) {
-            ChromeTabs.update(id, properties, callback);
-        },
-
-        /**
          * Reloads a Chrome Tab.
          *
-         * @param {ChromeTab} chromeTab The Chrome Tab to reload.
+         * @param {Object} chromeTab The Chrome Tab to reload.
          */
         _reloadChromeTab: function(chromeTab) {
             ChromeTabs.reload(chromeTab.id);
@@ -102,8 +93,8 @@ services.factory("ChromeTabManager", function(ChromeTabs) {
          * @param {Function} callback The function to call once the tab is closed.
          */
         _performCloseOperation: function(cronTab, callback) {
-            if (cronTab.cronTabId) {
-                this.closeTab(cronTab.cronTabId, callback);
+            if (cronTab.chromeTabId) {
+                this.closeTab(cronTab.chromeTabId, callback);
             } else {
                 if (callback) {
                     callback();
