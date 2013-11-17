@@ -1,8 +1,4 @@
-"use strict";
-
-var crontabs = angular.module('crontabs', ['webStorageModule']);
-
-crontabs.controller("TabCtrl", function($scope, webStorage) {
+angular.module("crontabs").controller("EditorCtrl", function($scope, Messaging, TabStorage) {
 
     $scope.operations = [{
         id: "show",
@@ -26,7 +22,7 @@ crontabs.controller("TabCtrl", function($scope, webStorage) {
         name: "Text"
     }];
 
-    $scope.tabs = webStorage.get("crontabs") || [{
+    $scope.tabs = TabStorage.getTabs() || [{
         url: "",
         crons: [{
             "type": "cron",
@@ -98,6 +94,7 @@ crontabs.controller("TabCtrl", function($scope, webStorage) {
     };
 
     $scope.onSubmit = function() {
-        webStorage.add("crontabs", angular.copy($scope.tabs));
+        TabStorage.setTabs(angular.copy($scope.tabs));
+        Messaging.sendMessage("saved");
     };
 });
