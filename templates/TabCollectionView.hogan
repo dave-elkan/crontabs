@@ -1,9 +1,0 @@
-<form class="aui">
-    <div class="tabs"></div>
-	<div class="buttons-container">
-		<div class="buttons">
-			<button class="aui-button aui-button-primary save"><span class="aui-icon aui-icon-small aui-iconfont-success"></span> Save</button>
-			<button class="aui-button add"><span class="aui-icon aui-icon-small aui-iconfont-add"></span> Add Tab</button>
-		</div>
-	</div>
-</form>
