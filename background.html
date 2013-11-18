@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html ng-app="crontabs.background">
+<html ng-app="crontabs" ng-csp>
 	<head>
         <script src="src/lib/bower_components/underscore/underscore-min.js"></script>
-        <script src="src/lib/bower_components/angular/angular.js"></script>
+        <script src="src/lib/bower_components/angular/angular.min.js"></script>
         <script src="src/lib/bower_components/angular-webstorage/angular-webstorage.js"></script>
-        <script src="src/js/lib/later.js"></script>
-        <script src="src/js/services.js"></script>
-        <script src="src/js/CrontabsRunner.js"></script>
-        <script src="src/js/CrontabsEnabledState.js"></script>
-        <script src="src/js/ChromeTabManager.js"></script>
+        <script src="src/lib/bower_components/later/later.min.js"></script>
+        <script src="src/lib/bower_components/jquery/jquery.min.js"></script>
+        <script src="src/js/crontabs.js"></script>
         <script src="src/js/background.js"></script>
+        <script src="src/js/services/Messaging.js"></script>
+        <script src="src/js/services/ChromeTabs.js"></script>
+        <script src="src/js/services/ChromeBrowserAction.js"></script>
+        <script src="src/js/services/CrontabsRunner.js"></script>
+        <script src="src/js/services/CrontabsEnabledState.js"></script>
+        <script src="src/js/services/i18nManager.js"></script>
+        <script src="src/js/services/ChromeTabManager.js"></script>
+        <script src="src/js/services/EnableButton.js"></script>
+        <script src="src/js/services/TabStorage.js"></script>
+        <script src="src/js/services/LaterService.js"></script>
     </head>
-	<body></body>
+	<body>
 </html>
