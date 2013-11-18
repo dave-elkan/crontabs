@@ -96,5 +96,6 @@ angular.module("crontabs").controller("EditorCtrl", function($scope, Messaging, 
     $scope.onSubmit = function() {
         TabStorage.setTabs(angular.copy($scope.tabs));
         Messaging.sendMessage("saved");
+        $scope.editor.$setPristine();
     };
 });

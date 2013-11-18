@@ -38,7 +38,7 @@
         <div class="aui-page-panel">
             <div class="aui-page-panel-inner">
                 <section class="aui-page-panel-content">
-                    <form class="aui" ng-controller="EditorCtrl" ng-submit="onSubmit()">
+                    <form class="aui" name="editor" ng-controller="EditorCtrl" ng-submit="onSubmit()">
                         <fieldset ng-repeat="tab in tabs">
                             <div class="field-group">
                                 <label for="url-{{tab.$$hashKey}}">URL <span class="aui-icon icon-required"> required</span></label>
@@ -60,7 +60,7 @@
                         </fieldset>
                         <div class="buttons-container">
                             <div class="buttons">
-                                <button type="submit" class="aui-button aui-button-primary save"><span class="aui-icon aui-icon-small aui-iconfont-success"></span> Save</button>
+                                <button type="submit" class="aui-button aui-button-primary save" ng-disabled="!editor.$dirty"><span class="aui-icon aui-icon-small aui-iconfont-success"></span> Save</button>
                                 <button type="button" class="aui-button add" ng-click="addTab()"><span class="aui-icon aui-icon-small aui-iconfont-add"></span> Add Tab</button>
                             </div>
                         </div>
