@@ -34,5 +34,5 @@ angular.module("crontabs").factory("EnableButton", function(ChromeBrowserAction,
         }
     };
 
-    return EnableButton;
+    return new EnableButton();
 });

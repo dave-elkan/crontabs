@@ -1,32 +1,31 @@
-define(["underscore", "CrontabsEnabledState", "EnableButtonView"], function(_, CrontabsEnabledState, EnableButtonView) {
 
-    module("EnableButtonView", {
-        teardown: function() {
-            _.each(EnableButtonView, function(f) {
-                if (f.restore) {
-                    f.restore();
-                }
-            });
-            
-            _.each(CrontabsEnabledState, function(f) {
-                if (f.restore) {
-                    f.restore();
-                }
-            });
-        }
+"use strict";
+
+describe("EnableButton", function() {
+
+    beforeEach(module("crontabs"));
+
+    beforeEach(function() {
+
+        module(function($provide) {
+            $provide.value("ChromeBrowserAction", sinon.stub({
+                setBrowserActionText: function() {},
+                onEnableButtonClicked: function() {}
+            }));
+
+            $provide.value("i18nManager", sinon.stub());
+        });
     });
 
-    test("Click to Disable text is shown when Enabled.", function() {
-        var stub = sinon.stub(CrontabsEnabledState, "isEnabled").returns(true);
-        var spy = sinon.spy(EnableButtonView, "setClickToDisableText");
-        CrontabsEnabledState.trigger("change");
-        ok(spy.calledOnce, "Click to Disable text is shown when Enabled.");
-    });
+    it("should show 'Click to Disable' text when crontabs is enabled.", inject(function(EnableButton) {
+        var spy = sinon.spy(EnableButton, "_setClickToDisableText");
+        EnableButton.onEnablementChanged(true);
+        expect(spy.calledOnce).toBeTruthy();
+    }));
 
-    test("Click to Enable text is shown when Disabled.", function() {
-        var stub = sinon.stub(CrontabsEnabledState, "isEnabled").returns(false);
-        var spy = sinon.spy(EnableButtonView, "setClickToEnableText");
-        CrontabsEnabledState.trigger("change");
-        ok(spy.calledOnce, "Click to Enabld text is shown when Enabled.");
-    });
+    it("should show 'Click to Enable' text when crontabs is disabled.", inject(function(EnableButton) {
+        var spy = sinon.spy(EnableButton, "_setClickToEnableText");
+        EnableButton.onEnablementChanged(false);
+        expect(spy.calledOnce).toBeTruthy();
+    }));
 });
