@@ -1,41 +1,33 @@
 module.exports = function(grunt) {
-    var testRunner = "TestRunner.html?test=";	
+
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		qunit: {
-			all: {
-				options: {
-					urls: [
-						testRunner + 'Cron',
-						testRunner + 'TabCollection',
-                        testRunner + 'ChromeTabManager',
-                        testRunner + 'EnableButtonView',
-                        testRunner + 'CrontabsRunner'
-					]
-				}
-			}
-		},
-		hogan: {
-			crontabs: {
-				templates: "templates/**/*.hogan",
-				output: "src/js/templates.js",
-				binderName: "amd"
-			}
-		},
-		watch: {
-			scripts: {
-				files: "templates/**/*.hogan",
-				tasks: ["hogan"],
-			}
-		}
+
+        watch: {
+            karma: {
+                files: ['src/js/**/*.js', 'src/test/**/*.js'],
+                tasks: ['karma:unit:run']
+            }
+        },
+
+        karma: {
+            unit: {
+                configFile: "karma.conf.js",
+                background: true
+            },
+
+            continuous: {
+                configFile: 'karma.conf.js',
+                singleRun: true,
+                browsers: ['PhantomJS']
+            }
+        }
 	});
 
-	grunt.loadNpmTasks('grunt-contrib-qunit');
-	grunt.loadNpmTasks('grunt-hogan');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-karma');
 
     grunt.registerTask('default', [
-        'hogan',
-        'qunit'
+        'karma'
     ]);
 };
