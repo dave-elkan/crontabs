@@ -1,6 +1,7 @@
 angular.module("crontabs").factory("EnableButton", function(ChromeBrowserAction, i18nManager, CrontabsEnabledState) {
 
     function EnableButton() {
+        this.onEnablementChanged(CrontabsEnabledState.isEnabled());
         CrontabsEnabledState.onChange(_.bind(this.onEnablementChanged, this));
         ChromeBrowserAction.onEnableButtonClicked(function() {
             CrontabsEnabledState.toggleEnabled();
