@@ -27,6 +27,10 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-karma');
 
+    grunt.registerTask('test', [
+        'default'
+    ]);
+    
     grunt.registerTask('default', [
         'karma'
     ]);
