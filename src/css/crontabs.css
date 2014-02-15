@@ -19,10 +19,6 @@ form.aui .select {
     width: 121px;
 }
 
-div.buttons {
-    margin-top: 1em;
-}
-
 button.remove {
     clear: left;
 }
@@ -34,4 +30,8 @@ button.remove span.aui-icon {
 form.aui fieldset {
     border-bottom: 1px solid #ccc;
     padding: 15px 0;
+}
+
+form.aui fieldset:last-of-type {
+    margin-bottom: 1em;
 }
