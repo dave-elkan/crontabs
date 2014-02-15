@@ -17,8 +17,9 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.2.1",
-    "angular-mocks": "~1.2.1",
+    "angular": "~1.2.13",
+    "angular-route": "~1.2.13",
+    "angular-mocks": "~1.2.13",
     "angular-webstorage": "~0.9.3",
     "jquery": "~2.0.3",
     "later": "*",
