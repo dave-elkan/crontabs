@@ -4,14 +4,7 @@ angular.module("crontabs").controller("EditorCtrl", function($scope, Messaging, 
 
     $scope.types = TabTriggerTypes;
 
-    $scope.tabs = TabStorage.getTabs() || [{
-        url: "",
-        crons: [{
-            "type": "cron",
-            "operation": "show",
-            "expression": ""
-        }]
-    }];
+    $scope.tabs = TabStorage.getTabsOrNewTab();
 
     $scope.addCron = function(tab) {
         tab.crons.push({

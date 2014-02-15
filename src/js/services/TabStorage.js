@@ -17,6 +17,17 @@ angular.module("crontabs").factory("TabStorage", function(webStorage, Messaging)
 
         getTabs: getTabs,
 
+        getTabsOrNewTab: function() {
+            return getTabs() || [{
+                url: "",
+                crons: [{
+                    "type": "cron",
+                    "operation": "show",
+                    "expression": ""
+                }]
+            }];
+        },
+
         setTabs: function(tabs) {
             webStorage.add("crontabs", tabs);
         },
