@@ -39,5 +39,33 @@
 	},
     "tabUrlInvalid": {
         "message": "Tab URL invalid."
+    },
+    "dayMonday": {
+        "message": "Monday",
+        "description": "Monday"
+    },
+    "dayTuesday": {
+        "message": "Tuesday",
+        "description": "Tuesday"
+    },
+    "dayWednesday": {
+        "message": "Wednesday",
+        "description": "Wednesday"
+    },
+    "dayThursday": {
+        "message": "Thursday",
+        "description": "Thursday"
+    },
+    "dayFriday": {
+        "message": "Friday",
+        "description": "Friday"
+    },
+    "daySaturday": {
+        "message": "Saturday",
+        "description": "Saturday"
+    },
+    "daySunday": {
+        "message": "Sunday",
+        "description": "Sunday"
     }
 }
