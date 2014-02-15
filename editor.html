@@ -54,8 +54,8 @@
                                 <button type="button" class="aui-button aui-button-subtle" ng-click="addCron(tab)"><span class="aui-icon aui-icon-small aui-iconfont-add" data-type="cron"></span> Add Cron</button>
                                 <button type="button" class="aui-button aui-button-subtle" ng-click="addTextExpression(tab)"><span class="aui-icon aui-icon-small aui-iconfont-add" data-type="text"></span> Add Text Expression</button>
                             </div>
-                            <div class="remove-button buttons-container">
-                                <button type="button" class="aui-button remove" ng-click="removeTab(tab)" ng-show="isRemovable($first, tabs.length)"><span class="aui-icon aui-icon-small aui-iconfont-remove"></span> Remove Tab</button>
+                            <div class="remove-button buttons-container" ng-show="isRemovable($first, tabs.length)">
+                                <button type="button" class="aui-button remove" ng-click="removeTab(tab)"><span class="aui-icon aui-icon-small aui-iconfont-remove"></span> Remove Tab</button>
                             </div>
                         </fieldset>
                         <div class="buttons-container">
