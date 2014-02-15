@@ -1,26 +1,8 @@
-angular.module("crontabs").controller("EditorCtrl", function($scope, Messaging, TabStorage) {
+angular.module("crontabs").controller("EditorCtrl", function($scope, Messaging, TabStorage, TabOperations, TabTriggerTypes) {
 
-    $scope.operations = [{
-        id: "show",
-        name: "Show"
-    }, {
-        id: "reload",
-        name: "Reload"
-    }, {
-        id: "showAndReload",
-        name: "Show & Reload"
-    }, {
-        id: "close",
-        name: "Close"
-    }];
+    $scope.operations = TabOperations;
 
-    $scope.types = [{
-        id: "cron",
-        name: "Cron"
-    }, {
-        id: "text",
-        name: "Text"
-    }];
+    $scope.types = TabTriggerTypes;
 
     $scope.tabs = TabStorage.getTabs() || [{
         url: "",
