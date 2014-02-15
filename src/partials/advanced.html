@@ -1,5 +1,5 @@
 <form class="aui" name="editor" ng-controller="EditorCtrl" ng-submit="onSubmit()">
-    <fieldset ng-repeat="tab in tabs">
+    <fieldset class="tab" ng-repeat="tab in tabs">
         <div class="field-group">
             <label for="url-{{tab.$$hashKey}}">URL <span class="aui-icon icon-required"> required</span></label>
             <input class="text long-field url" id="url-{{tab.$$hashKey}}" type="text" name="url" value="{{tab.url}}" ng-model="tab.url">

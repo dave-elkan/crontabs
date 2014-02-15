@@ -1,0 +1,32 @@
+<form class="aui" name="editor" ng-controller="TimeManagementCtrl" ng-submit="onSubmit()">
+    <fieldset class="tab" ng-repeat="tab in tabs">
+        <div class="field-group">
+            <label for="url-{{tab.$$hashKey}}">URL</label>
+            <input class="text long-field url" id="url-{{tab.$$hashKey}}" type="text" name="url" value="{{tab.url}}" ng-model="tab.url">
+        </div>
+        <fieldset class="group">
+            <legend><span>Day(s) of the week</span></legend>
+            <div class="checkbox" ng-repeat="day in DaysOfWeek">
+                <input class="checkbox" type="checkbox" name="{{day.id}}" id="{{day.id}}-{{tab.$$hashKey}}">
+                <label for="{{day.id}}-{{tab.$$hashKey}}">{{day.name}}</label>
+            </div>
+        </fieldset>
+        <div class="field-group">
+            <label for="open-{{tab.$$hashKey}}">Open at</label>
+            <input class="text" type="text" id="open-{{tab.$$hashKey}}" name="open-{{tab.$$hashKey}}" title="time to open tab" placeholder="9:25">
+        </div>
+        <div class="field-group">
+            <label for="close-{{tab.$$hashKey}}">Close at</label>
+            <input class="text" type="text" id="close-{{tab.$$hashKey}}" name="close-{{tab.$$hashKey}}" title="time to close tab" placeholder="15:20">
+        </div>
+        <div class="remove-button buttons-container" ng-show="isRemovable($first, tabs.length)">
+            <button type="button" class="aui-button remove" ng-click="removeTab(tab)"><span class="aui-icon aui-icon-small aui-iconfont-remove"></span> Remove Tab</button>
+        </div>
+    </fieldset>
+    <div class="buttons-container">
+        <div class="buttons">
+            <button type="submit" class="aui-button aui-button-primary save" ng-disabled="!editor.$dirty"><span class="aui-icon aui-icon-small aui-iconfont-success"></span> Save</button>
+            <button type="button" class="aui-button add" ng-click="addTab()"><span class="aui-icon aui-icon-small aui-iconfont-add"></span> Add Tab</button>
+        </div>
+    </div>
+</form>

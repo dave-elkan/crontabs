@@ -27,7 +27,7 @@ button.remove span.aui-icon {
     color: #CC0000
 }
 
-form.aui fieldset {
+form.aui fieldset.tab {
     border-bottom: 1px solid #ccc;
     padding: 15px 0;
 }
