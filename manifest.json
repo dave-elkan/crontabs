@@ -12,7 +12,7 @@
     "background": {
 		"page": "background.html"
     },
-    "options_page": "editor.html",
+    "options_page": "index.html",
     "permissions": [
         "tabs"
     ],
