@@ -38,4 +38,10 @@ angular.module("crontabs").controller("EditorCtrl", function($scope, Messaging, 
     $scope.onChangeOperation = function(cron, operation) {
         cron.operation = operation.id;
     };
+
+    $scope.onSubmit = function() {
+        TabStorage.setTabs(angular.copy($scope.tabs));
+        Messaging.sendMessage("saved");
+        $scope.editor.$setPristine();
+    };
 });

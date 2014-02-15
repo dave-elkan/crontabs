@@ -31,9 +31,4 @@ function AbstractTabEditorController($scope, Messaging, TabStorage) {
         return !first || length > 1;
     };
 
-    $scope.onSubmit = function() {
-        TabStorage.setTabs(angular.copy($scope.tabs));
-        Messaging.sendMessage("saved");
-        $scope.editor.$setPristine();
-    };
 }
