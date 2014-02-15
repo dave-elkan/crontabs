@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="src/lib/bower_components/underscore/underscore-min.js"></script>
     <script src="src/lib/bower_components/angular/angular.js"></script>
+    <script src="src/lib/bower_components/angular-route/angular-route.js"></script>
     <script src="src/lib/bower_components/angular-webstorage/angular-webstorage.js"></script>
     <script src="src/lib/bower_components/later/later.min.js"></script>
     <script src="src/js/crontabs.js"></script>
@@ -28,44 +29,19 @@
         </nav><!-- .aui-header -->
     </header>
     <section id="content" role="main">
-        <header class="aui-page-header">
-            <div class="aui-page-header-inner">
-                <div class="aui-page-header-main">
-                    <h1>Tabs</h1>
-                </div><!-- .aui-page-header-main -->
-            </div><!-- .aui-page-header-inner -->
-        </header>
+        <nav class="aui-navgroup aui-navgroup-horizontal" ng-controller="NavigationCtrl">
+            <div class="aui-navgroup-inner">
+                <div class="aui-navgroup-primary">
+                    <ul class="aui-nav">
+                        <li ng-class="{ 'aui-nav-selected': isActive('/time-management')}"><a href="/editor.html#/time-management">Time management</a></li>
+                        <li ng-class="{ 'aui-nav-selected': isActive('/advanced')}"><a href="/editor.html#/advanced">Advanced</a></li>
+                    </ul>
+                </div><!-- .aui-navgroup-primary -->
+            </div><!-- .aui-navgroup-inner -->
+        </nav>
         <div class="aui-page-panel">
             <div class="aui-page-panel-inner">
-                <section class="aui-page-panel-content">
-                    <form class="aui" name="editor" ng-controller="EditorCtrl" ng-submit="onSubmit()">
-                        <fieldset ng-repeat="tab in tabs">
-                            <div class="field-group">
-                                <label for="url-{{tab.$$hashKey}}">URL <span class="aui-icon icon-required"> required</span></label>
-                                <input class="text long-field url" id="url-{{tab.$$hashKey}}" type="text" name="url" value="{{tab.url}}" ng-model="tab.url">
-                            </div>
-                            <div class="field-group cron" ng-repeat="cron in tab.crons">
-                                <select class="operation select" style="margin-left: -125px" ng-model="cron.type" ng-options="type.id as type.name for type in types"></select>
-                                <input class="text long-field" type="text" value="{{cron.expression}}" name="expression" id="expression-{{cron.$$hashKey}}" ng-model="cron.expression">
-                                <select class="operation select" ng-model="cron.operation" ng-options="operation.id as operation.name for operation in operations"></select>
-                                <button type="button" class="aui-button aui-button-subtle remove" ng-click="removeCron(tab, cron)" ng-show="isRemovable($first, tab.crons.length)"><span class="aui-icon aui-icon-small aui-iconfont-remove"></span></button>
-                            </div>
-                            <div class="buttons-container">
-                                <button type="button" class="aui-button aui-button-subtle" ng-click="addCron(tab)"><span class="aui-icon aui-icon-small aui-iconfont-add" data-type="cron"></span> Add Cron</button>
-                                <button type="button" class="aui-button aui-button-subtle" ng-click="addTextExpression(tab)"><span class="aui-icon aui-icon-small aui-iconfont-add" data-type="text"></span> Add Text Expression</button>
-                            </div>
-                            <div class="remove-button buttons-container" ng-show="isRemovable($first, tabs.length)">
-                                <button type="button" class="aui-button remove" ng-click="removeTab(tab)"><span class="aui-icon aui-icon-small aui-iconfont-remove"></span> Remove Tab</button>
-                            </div>
-                        </fieldset>
-                        <div class="buttons-container">
-                            <div class="buttons">
-                                <button type="submit" class="aui-button aui-button-primary save" ng-disabled="!editor.$dirty"><span class="aui-icon aui-icon-small aui-iconfont-success"></span> Save</button>
-                                <button type="button" class="aui-button add" ng-click="addTab()"><span class="aui-icon aui-icon-small aui-iconfont-add"></span> Add Tab</button>
-                            </div>
-                        </div>
-                    </form>
-                </section>
+                <section class="aui-page-panel-content" ng-view></section>
             </div>
         </div>
     </section>
