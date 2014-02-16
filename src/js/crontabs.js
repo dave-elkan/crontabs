@@ -13,7 +13,7 @@ crontabs.config(['$routeProvider',
         $routeProvider.
             when('/time-management', {
                 templateUrl: 'src/partials/time-management.html',
-                controller: 'TimeManagementController'
+                controller: 'TimeManagementCtrl'
             }).
             when('/advanced', {
                 templateUrl: 'src/partials/advanced.html',
