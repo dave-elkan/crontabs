@@ -1,4 +1,4 @@
-function AbstractTabEditorController($scope, Messaging, TabStorage) {
+function AbstractTabEditorController($scope, TabStorage) {
 
     $scope.tabs = TabStorage.getTabsOrNewTab();
 
