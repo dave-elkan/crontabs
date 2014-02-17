@@ -1,4 +1,4 @@
-<form class="aui" name="editor" ng-controller="TimeManagementCtrl" ng-submit="onSubmit()">
+<form class="aui" name="editor" ng-submit="onSubmit()">
     <fieldset class="tab" ng-repeat="tab in compatibleTabs">
         <div class="field-group">
             <label for="url-{{tab.$$hashKey}}">URL</label>
@@ -7,7 +7,7 @@
         <fieldset class="group">
             <legend><span>Day(s) of the week</span></legend>
             <div class="checkbox" ng-repeat="day in DaysOfWeek">
-                <input class="checkbox" type="checkbox" name="{{day.id}}" id="{{day.id}}-{{tab.$$hashKey}}" ng-checked="dayIsSelected(tab, day.num)" ng-click="">
+                <input class="checkbox" type="checkbox" name="{{day.id}}" id="{{day.id}}-{{tab.$$hashKey}}" checklist-model="tab.days" checklist-value="day.num">
                 <label for="{{day.id}}-{{tab.$$hashKey}}">{{day.name}}</label>
             </div>
         </fieldset>

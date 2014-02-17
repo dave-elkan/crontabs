@@ -1,6 +1,6 @@
 "use strict";
 
-var crontabs = angular.module('crontabs', ['webStorageModule', 'ngRoute']);
+var crontabs = angular.module('crontabs', ['webStorageModule', 'ngRoute', 'checklist-model']);
 
 crontabs.controller("NavigationCtrl", function($scope, $location) {
     $scope.isActive = function (viewLocation) {
