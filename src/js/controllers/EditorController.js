@@ -48,6 +48,7 @@ angular.module("crontabs").controller("EditorCtrl", function($scope, Messaging, 
             });
 
             $scope.tabs = tabs;
+            $scope.editor.$setDirty();
         }
     };
 
