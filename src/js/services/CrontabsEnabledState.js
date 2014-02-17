@@ -1,4 +1,4 @@
-angular.module("crontabs").factory("CrontabsEnabledState", function(webStorage) {
+angular.module("crontabs").factory("CrontabsEnabledState", function(webStorage, Messaging) {
 
     var callbacks = [];
 
@@ -21,6 +21,9 @@ angular.module("crontabs").factory("CrontabsEnabledState", function(webStorage) 
             webStorage.add("crontabsEnabled", enabled);
             _.each(callbacks, function(cb) {
                 cb(enabled);
+            });
+            Messaging.sendMessage({
+                enabled: enabled
             });
         }
 

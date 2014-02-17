@@ -7,8 +7,10 @@ angular.module("crontabs").factory("TabStorage", function(webStorage, Messaging)
     }
 
     function TabStorage() {
-        Messaging.onMessage.addListener(_.bind(function() {
-            this.broadcast(getTabs());
+        Messaging.onMessage.addListener(_.bind(function(message) {
+            if (message === "saved") {
+                this.broadcast(getTabs());
+            }
         }, this));
 
     }

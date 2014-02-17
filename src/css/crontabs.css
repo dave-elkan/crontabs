@@ -35,3 +35,11 @@ form.aui fieldset.tab {
 form.aui fieldset:last-of-type {
     margin-bottom: 1em;
 }
+
+h2.enabledStatus {
+    color: #FF0000;
+}
+
+h2.enabledStatus.enabled {
+    color: #458B00;
+}
