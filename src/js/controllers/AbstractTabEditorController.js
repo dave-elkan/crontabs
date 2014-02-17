@@ -19,7 +19,6 @@ function AbstractTabEditorController($scope, TabStorage) {
         $scope.tabs.push({
             url: "",
             crons: [{
-                url: "",
                 type: "cron",
                 operation: "show",
                 expression: ""
