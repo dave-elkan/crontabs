@@ -35,6 +35,30 @@ angular.module("crontabs").controller("EditorCtrl", function($scope, Messaging, 
         }
     };
 
+    $scope.removeTab = function(tabToRemove) {
+        if ($scope.tabs.length > 1) {
+            var tabs = [];
+            $scope.tabs.forEach(function(tab) {
+                if (tab !== tabToRemove) {
+                    tabs.push(tab);
+                }
+            });
+
+            $scope.tabs = tabs;
+        }
+    };
+
+    $scope.addTab = function() {
+        $scope.tabs.push({
+            url: "",
+            crons: [{
+                type: "cron",
+                operation: "show",
+                expression: ""
+            }]
+        });
+    };
+
     $scope.onChangeOperation = function(cron, operation) {
         cron.operation = operation.id;
     };
