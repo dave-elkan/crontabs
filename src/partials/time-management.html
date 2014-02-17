@@ -19,7 +19,7 @@
             <label for="close-{{tab.$$hashKey}}">Close at</label>
             <input class="text" type="text" id="close-{{tab.$$hashKey}}" title="time to close tab" placeholder="15:20" ng-model="tab.close">
         </div>
-        <div class="remove-button buttons-container" ng-show="isRemovable($first, tabs.length)">
+        <div class="remove-button buttons-container" ng-show="isRemovable($first, compatibleTabs.length)">
             <button type="button" class="aui-button remove" ng-click="removeTab(tab)"><span class="aui-icon aui-icon-small aui-iconfont-remove"></span> Remove Tab</button>
         </div>
     </fieldset>
