@@ -67,5 +67,21 @@
     "daySunday": {
         "message": "Sunday",
         "description": "Sunday"
+    },
+    "timeManagementHeader": {
+        "message": "Time management",
+        "description": "The time mangement header"
+    },
+    "timeManagementDescription": {
+        "message": "Increase your productivity by automating tabs to open and close throughout the week to streamline daily tasks.",
+        "description": "A description of the time management interface."
+    },
+    "advancedTabHeader": {
+        "message": "Advanced",
+        "description": "The advanced tab header"
+    },
+    "advancedTabDescription": {
+        "message": "Create and edit cron- or text expression-based tab schedules at the lowest possible level to satisfy your inner geek. Also shown here are tabs automatically created by the 'Time management' tab.",
+        "description": "A description of the advanced interface."
     }
 }

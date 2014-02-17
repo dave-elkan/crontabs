@@ -1,6 +1,9 @@
-angular.module("crontabs").controller("TimeManagementCtrl", function($scope, Messaging, TabStorage, DaysOfWeek) {
+angular.module("crontabs").controller("TimeManagementCtrl", function($scope, Messaging, TabStorage, DaysOfWeek, i18nManager) {
 
     AbstractTabEditorController($scope, TabStorage);
+
+    $scope.header = i18nManager("timeManagementHeader");
+    $scope.description = i18nManager("timeManagementDescription");
 
     $scope.DaysOfWeek = DaysOfWeek;
 
