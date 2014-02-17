@@ -4,8 +4,15 @@ angular.module("crontabs").controller("TimeManagementCtrl", function($scope, Mes
 
     $scope.DaysOfWeek = DaysOfWeek;
 
-    var compatibleTabs = $scope.tabs.filter(function(tab) {
-        return tab.crons.length === 2 && tabHasOpenAndCloseOperations(tab) && tabOperationsAreOnSameDays(tab);
+    var incompatibleTabs = [];
+    var compatibleTabs = [];
+
+    $scope.tabs.forEach(function(tab) {
+        if (tab.crons.length === 2 && tabHasOpenAndCloseOperations(tab) && tabOperationsAreOnSameDays(tab)) {
+            compatibleTabs.push(tab);
+        } else {
+            incompatibleTabs.push(tab);
+        }
     });
 
     if (!compatibleTabs.length) {
@@ -16,15 +23,60 @@ angular.module("crontabs").controller("TimeManagementCtrl", function($scope, Mes
 
     $scope.compatibleTabs = compatibleTabs;
 
-    $scope.dayIsSelected = function(tab, day) {
-        if (tab.crons.length) {
-            var result = getScheduleForExpression(tab.crons[0]);
-            if (result.schedules && result.schedules.length && result.schedules[0].d && _.contains(result.schedules[0].d, day)) {
-                return true;
-            }
+    $scope.compatibleTabs.forEach(function(tab) {
+        var cron = tab.crons[0];
+        if (!tab.days) {
+            tab.days = [];
         }
+        DaysOfWeek.forEach(function(day) {
+            var result = getScheduleForExpression(cron);
+            if (result.schedules && result.schedules.length && result.schedules[0].d && _.contains(result.schedules[0].d, day.num)) {
+                tab.days.push(day.num);
+            }
+        });
+    });
 
-        return false;
+    $scope.compatibleTabs.forEach(function(tab) {
+        tab.crons.forEach(function(cron) {
+            var schedule = getScheduleForExpression(cron);
+            var hour = schedule.schedules[0].h;
+            var minute = schedule.schedules[0].m;
+            var time = [hour, minute].join(":");
+
+            if (cron.operation === "show" || cron.operation === "showAndReload") {
+                tab.open = time;
+            } else {
+                tab.close = time;
+            }
+        });
+    });
+
+    $scope.removeTab = function(tabToRemove) {
+        if ($scope.compatibleTabs.length > 1) {
+            var tabs = [];
+            $scope.compatibleTabs.forEach(function(tab) {
+                if (tab !== tabToRemove) {
+                    tabs.push(tab);
+                }
+            });
+
+            $scope.compatibleTabs = tabs;
+        }
+    };
+
+    $scope.addTab = function() {
+        $scope.compatibleTabs.push({
+            url: "",
+            crons: [{
+                type: "cron",
+                operation: "show",
+                expression: ""
+            }, {
+                type: "cron",
+                operation: "close",
+                expression: ""
+            }]
+        });
     };
 
     function tabOperationsAreOnSameDays(tab) {
@@ -67,22 +119,36 @@ angular.module("crontabs").controller("TimeManagementCtrl", function($scope, Mes
         return hasOpen && hasClose;
     }
 
-    function getCronForDaysAndTime(days, time) {
-        var cron = [0, time.minute, time.hour, "*", "*", days.join(",")];
-        return cron.join(" ");
+    function getCronForTimeAndDays(time, days) {
+        var segments = time.split(":");
+        days = _.map(days, function(day) {
+            return _.find(DaysOfWeek, function(dayOfWeek) {
+                return dayOfWeek.num === day;
+            }).id
+        });
+        return [0, segments[1], segments[0], "*", "*", days.join(",")].join(" ");
+    }
+
+    function buildCron(time, days, operation) {
+        return {
+            type: "cron",
+            expression: getCronForTimeAndDays(time, days),
+            operation: operation
+        };
     }
 
     function buildTab(tab) {
         return {
             url: tab.url,
             crons: [
-
+                buildCron(tab.open, tab.days, "show"),
+                buildCron(tab.close, tab.days, "close")
             ]
         }
     }
 
     function buildTabs() {
-        return $scope.tabs.map($scope.tabs, buildTab);
+        return incompatibleTabs.concat($scope.compatibleTabs.map(buildTab));
     }
 
     $scope.onSubmit = function() {
