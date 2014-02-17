@@ -25,7 +25,7 @@ angular.module("crontabs").factory("DaysOfWeek", function(i18nManager) {
         name: i18nManager("daySaturday")
     }, {
         id: "SUN",
-        num: 0,
+        num: 1,
         name: i18nManager("daySunday")
     }];
 });
