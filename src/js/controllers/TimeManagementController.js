@@ -4,6 +4,8 @@ angular.module("crontabs").controller("TimeManagementCtrl", function($scope, Mes
 
     $scope.header = i18nManager("timeManagementHeader");
     $scope.description = i18nManager("timeManagementDescription");
+    $scope.openDescription = i18nManager("timeManagementOpenDescription");
+    $scope.closeDescription = i18nManager("timeManagementCloseDescription");
 
     $scope.DaysOfWeek = DaysOfWeek;
 
