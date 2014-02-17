@@ -81,7 +81,7 @@
         "description": "The advanced tab header"
     },
     "advancedTabDescription": {
-        "message": "Create and edit cron- or text expression-based tab schedules at the lowest possible level to satisfy your inner geek. Also shown here are tabs automatically created by the 'Time management' tab.",
+        "message": "Create and edit cron- or text expression-based tab schedules at the lowest possible level to satisfy your inner geek.",
         "description": "A description of the advanced interface."
     }
 }
