@@ -12,7 +12,7 @@ angular.module("crontabs").factory("DaysOfWeek", function(i18nManager) {
         num: 4,
         name: i18nManager("dayWednesday")
     }, {
-        id: "THUR",
+        id: "THU",
         num: 5,
         name: i18nManager("dayThursday")
     }, {
