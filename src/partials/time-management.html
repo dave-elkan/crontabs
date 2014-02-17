@@ -15,12 +15,12 @@
         </fieldset>
         <div class="field-group">
             <label for="open-{{tab.$$hashKey}}">Open at</label>
-            <input class="text short-field" type="text" id="open-{{tab.$$hashKey}}" title="time to open tab" ng-model="tab.open">
+            <input class="text" type="time" id="open-{{tab.$$hashKey}}" title="time to open tab" ng-model="tab.open">
             <div class="description">{{openDescription}}</div>
         </div>
         <div class="field-group">
             <label for="close-{{tab.$$hashKey}}">Close at</label>
-            <input class="text short-field" type="text" id="close-{{tab.$$hashKey}}" title="time to close tab" ng-model="tab.close">
+            <input class="text" type="time" id="close-{{tab.$$hashKey}}" title="time to close tab" ng-model="tab.close">
             <div class="description">{{closeDescription}}</div>
         </div>
         <div class="remove-button buttons-container" ng-show="isRemovable($first, compatibleTabs.length)">

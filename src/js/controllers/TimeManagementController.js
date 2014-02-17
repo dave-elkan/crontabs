@@ -46,6 +46,15 @@ angular.module("crontabs").controller("TimeManagementCtrl", function($scope, Mes
             var schedule = getScheduleForExpression(cron);
             var hour = schedule.schedules[0].h;
             var minute = schedule.schedules[0].m;
+
+            if (minute < 10) {
+                minute = "0" + minute;
+            }
+
+            if (hour < 10) {
+                hour = "0" + hour;
+            }
+
             var time = [hour, minute].join(":");
 
             if (cron.operation === "show" || cron.operation === "showAndReload") {
@@ -66,6 +75,7 @@ angular.module("crontabs").controller("TimeManagementCtrl", function($scope, Mes
             });
 
             $scope.compatibleTabs = tabs;
+            $scope.editor.$setDirty();
         }
     };
 
