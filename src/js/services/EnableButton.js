@@ -22,7 +22,7 @@ angular.module("crontabs").factory("EnableButton", function(ChromeBrowserAction,
             ChromeBrowserAction.setBrowserActionText({
                 badgeText: i18nManager("actionButtonBadgeDisabledText"),
                 titleText: i18nManager("actionButtonEnableTitle"),
-                badgeBackgroundColour: "#FF0000"
+                badgeBackgroundColour: "#d04437"
             });
         },
 
@@ -30,7 +30,7 @@ angular.module("crontabs").factory("EnableButton", function(ChromeBrowserAction,
             ChromeBrowserAction.setBrowserActionText({
                 badgeText: i18nManager("actionButtonBadgeEnabledText"),
                 titleText: i18nManager("actionButtonDisableTitle"),
-                badgeBackgroundColour: "#458B00"
+                badgeBackgroundColour: "#14892c"
             });
         }
     };

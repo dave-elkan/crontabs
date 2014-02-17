@@ -45,7 +45,7 @@
                         <h1>Options</h1>
                     </div>
                     <div class="aui-item" ng-controller="EnabledCtrl">
-                        <h2 class="enabledStatus" ng-class="{enabled: enabled}">{{enabledText}}</h2>
+                        <h2 class="enabledStatus" ng-class="{enabled: enabled}"><span class="aui-icon aui-icon-small" ng-class="{'aui-iconfont-approve': enabled, 'aui-iconfont-error': !enabled}"></span>{{enabledText}}</h2>
                     </div>
                 </div>
             </div>

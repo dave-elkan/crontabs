@@ -24,7 +24,7 @@ button.remove {
 }
 
 button.remove span.aui-icon {
-    color: #CC0000
+    color: #d04437
 }
 
 form.aui fieldset.tab {
@@ -37,9 +37,13 @@ form.aui fieldset:last-of-type {
 }
 
 h2.enabledStatus {
-    color: #FF0000;
+    color: #d04437;
 }
 
 h2.enabledStatus.enabled {
-    color: #458B00;
+    color: #14892c;
+}
+
+h2.enabledStatus span {
+    margin: 3px 5px;
 }

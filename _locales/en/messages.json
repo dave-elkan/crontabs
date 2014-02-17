@@ -24,11 +24,11 @@
 		"description": "The text of the badge hovering over the enable/disable button when its enabled"
 	},
 	"crontabsEnabled": {
-		"message": "Crontabs enabled",
+		"message": "Crontabs on",
 		"description": "The text displayed in options page when crontabs is enabled"
 	},
 	"crontabsDisabled": {
-		"message": "Crontabs disabled",
+		"message": "Crontabs off",
 		"description": "The text displayed in options page when crontabs is disabled"
 	},
 	"cronExpressionInvalid": {
