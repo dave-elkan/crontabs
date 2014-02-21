@@ -1,36 +1,30 @@
 <h2>{{header}}</h2>
 <p>{{description}}</p>
-<form class="aui" name="editor" ng-submit="onSubmit()">
-    <fieldset class="tab" ng-repeat="tab in compatibleTabs">
-        <div class="field-group">
-            <label for="url-{{tab.$$hashKey}}">URL</label>
-            <input class="text long-field url" id="url-{{tab.$$hashKey}}" type="text" name="url" value="{{tab.url}}" ng-model="tab.url">
-        </div>
-        <fieldset class="group">
-            <legend><span>Day(s) of the week</span></legend>
-            <div class="checkbox" ng-repeat="day in DaysOfWeek">
-                <input class="checkbox" type="checkbox" name="{{day.id}}" id="{{day.id}}-{{tab.$$hashKey}}" checklist-model="tab.days" checklist-value="day.num">
-                <label for="{{day.id}}-{{tab.$$hashKey}}">{{day.name}}</label>
-            </div>
-        </fieldset>
-        <div class="field-group">
-            <label for="open-{{tab.$$hashKey}}">Open at</label>
-            <input class="text" type="time" id="open-{{tab.$$hashKey}}" title="time to open tab" ng-model="tab.open">
-            <div class="description">{{openDescription}}</div>
-        </div>
-        <div class="field-group">
-            <label for="close-{{tab.$$hashKey}}">Close at</label>
-            <input class="text" type="time" id="close-{{tab.$$hashKey}}" title="time to close tab" ng-model="tab.close">
-            <div class="description">{{closeDescription}}</div>
-        </div>
-        <div class="remove-button buttons-container" ng-show="isRemovable($first, compatibleTabs.length)">
-            <button type="button" class="aui-button remove" ng-click="removeTab(tab)"><span class="aui-icon aui-icon-small aui-iconfont-remove"></span> Remove Tab</button>
-        </div>
-    </fieldset>
-    <div class="buttons-container">
-        <div class="buttons">
-            <button type="submit" class="aui-button aui-button-primary save" ng-disabled="!editor.$dirty"><span class="aui-icon aui-icon-small aui-iconfont-success"></span> Save</button>
-            <button type="button" class="aui-button add" ng-click="addTab()"><span class="aui-icon aui-icon-small aui-iconfont-add"></span> Add Tab</button>
+<form role="form" name="editor" ng-submit="onSubmit()">
+    <div class="row">
+        <div class="col-md-7">
+            <fieldset class="tab" ng-repeat="tab in compatibleTabs" ng-class="{'removable': isRemovable($first, compatibleTabs.length) }">
+                <div class="form-group">
+                    <label for="url-{{tab.$$hashKey}}">URL</label>
+                    <input class="form-control" id="url-{{tab.$$hashKey}}" type="text" name="url" value="{{tab.url}}" ng-model="tab.url">
+                </div>
+                <div class="form-group">
+                    <label for="open-{{tab.$$hashKey}}">Open at</label>
+                    <input class="form-control" type="time" id="open-{{tab.$$hashKey}}" title="time to open tab" ng-model="tab.open">
+                </div>
+                <div class="form-group">
+                    <label for="close-{{tab.$$hashKey}}">Close at</label>
+                    <input class="form-control" type="time" id="close-{{tab.$$hashKey}}" title="time to close tab" ng-model="tab.close">
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-inline" ng-repeat="day in DaysOfWeek"><input class="checkbox" type="checkbox" name="{{day.id}}" id="{{day.id}}-{{tab.$$hashKey}}" checklist-model="tab.days" checklist-value="day.num">{{day.name}}</label>
+                </div>
+                <button type="button" class="btn btn-default remove remove-tab" ng-click="removeTab(tab)" ng-show="isRemovable($first, compatibleTabs.length)"><span class="glyphicon glyphicon-remove"></span> Remove Tab</button>
+            </fieldset>
+            <p>
+                <button type="submit" class="btn btn-primary save" ng-disabled="!editor.$dirty"><span class="glyphicon glyphicon-ok"></span> Save</button>
+                <button type="button" class="btn btn-default add" ng-click="addTab()"><span class="glyphicon glyphicon-plus"></span> Add Tab</button>
+            </p>
         </div>
     </div>
 </form>

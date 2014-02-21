@@ -22,50 +22,36 @@
     <script src="src/js/services/DaysOfWeek.js"></script>
     <script src="src/js/services/i18nManager.js"></script>
     <script src="src/js/services/CrontabsEnabledState.js"></script>
-    <link href="src/css/aui-all.css" rel="stylesheet" media="screen">
+    <link href="src/lib/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" media="screen">
     <link href="src/css/crontabs.css" rel="stylesheet" media="screen">
     <link href="src/lib/bower_components/angular/angular-csp.css" rel="stylesheet" media="screen">
 </head>
-<body class="aui-layout aui-theme-default aui-page-fixed">
-<div id="page">
-    <header id="header" role="banner">
-        <nav class="aui-header" role="navigation">
-            <div class="aui-header-inner">
-                <div class="aui-header-primary">
-                    <h1>Crontabs</h1>
-                </div>
-            </div><!-- .aui-header-inner-->
-        </nav><!-- .aui-header -->
-    </header>
-    <section id="content" role="main">
-        <div class="aui-page-header">
-            <div class="aui-page-header-inner">
-                <div class="aui-group aui-group-split">
-                    <div class="aui-item">
-                        <h1>Options</h1>
-                    </div>
-                    <div class="aui-item" ng-controller="EnabledCtrl">
-                        <h2 class="enabledStatus" ng-class="{enabled: enabled}"><span class="aui-icon aui-icon-small" ng-class="{'aui-iconfont-approve': enabled, 'aui-iconfont-error': !enabled}"></span>{{enabledText}}</h2>
-                    </div>
-                </div>
-            </div>
+<body>
+<header class="navbar navbar-static-top navbar-default" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".ct-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="index.html" class="navbar-brand">Crontabs</a>
         </div>
-        <nav class="aui-navgroup aui-navgroup-horizontal" ng-controller="NavigationCtrl">
-            <div class="aui-navgroup-inner">
-                <div class="aui-navgroup-primary">
-                    <ul class="aui-nav">
-                        <li ng-class="{ 'aui-nav-selected': isActive('/time-management')}"><a href="#/time-management">Time management</a></li>
-                        <li ng-class="{ 'aui-nav-selected': isActive('/advanced')}"><a href="#/advanced">Advanced</a></li>
-                    </ul>
-                </div><!-- .aui-navgroup-primary -->
-            </div><!-- .aui-navgroup-inner -->
+        <nav class="collapse navbar-collapse ct-navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav" ng-controller="NavigationCtrl">
+                <li ng-class="{ active: isActive('/time-management')}">
+                    <a href="#/time-management">Time management</a>
+                </li>
+                <li ng-class="{ active: isActive('/advanced')}">
+                    <a href="#/advanced">Advanced</a>
+                </li>
+            </ul>
+            <p class="navbar-text navbar-right enabledStatus" ng-class="{enabled: enabled}" ng-controller="EnabledCtrl"><span class="glyphicon" ng-class="{'glyphicon-ok': enabled, 'glyphicon-remove': !enabled}"></span>{{enabledText}}</p>
         </nav>
-        <div class="aui-page-panel">
-            <div class="aui-page-panel-inner">
-                <section class="aui-page-panel-content" ng-view></section>
-            </div>
-        </div>
-    </section>
+    </div>
+</header>
+<div class="container" ng-view>
 </div>
 </body>
 </html>

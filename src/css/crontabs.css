@@ -1,49 +1,36 @@
-.crontabs-header {
-	margin: 5px 0 0 0;
-	padding: 10px;
-}
-
-.aui-header-primary h1 {
-    margin: 6px 0;
-}
-
-#tabs .field-group .hidden {
-    display: none
-}
-
-button.save a {
-    color: #FFF
-}
-
-form.aui .select {
-    width: 121px;
-}
-
-button.remove {
-    clear: left;
-}
-
-button.remove span.aui-icon {
+button.remove span {
     color: #d04437
 }
 
-form.aui fieldset.tab {
+form fieldset.tab {
     border-bottom: 1px solid #ccc;
-    padding: 15px 0;
+    padding: 15px 0 0;
 }
 
-form.aui fieldset:last-of-type {
-    margin-bottom: 1em;
+form fieldset:last-of-type {
+    margin-bottom: 15px;
 }
 
-h2.enabledStatus {
+form fieldset.removable {
+    padding-bottom: 15px;
+}
+
+.navbar-collapse p.enabledStatus {
     color: #d04437;
 }
 
-h2.enabledStatus.enabled {
+.navbar-collapse p.enabledStatus span {
+    margin-right: 10px;
+}
+
+.navbar-collapse p.enabledStatus.enabled {
     color: #14892c;
 }
 
 h2.enabledStatus span {
     margin: 3px 5px;
+}
+
+button.remove-tab {
+    float: right
 }
