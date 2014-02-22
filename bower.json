@@ -21,6 +21,7 @@
     "angular-route": "~1.2.13",
     "angular-mocks": "~1.2.13",
     "angular-webstorage": "~0.9.3",
+    "jquery": "~2.0.3",
     "later": "*",
     "underscore": "~1.5.2",
     "checklist-model": "~0.1.3",
