@@ -9,7 +9,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "ssh://git@bitbucket.org/edave/crontabs.git"
+    "url": "https://github.com/dave-elkan/crontabs"
   },
   "author": "Dave Elkan <dave@edave.net>",
   "license": "Apache 2.0",
