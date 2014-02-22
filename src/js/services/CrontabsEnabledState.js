@@ -2,8 +2,14 @@ angular.module("crontabs").factory("CrontabsEnabledState", function(webStorage, 
 
     var callbacks = [];
 
+    var CRONTABS_ENABLED_KEY = "crontabsEnabled";
+
     function getEnabledState() {
-        return webStorage.get("crontabsEnabled") || false;
+        return webStorage.get(CRONTABS_ENABLED_KEY) || false;
+    }
+
+    if (webStorage.get(CRONTABS_ENABLED_KEY) == undefined) {
+        webStorage.add(CRONTABS_ENABLED_KEY, false);
     }
 
     return {
@@ -18,7 +24,7 @@ angular.module("crontabs").factory("CrontabsEnabledState", function(webStorage, 
 
         toggleEnabled: function() {
             var enabled = !getEnabledState();
-            webStorage.add("crontabsEnabled", enabled);
+            webStorage.add(CRONTABS_ENABLED_KEY, enabled);
             _.each(callbacks, function(cb) {
                 cb(enabled);
             });
