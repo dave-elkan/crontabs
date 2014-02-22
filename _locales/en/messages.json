@@ -37,11 +37,19 @@
 	"cronOperationInvalid": {
 		"message": "Cron Operation invalid."
 	},
-	"cronTypeCron": {
+    "expressions": {
+        "message": "Expressions",
+        "description": "The label for the list of expressions for a tab."
+    },
+    "expressionType": {
+        "message": "Type",
+        "description": "The label for the type of an expression"
+    },
+	"expressionTypeCron": {
 		"message": "Cron Expression",
         "description": "The name of a Cron Schedule"
 	},
-	"cronTypeText": {
+	"expressionTypeText": {
 		"message": "Text Expression",
         "description": "The name of a Text Expresson Schedule"
 	},
@@ -91,13 +99,5 @@
     "advancedTabDescription": {
         "message": "Create and edit cron- or text expression-based tab schedules at the lowest possible level to satisfy your inner geek.",
         "description": "A description of the advanced interface."
-    },
-    "timeManagementOpenDescription": {
-        "message": "Enter a time to open the tab in 24hr format. i.e. 19:45",
-        "description": "How to enter time for opening time management tabs"
-    },
-    "timeManagementCloseDescription": {
-        "message": "Enter a time to close the tab in 24hr format. i.e. 19:45",
-        "description": "How to enter time for closing time management tabs"
     }
 }

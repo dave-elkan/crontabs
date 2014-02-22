@@ -1,4 +1,6 @@
-function AbstractTabEditorController($scope, TabStorage) {
+function AbstractTabEditorController($scope, TabStorage, i18nManager) {
+
+    $scope.i18nManager = i18nManager;
 
     $scope.tabs = TabStorage.getTabsOrNewTab();
 

@@ -1,9 +1,6 @@
 angular.module("crontabs").controller("EditorCtrl", function($scope, Messaging, TabStorage, TabOperations, TabTriggerTypes, i18nManager) {
 
-    AbstractTabEditorController($scope, TabStorage);
-
-    $scope.header = i18nManager("advancedTabHeader");
-    $scope.description = i18nManager("advancedTabDescription");
+    AbstractTabEditorController($scope, TabStorage, i18nManager);
 
     $scope.operations = TabOperations;
 
