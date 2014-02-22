@@ -37,21 +37,37 @@
 	"cronOperationInvalid": {
 		"message": "Cron Operation invalid."
 	},
-    "expressions": {
-        "message": "Expressions",
-        "description": "The label for the list of expressions for a tab."
+    "tabUrl": {
+        "message": "Tab URL",
+        "description": "The label for the tab URL field."
     },
-    "expressionType": {
-        "message": "Type",
-        "description": "The label for the type of an expression"
+    "operations": {
+        "message": "Operations",
+        "description": "The label for the list of operations for a tab."
     },
-	"expressionTypeCron": {
+    "expressionAction": {
+        "message": "Action",
+        "description": "The label for the expression's action field"
+    },
+    "removeOperation": {
+        "message": "Remove operation",
+        "description": "The label for the remove operation button"
+    },
+	"expressionTypecron": {
 		"message": "Cron Expression",
         "description": "The name of a Cron Schedule"
 	},
-	"expressionTypeText": {
+	"expressionTypetext": {
 		"message": "Text Expression",
         "description": "The name of a Text Expresson Schedule"
+	},
+	"operationCronAdd": {
+		"message": "Add cron operation",
+        "description": "The label of the add cron operation button"
+	},
+	"operationTextAdd": {
+		"message": "Add text operation",
+        "description": "The label of the add text expression operation button"
 	},
     "tabUrlInvalid": {
         "message": "Tab URL invalid."
@@ -99,5 +115,29 @@
     "advancedTabDescription": {
         "message": "Create and edit cron- or text expression-based tab schedules at the lowest possible level to satisfy your inner geek.",
         "description": "A description of the advanced interface."
+    },
+    "save": {
+        "message": "Save",
+        "description": "The save button label."
+    },
+    "addTab": {
+        "message": "Add tab",
+        "description": "The add tab button label."
+    },
+    "removeTab": {
+        "message": "Remove tab",
+        "description": "The remove tab button label."
+    },
+    "timeManagementTabOpenAt": {
+        "message": "Open at",
+        "description": "The label for the time management 'open at' field"
+    },
+    "timeManagementTabCloseAt": {
+        "message": "Close at",
+        "description": "The label for the time management 'close at' field"
+    },
+    "timeManagementDaysOfWeek": {
+        "message": "Days of the week",
+        "description": "The label for the time management 'days of the week' field"
     }
 }

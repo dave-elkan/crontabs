@@ -26,10 +26,15 @@ button.remove span {
     color: #d04437
 }
 
-form fieldset.tab {
+form fieldset {
     border-bottom: 1px solid #ccc;
     margin-bottom: 15px;
     padding-bottom: 15px;
+}
+
+form fieldset.cron {
+    border: none;
+    padding-bottom: 0;
 }
 
 .navbar-collapse p.enabledStatus {
@@ -48,6 +53,12 @@ h2.enabledStatus span {
     margin: 3px 5px;
 }
 
-button.remove-tab {
+button.remove {
     float: right
+}
+
+button.remove-operation {
+    padding: 0;
+    margin: 4px 0 0 0;
+    float: none;
 }

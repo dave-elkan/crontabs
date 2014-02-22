@@ -5,33 +5,31 @@
         <form role="form" name="editor" ng-submit="onSubmit()">
             <fieldset class="tab" ng-repeat="tab in tabs" ng-class="{'removable': isRemovable($first, tabs.length) }">
                 <div class="form-group">
-                    <label for="url-{{tab.$$hashKey}}">URL</label>
+                    <label for="url-{{tab.$$hashKey}}">{{i18nManager("tabUrl")}}</label>
                     <input class="form-control" id="url-{{tab.$$hashKey}}" type="text" name="url" value="{{tab.url}}" ng-model="tab.url">
                 </div>
-                <div class="form-group cron" ng-repeat="cron in tab.crons">
+                <h4>{{i18nManager("operations")}}</h4>
+                <fieldset class="cron" ng-repeat="cron in tab.crons">
                     <div class="row">
-                        <div class="col-md-3">
-                            <select class="operation form-control" ng-model="cron.type" ng-options="type.id as type.name for type in types"></select>
-                        </div>
-                        <div class="col-md-4">
+                        <div class="col-md-8">
+                            <label for="expression-{{cron.$$hashKey}}">{{i18nManager("expressionType" + cron.type)}}</label>
                             <input class="form-control" type="text" value="{{cron.expression}}" name="expression" id="expression-{{cron.$$hashKey}}" ng-model="cron.expression">
                         </div>
-                        <div class="col-md-3">
-                            <select class="operation form-control" ng-model="cron.operation" ng-options="operation.id as operation.name for operation in operations"></select>
-                        </div>
-                        <div class="col-md-1">
-                            <button type="button" class="btn btn-default remove" ng-click="removeCron(tab, cron)" ng-show="isRemovable($first, tab.crons.length)"><span class="glyphicon glyphicon-remove"></span></button>
+                        <div class="col-md-4">
+                            <label for="operation-{{cron.$$hashKey}}">{{i18nManager("expressionAction")}}</label>
+                            <select class="operation form-control" ng-model="cron.operation" ng-options="operation.id as operation.name for operation in operations" id="operation-{{cron.$$hashKey}}"></select>
                         </div>
                     </div>
-                </div>
-                <button type="button" class="btn btn-default" ng-click="addCron(tab)"><span class="glyphicon glyphicon-plus" data-type="cron"></span> Add Cron</button>
-                <button type="button" class="btn btn-default" ng-click="addTextExpression(tab)"><span class="glyphicon glyphicon-plus" data-type="text"></span> Add Text Expression</button>
-                <button type="button" class="btn btn-default remove remove-tab" ng-click="removeTab(tab)" ng-show="isRemovable($first, tabs.length)"><span class="glyphicon glyphicon-remove"></span> Remove Tab</button>
+                    <button type="button" class="btn btn-link remove remove-operation" ng-click="removeCron(tab, cron)" ng-show="isRemovable($first, tab.crons.length)">{{i18nManager("removeOperation")}}</button>
+                </fieldset>
+                <button type="button" class="btn btn-default" ng-click="addCron(tab)"><span class="glyphicon glyphicon-plus" data-type="cron"></span> {{i18nManager("operationCronAdd")}}</button>
+                <button type="button" class="btn btn-default" ng-click="addTextExpression(tab)"><span class="glyphicon glyphicon-plus" data-type="text"></span>  {{i18nManager("operationTextAdd")}}</button>
+                <button type="button" class="btn btn-default remove remove-tab" ng-click="removeTab(tab)" ng-show="isRemovable($first, tabs.length)"><span class="glyphicon glyphicon-remove"></span> {{i18nManager("removeTab")}}</button>
             </fieldset>
             <div class="buttons-container">
                 <div class="buttons">
-                    <button type="submit" class="btn btn-primary" ng-disabled="!editor.$dirty"><span class="glyphicon glyphicon-ok"></span> Save</button>
-                    <button type="button" class="btn btn-default" ng-click="addTab()"><span class="glyphicon glyphicon-plus"></span> Add Tab</button>
+                    <button type="submit" class="btn btn-primary" ng-disabled="!editor.$dirty"><span class="glyphicon glyphicon-ok"></span> {{i18nManager("save")}}</button>
+                    <button type="button" class="btn btn-default" ng-click="addTab()"><span class="glyphicon glyphicon-plus"></span> {{i18nManager("addTab")}}</button>
                 </div>
             </div>
         </form>
