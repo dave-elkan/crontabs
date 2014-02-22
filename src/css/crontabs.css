@@ -28,14 +28,7 @@ button.remove span {
 
 form fieldset.tab {
     border-bottom: 1px solid #ccc;
-    padding: 15px 0 0;
-}
-
-form fieldset:last-of-type {
     margin-bottom: 15px;
-}
-
-form fieldset.removable {
     padding-bottom: 15px;
 }
 
