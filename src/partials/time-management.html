@@ -1,7 +1,7 @@
 <h2>{{i18nManager("timeManagementHeader")}}</h2>
 <p>{{i18nManager("timeManagementDescription")}}</p>
-<form role="form" name="editor" ng-submit="onSubmit()">
-    <div class="row">
+<div class="row">
+    <form role="form" name="editor" ng-submit="onSubmit()">
         <div class="col-md-7">
             <fieldset class="tab" ng-repeat="tab in compatibleTabs" ng-class="{'removable': isRemovable($first, compatibleTabs.length) }">
                 <div class="form-group">
@@ -26,10 +26,10 @@
                 </div>
                 <button type="button" class="btn btn-default remove remove-tab" ng-click="removeTab(tab)" ng-show="isRemovable($first, compatibleTabs.length)"><span class="glyphicon glyphicon-remove"></span> {{i18nManager("removeTab")}}</button>
             </fieldset>
-            <p>
-                <button type="submit" class="btn btn-primary save" ng-disabled="!editor.$dirty"><span class="glyphicon glyphicon-ok"></span> {{i18nManager("save")}}</button>
-                <button type="button" class="btn btn-default add" ng-click="addTab()"><span class="glyphicon glyphicon-plus"></span> {{i18nManager("addTab")}}</button>
-            </p>
         </div>
-    </div>
-</form>
+        <div class="col-md-5 controls">
+            <button type="button" class="btn btn-default add" ng-click="addTab()"><span class="glyphicon glyphicon-plus"></span> {{i18nManager("addTab")}}</button>
+            <button type="submit" class="btn btn-primary save" ng-disabled="!editor.$dirty"><span class="glyphicon glyphicon-ok"></span> {{i18nManager("save")}}</button>
+        </div>
+    </form>
+</div>

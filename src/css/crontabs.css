@@ -26,9 +26,12 @@ button.remove span {
     color: #d04437
 }
 
+form fieldset + fieldset {
+    padding-top: 15px;
+    border-top: 1px solid #ccc;
+}
+
 form fieldset {
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 15px;
     padding-bottom: 15px;
 }
 
@@ -53,6 +56,10 @@ h2.enabledStatus span {
     margin: 3px 5px;
 }
 
+.buttons {
+    margin-top: 10px;
+}
+
 button.remove {
     float: right
 }
@@ -61,4 +68,8 @@ button.remove-operation {
     padding: 0;
     margin: 4px 0 0 0;
     float: none;
+}
+
+.controls {
+    margin-top: 24px;
 }

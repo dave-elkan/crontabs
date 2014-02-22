@@ -50,7 +50,7 @@ angular.module("crontabs").controller("EditorCtrl", function($scope, Messaging, 
     };
 
     $scope.addTab = function() {
-        $scope.tabs.push({
+        $scope.tabs.unshift({
             url: "",
             crons: [{
                 type: "cron",

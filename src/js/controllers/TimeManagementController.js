@@ -73,7 +73,7 @@ angular.module("crontabs").controller("TimeManagementCtrl", function($scope, Mes
     };
 
     $scope.addTab = function() {
-        $scope.compatibleTabs.push({
+        $scope.compatibleTabs.unshift({
             url: "",
             crons: [{
                 type: "cron",
