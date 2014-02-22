@@ -4,7 +4,7 @@
   "description": "A chrome extension to control tabs with cron expressions.",
   "main": "index.js",
   "scripts": {
-    "test": "grunt test"
+    "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
   },
   "private": true,
   "repository": {
