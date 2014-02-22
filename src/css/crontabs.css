@@ -1,3 +1,27 @@
+.navbar-brand {
+    background: url("../../images/crontabs_38.png") no-repeat 0 50%;
+    padding-left: 45px;
+    position: relative;
+}
+
+.navbar-brand:after {
+    content: "on";
+    position: absolute;
+    bottom: 5px;
+    left: 20px;
+    font-size: 12px;
+    background-color: #14892c;
+    color: #FFF;
+    line-height: 1.24em;
+    padding: 1px 4px;
+    border-radius: 2px;
+}
+
+.navbar-brand.off:after {
+    content: "off";
+    background-color: #d04437;
+}
+
 button.remove span {
     color: #d04437
 }
