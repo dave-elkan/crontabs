@@ -9,12 +9,16 @@
                     <input class="form-control" id="url-{{tab.$$hashKey}}" type="text" name="url" value="{{tab.url}}" ng-model="tab.url">
                 </div>
                 <div class="form-group">
-                    <label for="open-{{tab.$$hashKey}}">{{i18nManager("timeManagementTabOpenAt")}}</label>
-                    <input class="form-control" type="time" id="open-{{tab.$$hashKey}}" title="time to open tab" ng-model="tab.open">
-                </div>
-                <div class="form-group">
-                    <label for="close-{{tab.$$hashKey}}">{{i18nManager("timeManagementTabCloseAt")}}</label>
-                    <input class="form-control" type="time" id="close-{{tab.$$hashKey}}" title="time to close tab" ng-model="tab.close">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="open-{{tab.$$hashKey}}">{{i18nManager("timeManagementTabOpenAt")}}</label>
+                            <input class="form-control" type="time" id="open-{{tab.$$hashKey}}" title="time to open tab" ng-model="tab.open">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="close-{{tab.$$hashKey}}">{{i18nManager("timeManagementTabCloseAt")}}</label>
+                            <input class="form-control" type="time" id="close-{{tab.$$hashKey}}" title="time to close tab" ng-model="tab.close">
+                        </div>
+                    </div>
                 </div>
                 <label>{{i18nManager("timeManagementDaysOfWeek")}}</label>
                 <div class="form-group">
