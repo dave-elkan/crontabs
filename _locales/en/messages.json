@@ -109,7 +109,7 @@
         "description": "The advanced tab header"
     },
     "advancedTabDescription": {
-        "message": "Create and edit cron- or text expression-based tab schedules at the lowest possible level to satisfy your inner geek.",
+        "message": "Create and edit cron- or text expression-based tab schedules at the lowest possible level to satisfy your inner geek. All cron expressions require a value for seconds.",
         "description": "A description of the advanced interface."
     },
     "save": {
