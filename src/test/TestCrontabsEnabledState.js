@@ -10,6 +10,14 @@ describe("CrontabsEnabledState", function() {
                 get: function() {},
                 add: function() {}
             }));
+
+            $provide.value("Messaging", sinon.stub({
+                sendMessage: function() {},
+                onMessage: {
+                    addListener: function() {}
+                }
+            }));
+
         });
     });
 

@@ -14,6 +14,13 @@ describe("EnableButton", function() {
             }));
 
             $provide.value("i18nManager", sinon.stub());
+
+            $provide.value("Messaging", sinon.stub({
+                sendMessage: function() {},
+                onMessage: {
+                    addListener: function() {}
+                }
+            }));
         });
     });
 
