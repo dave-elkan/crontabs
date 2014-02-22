@@ -21,9 +21,7 @@ angular.module("crontabs").controller("TimeManagementCtrl", function($scope, Mes
     });
 
     if (!compatibleTabs.length) {
-        compatibleTabs.push({
-            url: ""
-        });
+        compatibleTabs = TabStorage.getEmptyTabList();
     }
 
     $scope.compatibleTabs = compatibleTabs;

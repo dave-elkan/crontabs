@@ -2,14 +2,10 @@ angular.module("crontabs").factory("TabStorage", function(webStorage, Messaging)
 
     var callbacks = [];
 
-    function getTabs() {
-        return webStorage.get("crontabs");
-    }
-
     function TabStorage() {
         Messaging.onMessage.addListener(_.bind(function(message) {
             if (message === "saved") {
-                this.broadcast(getTabs());
+                this.broadcast();
             }
         }, this));
 
@@ -17,10 +13,16 @@ angular.module("crontabs").factory("TabStorage", function(webStorage, Messaging)
 
     TabStorage.prototype = {
 
-        getTabs: getTabs,
+        getTabs: function() {
+            return webStorage.get("crontabs");
+        },
 
         getTabsOrNewTab: function() {
-            return getTabs() || [{
+            return this.getTabs() || this.getEmptyTabList();
+        },
+
+        getEmptyTabList: function() {
+            return [{
                 url: "",
                 crons: [{
                     "type": "cron",
@@ -34,10 +36,10 @@ angular.module("crontabs").factory("TabStorage", function(webStorage, Messaging)
             webStorage.add("crontabs", tabs);
         },
 
-        broadcast: function(crontabs) {
-            _.each(callbacks, function(cb) {
-                cb(crontabs);
-            });
+        broadcast: function() {
+            _.each(callbacks, _.bind(function(cb) {
+                cb(this.getTabs());
+            }, this));
         },
 
         onChange: function(cb) {
