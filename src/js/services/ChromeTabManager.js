@@ -13,8 +13,12 @@ angular.module("crontabs").factory("ChromeTabManager", function(ChromeTabs) {
                 var deferred = jQuery.Deferred();
 
                 deferred.done(_.bind(function(chromeTab) {
-                    cronTab.chromeTabId = chromeTab.id;
-                    action.call(this, chromeTab, cronTab, callback);
+                    // Occasionally a tab can be destroyed at the same time it's created.
+                    // Double check it still exists when this action is about to be performed.
+                    if (chromeTab) {
+                        cronTab.chromeTabId = chromeTab.id;
+                        action.call(this, chromeTab, cronTab, callback);
+                    }
                 }, this));
 
                 function resolveWithChromeTab(chromeTab) {
