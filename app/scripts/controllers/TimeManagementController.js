@@ -1,4 +1,11 @@
-angular.module("crontabs").controller("TimeManagementCtrl", ['$scope', 'Messaging', 'TabStorage', 'DaysOfWeek', 'i18nManager', function($scope, Messaging, TabStorage, DaysOfWeek, i18nManager) {
+angular.module("crontabs").controller("TimeManagementCtrl", [
+    '$scope',
+    'Messaging',
+    'TabStorage',
+    'DaysOfWeek',
+    'i18nManager',
+
+function($scope, Messaging, TabStorage, DaysOfWeek, i18nManager) {
 
     AbstractTabEditorController($scope, TabStorage, i18nManager);
 

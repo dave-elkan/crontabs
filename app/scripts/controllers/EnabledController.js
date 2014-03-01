@@ -1,4 +1,9 @@
-angular.module("crontabs").controller("EnabledCtrl", ['$scope', 'i18nManager', 'CrontabsEnabledState', 'Messaging', function($scope, i18nManager, CrontabsEnabledState, Messaging) {
+angular.module("crontabs").controller("EnabledCtrl", [
+    '$scope',
+    'i18nManager',
+    'CrontabsEnabledState',
+    'Messaging',
+function($scope, i18nManager, CrontabsEnabledState, Messaging) {
 
     function getEnabledStateLabel(enabled) {
         var key = enabled ? "crontabsEnabled" : "crontabsDisabled";

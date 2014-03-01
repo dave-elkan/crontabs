@@ -1,4 +1,6 @@
-angular.module("crontabs").factory("DaysOfWeek", ['i18nManager', function(i18nManager) {
+angular.module("crontabs").factory("DaysOfWeek", [
+    'i18nManager',
+function(i18nManager) {
     return [{
         id: "MON",
         num: 2,

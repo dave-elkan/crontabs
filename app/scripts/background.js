@@ -1,4 +1,9 @@
-angular.module("crontabs").run(['CrontabsRunner', 'LaterService', 'ChromeAlarmService', 'EnableButton', function(CrontabsRunner, LaterService, ChromeAlarmService, EnableButton) {
+angular.module("crontabs").run([
+    'CrontabsRunner',
+    'LaterService',
+    'ChromeAlarmService',
+    'EnableButton',
+function(CrontabsRunner, LaterService, ChromeAlarmService, EnableButton) {
 
     var ALARM_KEY = "crontabsReschedule";
 
