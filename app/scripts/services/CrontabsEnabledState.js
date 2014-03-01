@@ -1,4 +1,4 @@
-angular.module("crontabs").factory("CrontabsEnabledState", function(webStorage, Messaging) {
+angular.module("crontabs").factory("CrontabsEnabledState", ['webStorage', 'Messaging', function(webStorage, Messaging) {
 
     var callbacks = [];
 
@@ -34,4 +34,4 @@ angular.module("crontabs").factory("CrontabsEnabledState", function(webStorage, 
         }
 
     };
-});
+}]);

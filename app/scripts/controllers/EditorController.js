@@ -1,4 +1,11 @@
-angular.module("crontabs").controller("EditorCtrl", function($scope, Messaging, TabStorage, TabOperations, TabTriggerTypes, i18nManager) {
+angular.module("crontabs").controller("EditorCtrl", [
+    '$scope',
+    'Messaging',
+    'TabStorage',
+    'TabOperations',
+    'TabTriggerTypes',
+    'i18nManager',
+function($scope, Messaging, TabStorage, TabOperations, TabTriggerTypes, i18nManager) {
 
     AbstractTabEditorController($scope, TabStorage, i18nManager);
 
@@ -69,4 +76,4 @@ angular.module("crontabs").controller("EditorCtrl", function($scope, Messaging, 
         Messaging.sendMessage("saved");
         $scope.editor.$setPristine();
     };
-});
+}]);

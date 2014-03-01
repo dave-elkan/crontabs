@@ -1,4 +1,4 @@
-angular.module("crontabs").factory("EnableButton", function(ChromeBrowserAction, i18nManager, CrontabsEnabledState) {
+angular.module("crontabs").factory("EnableButton", ['ChromeBrowserAction', 'i18nManager', 'CrontabsEnabledState', function(ChromeBrowserAction, i18nManager, CrontabsEnabledState) {
 
     function EnableButton() {
         this.onEnablementChanged(CrontabsEnabledState.isEnabled());
@@ -36,4 +36,4 @@ angular.module("crontabs").factory("EnableButton", function(ChromeBrowserAction,
     };
 
     return new EnableButton();
-});
+}]);

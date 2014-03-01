@@ -1,4 +1,4 @@
-angular.module("crontabs").factory("ChromeTabManager", function(ChromeTabs) {
+angular.module("crontabs").factory("ChromeTabManager", ['ChromeTabs' ,function(ChromeTabs) {
 
     return {
 
@@ -120,4 +120,4 @@ angular.module("crontabs").factory("ChromeTabManager", function(ChromeTabs) {
             return actions[action];
         }
     }
-});
+}]);

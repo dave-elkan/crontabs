@@ -1,4 +1,4 @@
-angular.module("crontabs").factory("DaysOfWeek", function(i18nManager) {
+angular.module("crontabs").factory("DaysOfWeek", ['i18nManager', function(i18nManager) {
     return [{
         id: "MON",
         num: 2,
@@ -28,4 +28,4 @@ angular.module("crontabs").factory("DaysOfWeek", function(i18nManager) {
         num: 1,
         name: i18nManager("daySunday")
     }];
-});
+}]);

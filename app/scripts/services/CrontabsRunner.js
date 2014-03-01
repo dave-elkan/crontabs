@@ -1,4 +1,4 @@
-angular.module("crontabs").factory("CrontabsRunner", function(ChromeTabs, ChromeTabManager, CrontabsEnabledState, TabStorage, LaterService) {
+angular.module("crontabs").factory("CrontabsRunner", ['ChromeTabs', 'ChromeTabManager', 'CrontabsEnabledState', 'TabStorage', 'LaterService', function(ChromeTabs, ChromeTabManager, CrontabsEnabledState, TabStorage, LaterService) {
 
     var CrontabsRunner = function() {
         this.tabs = TabStorage.getTabs();
@@ -137,4 +137,4 @@ angular.module("crontabs").factory("CrontabsRunner", function(ChromeTabs, Chrome
     };
 
     return CrontabsRunner;
-});
+}]);

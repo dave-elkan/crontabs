@@ -1,4 +1,4 @@
-angular.module("crontabs").factory("TabStorage", function(webStorage, Messaging) {
+angular.module("crontabs").factory("TabStorage", ['webStorage', 'Messaging', function(webStorage, Messaging) {
 
     var callbacks = [];
 
@@ -48,4 +48,4 @@ angular.module("crontabs").factory("TabStorage", function(webStorage, Messaging)
     };
 
     return new TabStorage();
-});
+}]);
