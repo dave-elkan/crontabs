@@ -14,7 +14,8 @@
     },
     "options_page": "index.html",
     "permissions": [
-        "tabs"
+        "tabs",
+        "alarms"
     ],
 	"browser_action": {
 		"default_icon": {

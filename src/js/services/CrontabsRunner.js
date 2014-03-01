@@ -16,6 +16,16 @@ angular.module("crontabs").factory("CrontabsRunner", function(ChromeTabs, Chrome
     CrontabsRunner.prototype = {
 
         /**
+         * Reschedules all jobs if currently enabled.
+         */
+        rescheduleTabs: function() {
+            if (CrontabsEnabledState.isEnabled()) {
+                this._stopSchedules();
+                this._scheduleTabs();
+            }
+        },
+
+        /**
          * Triggered when crontabs enablement is toggled.
          *
          * When enabled, schedule all tabs.
