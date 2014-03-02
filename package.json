@@ -4,6 +4,7 @@
   "description": "A chrome extension to control tabs with cron expressions.",
   "main": "index.js",
   "scripts": {
+    "postinstall": "./node_modules/.bin/bower install",
     "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
   },
   "private": true,
@@ -14,6 +15,7 @@
   "author": "Dave Elkan <dave@edave.net>",
   "license": "Apache 2.0",
   "devDependencies": {
+    "bower": "~1.2.7",
     "karma-phantomjs-launcher": "~0.1.0",
     "karma": "~0.10.4",
     "grunt": "~0.4.1",
