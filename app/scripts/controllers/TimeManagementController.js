@@ -15,7 +15,7 @@ function($scope, Messaging, TabStorage, DaysOfWeek, i18nManager) {
     var compatibleTabs = [];
 
     $scope.tabs.forEach(function(tab) {
-        if (tab.crons.length === 2 && tabHasOpenAndCloseOperations(tab) && tabOperationsAreOnSameDays(tab)) {
+        if (tab.crons.length === 2 && tabHasOpenAndCloseOperations(tab) && tabOperationsAreOnSameDays(tab) && tabOperationsDefineSingleHoursMinutesAndSeconds(tab)) {
             compatibleTabs.push(tab);
         } else {
             incompatibleTabs.push(tab);
@@ -93,6 +93,32 @@ function($scope, Messaging, TabStorage, DaysOfWeek, i18nManager) {
             }]
         });
     };
+
+    function tabOperationsDefineSingleHoursMinutesAndSeconds(tab) {
+        var open = _.find(tab.crons, function(cron) {
+            return cron.operation === "show" || cron.operation === "showAndReload" ;
+        });
+
+        var close = _.find(tab.crons, function(cron) {
+            return cron.operation === "close";
+        });
+
+        var openDays = getScheduleForExpression(open);
+        var closeDays = getScheduleForExpression(close);
+
+        return openDays.schedules.length &&
+            closeDays.schedules.length &&
+            existsAndContainsOne(openDays.schedules[0].h) &&
+            existsAndContainsOne(openDays.schedules[0].m) &&
+            existsAndContainsOne(openDays.schedules[0].s) &&
+            existsAndContainsOne(closeDays.schedules[0].h) &&
+            existsAndContainsOne(closeDays.schedules[0].m) &&
+            existsAndContainsOne(closeDays.schedules[0].s);
+    }
+
+    function existsAndContainsOne(array) {
+        return array && array.length === 1;
+    }
 
     function tabOperationsAreOnSameDays(tab) {
         var open = _.find(tab.crons, function(cron) {
