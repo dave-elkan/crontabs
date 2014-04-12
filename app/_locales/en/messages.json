@@ -135,5 +135,21 @@
     "timeManagementDaysOfWeek": {
         "message": "Days of the week",
         "description": "The label for the time management 'days of the week' field"
+    },
+    "tabActionShow": {
+        "message": "Show",
+        "description": "The tab action which shows a tab"
+    },
+    "tabActionReload": {
+        "message": "Reload",
+        "description": "The tab action which reloads a tab."
+    },
+    "tabActionShowAndReload": {
+        "message": "Show and reload",
+        "description": "The tab action which shows and reloads a tab."
+    },
+    "tabActionClose": {
+        "message": "Close",
+        "description": "The tab action which closes a tab."
     }
 }

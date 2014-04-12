@@ -14,19 +14,11 @@ function($scope, Messaging, TabStorage, TabOperations, TabTriggerTypes, i18nMana
     $scope.types = TabTriggerTypes;
 
     $scope.addCron = function(tab) {
-        tab.crons.push({
-            type: "cron",
-            expression: "",
-            operation: $scope.operations[0].id
-        })
+        tab.crons.push(getDefaultCronDefinition("cron"));
     };
 
     $scope.addTextExpression = function(tab) {
-        tab.crons.push({
-            type: "text",
-            expression: "",
-            operation: $scope.operations[0].id
-        })
+        tab.crons.push(getDefaultCronDefinition("text"));
     };
 
     $scope.removeCron = function(tab, cronToRemove) {
@@ -59,11 +51,7 @@ function($scope, Messaging, TabStorage, TabOperations, TabTriggerTypes, i18nMana
     $scope.addTab = function() {
         $scope.tabs.unshift({
             url: "",
-            crons: [{
-                type: "cron",
-                operation: "show",
-                expression: ""
-            }]
+            crons: [getDefaultCronDefinition("cron")]
         });
     };
 
@@ -76,4 +64,12 @@ function($scope, Messaging, TabStorage, TabOperations, TabTriggerTypes, i18nMana
         Messaging.sendMessage("saved");
         $scope.editor.$setPristine();
     };
+
+    function getDefaultCronDefinition(type) {
+        return {
+            type: type,
+            expression: "",
+            operation: "show"
+        }
+    }
 }]);
