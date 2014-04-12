@@ -31,6 +31,7 @@ function($scope, Messaging, TabStorage, TabOperations, TabTriggerTypes, i18nMana
                 }
             });
             tab.crons = crons;
+            $scope.editor.$setDirty();
         }
     };
 
