@@ -1,4 +1,7 @@
-angular.module("crontabs").factory("ChromeTabManager", ['ChromeTabs' ,function(ChromeTabs) {
+angular.module("crontabs").factory("ChromeTabManager", [
+    'ChromeTabs',
+    'ChromeWindows',
+function(ChromeTabs, ChromeWindows) {
 
     return {
 
@@ -65,7 +68,15 @@ angular.module("crontabs").factory("ChromeTabManager", ['ChromeTabs' ,function(C
         _showChromeTab: function(chromeTab, cronTab, callback) {
             ChromeTabs.update(chromeTab.id, {
                 active: true
-            }, callback);
+            }, function(chromeTab) {
+                ChromeWindows.update(chromeTab.windowId, {
+                    focused: true
+                }, function() {
+                    if (callback) {
+                        callback(chromeTab);
+                    }
+                });
+            });
         },
 
         /**

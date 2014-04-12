@@ -18,9 +18,15 @@ describe("ChromeTabManager", function() {
             }));
         });
 
+        module(function($provide) {
+            $provide.value("ChromeWindows", sinon.stub({
+                update: function() {}
+            }));
+        });
+
     });
 
-    it("should show a tab when it isn't already open", inject(function(ChromeTabManager, ChromeTabs) {
+    it("should show a tab when it isn't already open", inject(function(ChromeTabManager, ChromeTabs, ChromeWindows) {
 
         var showAction = ChromeTabManager.getScheduleAction("show");
 
@@ -30,11 +36,14 @@ describe("ChromeTabManager", function() {
 
         var chromeTab = {
             id: 1,
+            windowId: 2,
             url: "url"
         };
 
-        ChromeTabs.query.callsArgWith(1, undefined);
+        ChromeTabs.query.callsArg(1);
         ChromeTabs.create.callsArgWith(1, chromeTab);
+        ChromeTabs.update.callsArgWith(2, chromeTab);
+        ChromeWindows.update.callsArg(2);
 
         showAction(tab);
 
@@ -47,9 +56,13 @@ describe("ChromeTabManager", function() {
             url: "url",
             active: false
         })).toBeTruthy();
+        expect(ChromeWindows.update.calledWith(chromeTab.windowId, {
+            focused: true
+        })).toBeTruthy();
+
     }));
 
-    it("should show an existing tab if it already exists", inject(function(ChromeTabManager, ChromeTabs) {
+    it("should show an existing tab if it already exists", inject(function(ChromeTabManager, ChromeTabs, ChromeWindows) {
         var showAction = ChromeTabManager.getScheduleAction("show");
         var tab = {
             url: "url",
@@ -57,10 +70,13 @@ describe("ChromeTabManager", function() {
         };
         var chromeTab = {
             id: 1,
+            windowId: 2,
             url: "url"
         };
 
         ChromeTabs.get.callsArgWith(1, chromeTab);
+        ChromeTabs.update.callsArgWith(2, chromeTab);
+        ChromeWindows.update.callsArg(2);
 
         showAction(tab);
 
@@ -69,21 +85,26 @@ describe("ChromeTabManager", function() {
             active: true
         })).toBeTruthy();
         expect(ChromeTabs.create.notCalled).toBeTruthy();
+        expect(ChromeWindows.update.calledWith(chromeTab.windowId, {
+            focused: true
+        })).toBeTruthy();
     }));
 
-    it("should create, show and reload a non-existant tab", inject(function(ChromeTabManager, ChromeTabs) {
+    it("should create, show and reload a non-existant tab", inject(function(ChromeTabManager, ChromeTabs, ChromeWindows) {
         var showAndReloadAction = ChromeTabManager.getScheduleAction("showAndReload");
         var tab = {
             url: "url"
         };
         var chromeTab = {
             id: 1,
+            windowId: 2,
             url: "url"
         };
 
-        ChromeTabs.query.callsArgWith(1, undefined);
+        ChromeTabs.query.callsArg(1);
         ChromeTabs.create.callsArgWith(1, chromeTab);
         ChromeTabs.update.callsArgWith(2, chromeTab);
+        ChromeWindows.update.callsArg(2);
 
         showAndReloadAction(tab);
 
@@ -100,10 +121,12 @@ describe("ChromeTabManager", function() {
 
         expect(ChromeTabs.reload.calledOnce).toBeTruthy();
         expect(ChromeTabs.reload.calledWith(chromeTab.id)).toBeTruthy();
-
+        expect(ChromeWindows.update.calledWith(chromeTab.windowId, {
+            focused: true
+        })).toBeTruthy();
     }));
 
-    it("should close an existing tab", inject(function(ChromeTabManager, ChromeTabs) {
+    it("should close an existing tab", inject(function(ChromeTabManager, ChromeTabs, ChromeWindows) {
         var closeAction = ChromeTabManager.getScheduleAction("close");
         var tab = {
             url: "url",
@@ -111,6 +134,7 @@ describe("ChromeTabManager", function() {
         };
         var chromeTab = {
             id: 1,
+            windowId: 2,
             url: "url"
         };
 
@@ -120,10 +144,11 @@ describe("ChromeTabManager", function() {
 
         expect(ChromeTabs.create.notCalled).toBeTruthy();
         expect(ChromeTabs.remove.calledWith(chromeTab.id)).toBeTruthy();
+        expect(ChromeWindows.update.notCalled).toBeTruthy();
 
     }));
 
-    it("should not try to close a non-existant tab", inject(function(ChromeTabManager, ChromeTabs) {
+    it("should not try to close a non-existant tab", inject(function(ChromeTabManager, ChromeTabs, ChromeWindows) {
         var closeAction = ChromeTabManager.getScheduleAction("close");
         var tab = {
             url: "url"
@@ -131,17 +156,18 @@ describe("ChromeTabManager", function() {
 
         var callback = sinon.spy();
 
-        ChromeTabs.query.callsArgWith(1, undefined);
+        ChromeTabs.query.callsArg(1);
 
         closeAction(tab, callback);
 
         expect(ChromeTabs.create.notCalled).toBeTruthy();
         expect(ChromeTabs.remove.notCalled).toBeTruthy();
         expect(callback.calledOnce).toBeTruthy();
+        expect(ChromeWindows.update.notCalled).toBeTruthy();
 
     }));
 
-    it("should reload an existing tab", inject(function(ChromeTabManager, ChromeTabs) {
+    it("should reload an existing tab", inject(function(ChromeTabManager, ChromeTabs, ChromeWindows) {
         var reloadAction = ChromeTabManager.getScheduleAction("reload");
         var tab = {
             url: "url",
@@ -149,6 +175,7 @@ describe("ChromeTabManager", function() {
         };
         var chromeTab = {
             id: 1,
+            windowId: 2,
             url: "url"
         };
 
@@ -162,20 +189,22 @@ describe("ChromeTabManager", function() {
         expect(ChromeTabs.update.notCalled).toBeTruthy();
         expect(ChromeTabs.reload.calledOnce).toBeTruthy();
         expect(ChromeTabs.reload.calledWith(chromeTab.id)).toBeTruthy();
+        expect(ChromeWindows.update.notCalled).toBeTruthy();
 
     }));
 
-    it("should create and reload a non-existing tab", inject(function(ChromeTabManager, ChromeTabs) {
+    it("should create and reload a non-existing tab", inject(function(ChromeTabManager, ChromeTabs, ChromeWindows) {
         var reloadAction = ChromeTabManager.getScheduleAction("reload");
         var tab = {
             url: "url"
         };
         var chromeTab = {
             id: 1,
+            windowId: 2,
             url: "url"
         };
 
-        ChromeTabs.query.callsArgWith(1, undefined);
+        ChromeTabs.query.callsArg(1);
         ChromeTabs.create.callsArgWith(1, chromeTab);
 
         reloadAction(tab);
@@ -187,22 +216,24 @@ describe("ChromeTabManager", function() {
         })).toBeTruthy();
 
         expect(ChromeTabs.update.notCalled).toBeTruthy();
+        expect(ChromeWindows.update.notCalled).toBeTruthy();
         expect(ChromeTabs.reload.calledOnce).toBeTruthy();
         expect(ChromeTabs.reload.calledWith(chromeTab.id)).toBeTruthy();
 
     }));
 
-    it("should open a non-existing tab in the background", inject(function(ChromeTabManager, ChromeTabs) {
+    it("should open a non-existing tab in the background", inject(function(ChromeTabManager, ChromeTabs, ChromeWindows) {
         var reloadAction = ChromeTabManager.getScheduleAction("open");
         var tab = {
             url: "url"
         };
         var chromeTab = {
             id: 1,
+            windowId: 2,
             url: "url"
         };
 
-        ChromeTabs.query.callsArgWith(1, undefined);
+        ChromeTabs.query.callsArg(1);
         ChromeTabs.create.callsArgWith(1, chromeTab);
 
         reloadAction(tab);
@@ -214,6 +245,8 @@ describe("ChromeTabManager", function() {
         })).toBeTruthy();
 
         expect(ChromeTabs.update.notCalled).toBeTruthy();
+        expect(ChromeWindows.update.notCalled).toBeTruthy();
+
     }));
 
 });

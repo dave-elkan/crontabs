@@ -17,6 +17,10 @@ describe("CrontabsRunner", function() {
                 onRemoved: function() {}
             }));
 
+            $provide.value("ChromeWindows", sinon.stub({
+                update: function() {}
+            }));
+
             $provide.value("webStorage", sinon.stub({
                 get: function() {},
                 add: function() {}
