@@ -44,7 +44,8 @@ describe("ChromeTabManager", function() {
         })).toBeTruthy();
         expect(ChromeTabs.create.calledOnce).toBeTruthy();
         expect(ChromeTabs.create.calledWith({
-            url: "url"
+            url: "url",
+            active: false
         })).toBeTruthy();
     }));
 
@@ -88,7 +89,8 @@ describe("ChromeTabManager", function() {
 
         expect(ChromeTabs.create.calledOnce).toBeTruthy();
         expect(ChromeTabs.create.calledWith({
-            url: "url"
+            url: "url",
+            active: false
         })).toBeTruthy();
 
         expect(ChromeTabs.update.calledOnce).toBeTruthy();
@@ -180,13 +182,38 @@ describe("ChromeTabManager", function() {
 
         expect(ChromeTabs.create.calledOnce).toBeTruthy();
         expect(ChromeTabs.create.calledWith({
-            url: "url"
+            url: "url",
+            active: false
         })).toBeTruthy();
 
         expect(ChromeTabs.update.notCalled).toBeTruthy();
         expect(ChromeTabs.reload.calledOnce).toBeTruthy();
         expect(ChromeTabs.reload.calledWith(chromeTab.id)).toBeTruthy();
 
+    }));
+
+    it("should open a non-existing tab in the background", inject(function(ChromeTabManager, ChromeTabs) {
+        var reloadAction = ChromeTabManager.getScheduleAction("open");
+        var tab = {
+            url: "url"
+        };
+        var chromeTab = {
+            id: 1,
+            url: "url"
+        };
+
+        ChromeTabs.query.callsArgWith(1, undefined);
+        ChromeTabs.create.callsArgWith(1, chromeTab);
+
+        reloadAction(tab);
+
+        expect(ChromeTabs.create.calledOnce).toBeTruthy();
+        expect(ChromeTabs.create.calledWith({
+            url: "url",
+            active: false
+        })).toBeTruthy();
+
+        expect(ChromeTabs.update.notCalled).toBeTruthy();
     }));
 
 });

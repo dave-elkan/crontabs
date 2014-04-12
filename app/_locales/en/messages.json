@@ -151,5 +151,9 @@
     "tabActionClose": {
         "message": "Close",
         "description": "The tab action which closes a tab."
+    },
+    "tabActionOpen": {
+        "message": "Open in background",
+        "description": "The tab action which opens a tab in the background."
     }
 }

@@ -5,6 +5,7 @@ function(i18nManager) {
         "close": i18nManager("tabActionClose"),
         "reload": i18nManager("tabActionReload"),
         "show": i18nManager("tabActionShow"),
-        "showAndReload": i18nManager("tabActionShowAndReload")
+        "showAndReload": i18nManager("tabActionShowAndReload"),
+        "open": i18nManager("tabActionOpen")
     };
 }]);

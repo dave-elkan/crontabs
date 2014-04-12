@@ -17,7 +17,9 @@ angular.module("crontabs").factory("ChromeTabManager", ['ChromeTabs' ,function(C
                     // Double check it still exists when this action is about to be performed.
                     if (chromeTab) {
                         cronTab.chromeTabId = chromeTab.id;
-                        action.call(this, chromeTab, cronTab, callback);
+                        if (action) {
+                            action.call(this, chromeTab, cronTab, callback);
+                        }
                     }
                 }, this));
 
@@ -29,7 +31,8 @@ angular.module("crontabs").factory("ChromeTabManager", ['ChromeTabs' ,function(C
                     ChromeTabs.get(cronTab.chromeTabId, resolveWithChromeTab);
                 } else {
                     ChromeTabs.create({
-                        url: cronTab.url
+                        url: cronTab.url,
+                        active: false
                     }, resolveWithChromeTab);
                 }
 
@@ -114,7 +117,8 @@ angular.module("crontabs").factory("ChromeTabManager", ['ChromeTabs' ,function(C
                 "show": this._getAndPerform(this._showChromeTab),
                 "showAndReload": this._getAndPerform(this._showAndReloadChromeTab),
                 "close": _.bind(this._performCloseOperation, this),
-                "reload": this._getAndPerform(this._reloadChromeTab)
+                "reload": this._getAndPerform(this._reloadChromeTab),
+                "open": this._getAndPerform()
             };
 
             return actions[action];
