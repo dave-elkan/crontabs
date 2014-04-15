@@ -40,7 +40,6 @@ describe("ChromeTabManager", function() {
             url: "url"
         };
 
-        ChromeTabs.query.callsArg(1);
         ChromeTabs.create.callsArgWith(1, chromeTab);
         ChromeTabs.update.callsArgWith(2, chromeTab);
         ChromeWindows.update.callsArg(2);
@@ -101,7 +100,6 @@ describe("ChromeTabManager", function() {
             url: "url"
         };
 
-        ChromeTabs.query.callsArg(1);
         ChromeTabs.create.callsArgWith(1, chromeTab);
         ChromeTabs.update.callsArgWith(2, chromeTab);
         ChromeWindows.update.callsArg(2);
@@ -156,8 +154,6 @@ describe("ChromeTabManager", function() {
 
         var callback = sinon.spy();
 
-        ChromeTabs.query.callsArg(1);
-
         closeAction(tab, callback);
 
         expect(ChromeTabs.create.notCalled).toBeTruthy();
@@ -180,15 +176,15 @@ describe("ChromeTabManager", function() {
         };
 
         ChromeTabs.get.callsArgWith(1, chromeTab);
-        ChromeTabs.update.callsArgWith(2, chromeTab);
 
         reloadAction(tab);
 
         expect(ChromeTabs.create.notCalled).toBeTruthy();
-
         expect(ChromeTabs.update.notCalled).toBeTruthy();
+
         expect(ChromeTabs.reload.calledOnce).toBeTruthy();
         expect(ChromeTabs.reload.calledWith(chromeTab.id)).toBeTruthy();
+
         expect(ChromeWindows.update.notCalled).toBeTruthy();
 
     }));
@@ -204,7 +200,6 @@ describe("ChromeTabManager", function() {
             url: "url"
         };
 
-        ChromeTabs.query.callsArg(1);
         ChromeTabs.create.callsArgWith(1, chromeTab);
 
         reloadAction(tab);
@@ -233,7 +228,6 @@ describe("ChromeTabManager", function() {
             url: "url"
         };
 
-        ChromeTabs.query.callsArg(1);
         ChromeTabs.create.callsArgWith(1, chromeTab);
 
         reloadAction(tab);
