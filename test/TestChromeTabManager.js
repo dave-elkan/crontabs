@@ -1,5 +1,3 @@
-"use strict";
-
 describe("ChromeTabManager", function() {
 
     beforeEach(module("crontabs"));
