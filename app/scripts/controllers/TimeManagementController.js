@@ -4,8 +4,9 @@ angular.module("crontabs").controller("TimeManagementCtrl", [
     'TabStorage',
     'DaysOfWeek',
     'i18nManager',
+    'TimeManagementService',
 
-function($scope, Messaging, TabStorage, DaysOfWeek, i18nManager) {
+function($scope, Messaging, TabStorage, DaysOfWeek, i18nManager, TimeManagementService) {
 
     AbstractTabEditorController($scope, TabStorage, i18nManager);
 
@@ -15,7 +16,7 @@ function($scope, Messaging, TabStorage, DaysOfWeek, i18nManager) {
     var compatibleTabs = [];
 
     $scope.tabs.forEach(function(tab) {
-        if (tab.crons.length === 2 && tabHasOpenAndCloseOperations(tab) && tabOperationsAreOnSameDays(tab) && tabOperationsDefineSingleHoursMinutesAndSeconds(tab)) {
+        if (TimeManagementService.isCompatibleTab(tab)) {
             compatibleTabs.push(tab);
         } else {
             incompatibleTabs.push(tab);
@@ -34,7 +35,7 @@ function($scope, Messaging, TabStorage, DaysOfWeek, i18nManager) {
             tab.days = [];
         }
         DaysOfWeek.forEach(function(day) {
-            var result = getScheduleForExpression(cron);
+            var result = TimeManagementService.getScheduleForExpression(cron);
             if (result.schedules && result.schedules.length && result.schedules[0].d && _.contains(result.schedules[0].d, day.num)) {
                 tab.days.push(day.num);
             }
@@ -43,7 +44,7 @@ function($scope, Messaging, TabStorage, DaysOfWeek, i18nManager) {
 
     $scope.compatibleTabs.forEach(function(tab) {
         tab.crons.forEach(function(cron) {
-            var schedule = getScheduleForExpression(cron);
+            var schedule = TimeManagementService.getScheduleForExpression(cron);
             var hour = schedule.schedules[0].h;
             var minute = schedule.schedules[0].m;
 
@@ -93,72 +94,6 @@ function($scope, Messaging, TabStorage, DaysOfWeek, i18nManager) {
             }]
         });
     };
-
-    function tabOperationsDefineSingleHoursMinutesAndSeconds(tab) {
-        var open = _.find(tab.crons, function(cron) {
-            return cron.operation === "show" || cron.operation === "showAndReload" ;
-        });
-
-        var close = _.find(tab.crons, function(cron) {
-            return cron.operation === "close";
-        });
-
-        var openDays = getScheduleForExpression(open);
-        var closeDays = getScheduleForExpression(close);
-
-        return openDays.schedules.length &&
-            closeDays.schedules.length &&
-            existsAndContainsOne(openDays.schedules[0].h) &&
-            existsAndContainsOne(openDays.schedules[0].m) &&
-            existsAndContainsOne(openDays.schedules[0].s) &&
-            existsAndContainsOne(closeDays.schedules[0].h) &&
-            existsAndContainsOne(closeDays.schedules[0].m) &&
-            existsAndContainsOne(closeDays.schedules[0].s);
-    }
-
-    function existsAndContainsOne(array) {
-        return array && array.length === 1;
-    }
-
-    function tabOperationsAreOnSameDays(tab) {
-        var open = _.find(tab.crons, function(cron) {
-            return cron.operation === "show" || cron.operation === "showAndReload" ;
-        });
-
-        var close = _.find(tab.crons, function(cron) {
-            return cron.operation === "close";
-        });
-
-        var openDays = getScheduleForExpression(open);
-        var closeDays = getScheduleForExpression(close);
-
-        return openDays.schedules.length && closeDays.schedules.length && _.isEqual(openDays.schedules[0].d, closeDays.schedules[0].d);
-    }
-
-    function getScheduleForExpression(cron) {
-        if (cron.type === "cron") {
-            return later.parse.cron(cron.expression, true);
-        } else {
-            return later.parse.text(cron.expression, true);
-        }
-    }
-
-    function tabHasOpenAndCloseOperations(tab) {
-        var hasOpen = false;
-        var hasClose = false;
-
-        tab.crons.forEach(function(cron) {
-            if (cron.operation === "show" || cron.operation === "showAndReload") {
-                hasOpen = true;
-            }
-
-            if (cron.operation === "close") {
-                hasClose = true;
-            }
-        });
-
-        return hasOpen && hasClose;
-    }
 
     function getCronForTimeAndDays(time, days) {
         var segments = time.split(":");
