@@ -67,13 +67,22 @@ angular.module("crontabs").factory("TimeManagementService",
             return hasOpen && hasClose;
         }
 
+        function isOpenAndCloseTab(tab) {
+            return tab.crons.length === 2 &&
+                tabHasOpenAndCloseOperations(tab) &&
+                tabOperationsAreOnSameDays(tab) &&
+                tabOperationsDefineSingleHoursMinutesAndSeconds(tab)
+        }
+
+        function isOpenOnlyTab(tab) {
+            return tab.crons.length === 1 &&
+                cronIsOpenOperation(tab.crons[0]);
+        }
+
         return {
 
             isCompatibleTab: function(tab) {
-                return tab.crons.length === 2 &&
-                    tabHasOpenAndCloseOperations(tab) &&
-                    tabOperationsAreOnSameDays(tab) &&
-                    tabOperationsDefineSingleHoursMinutesAndSeconds(tab);
+                return isOpenAndCloseTab(tab) || isOpenOnlyTab(tab);
             },
 
             getScheduleForExpression: getScheduleForExpression

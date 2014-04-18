@@ -49,4 +49,17 @@ describe("TimeManagementService", function() {
         expect(TimeManagementService.isCompatibleTab(tab)).toBeFalsy();
     }));
 
+    it("should find a tab with only a show operation to be valid", inject(function(TimeManagementService) {
+
+        var tab = {
+            crons: [{
+                operation: "show",
+                type: "cron",
+                expression: "0 40 12 * * MON-THU *"
+            }]
+        };
+
+        expect(TimeManagementService.isCompatibleTab(tab)).toBeTruthy();
+    }));
+
 });
