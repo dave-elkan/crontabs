@@ -113,7 +113,8 @@ angular.module("crontabs").factory("TimeManagementCompatibilityService", [
 
             isCompatibleTab: isCompatibleTab,
             getCompatibleTabs: getCompatibleTabs,
-            getIncompatibleTabs: getIncompatibleTabs
+            getIncompatibleTabs: getIncompatibleTabs,
+            cronIsOpenOperation: cronIsOpenOperation
 
         };
     }]

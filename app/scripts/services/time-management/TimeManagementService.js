@@ -47,7 +47,7 @@ angular.module("crontabs").factory("TimeManagementService", [
 
                     var time = [hour, minute].join(":");
 
-                    if (cron.operation === "show" || cron.operation === "showAndReload") {
+                    if (TimeManagementCompatibilityService.cronIsOpenOperation(cron)) {
                         tab.open = time;
                     } else {
                         tab.close = time;
