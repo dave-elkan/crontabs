@@ -14,6 +14,7 @@ module.exports = function(config) {
             'bower_components/later/later.js',
             'scripts/crontabs.js',
             'scripts/services/*.js',
+            'scripts/services/time-management/*.js',
             '../test/**/*.js'
         ]
     });
