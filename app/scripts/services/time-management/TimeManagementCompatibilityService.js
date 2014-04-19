@@ -1,5 +1,8 @@
-angular.module("crontabs").factory("TimeManagementService",
-    function() {
+angular.module("crontabs").factory("TimeManagementCompatibilityService", [
+
+    'ScheduleService',
+
+    function(ScheduleService) {
 
         function cronIsOpenOperation(cron) {
             return cron.operation === "show" ||
@@ -27,7 +30,7 @@ angular.module("crontabs").factory("TimeManagementService",
 
         function tabOperationDefinesSingleHoursMinutesAndSeconds(operation) {
 
-            var schedule = getScheduleForExpression(operation);
+            var schedule = ScheduleService.getScheduleForExpression(operation);
 
             return schedule.schedules.length === 1 &&
                 existsAndContainsOne(schedule.schedules[0].h) &&
@@ -43,18 +46,10 @@ angular.module("crontabs").factory("TimeManagementService",
             var open = _.find(tab.crons, cronIsOpenOperation);
             var close = _.find(tab.crons, cronIsCloseOperation);
 
-            var openDays = getScheduleForExpression(open);
-            var closeDays = getScheduleForExpression(close);
+            var openDays = ScheduleService.getScheduleForExpression(open);
+            var closeDays = ScheduleService.getScheduleForExpression(close);
 
             return openDays.schedules.length && closeDays.schedules.length && _.isEqual(openDays.schedules[0].d, closeDays.schedules[0].d);
-        }
-
-        function getScheduleForExpression(cron) {
-            if (cron.type === "cron") {
-                return later.parse.cron(cron.expression, true);
-            } else {
-                return later.parse.text(cron.expression, true);
-            }
         }
 
         function tabHasOpenAndCloseOperations(tab) {
@@ -87,14 +82,39 @@ angular.module("crontabs").factory("TimeManagementService",
                 openOperationDefineSingleHoursMinutesAndSeconds(tab);
         }
 
+        function isCompatibleTab(tab) {
+            return isOpenAndCloseTab(tab) || isOpenOnlyTab(tab);
+        }
+
+        function getCompatibleTabs(tabs) {
+
+            var compatibleTabs = [];
+
+            if (!tabs || !tabs.length) {
+                return compatibleTabs;
+            }
+
+            compatibleTabs = _.filter(tabs, isCompatibleTab);
+
+            return compatibleTabs;
+        }
+
+        function getIncompatibleTabs(tabs) {
+            if (!tabs || !tabs.length) {
+                return [];
+            }
+
+            return _.filter(tabs, function(tab) {
+                return !isCompatibleTab(tab);
+            });
+        }
+
         return {
 
-            isCompatibleTab: function(tab) {
-                return isOpenAndCloseTab(tab) || isOpenOnlyTab(tab);
-            },
-
-            getScheduleForExpression: getScheduleForExpression
+            isCompatibleTab: isCompatibleTab,
+            getCompatibleTabs: getCompatibleTabs,
+            getIncompatibleTabs: getIncompatibleTabs
 
         };
-    }
+    }]
 );

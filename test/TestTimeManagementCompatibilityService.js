@@ -1,8 +1,8 @@
-describe("TimeManagementService", function() {
+describe("TimeManagementCompatibilityService", function() {
 
     beforeEach(module("crontabs"));
 
-    it("should find a tab with a show and close operation on the same days to be valid", inject(function(TimeManagementService) {
+    it("should find a tab with a show and close operation on the same days to be valid", inject(function(TimeManagementCompatibilityService) {
 
         var tab = {
             crons: [{
@@ -16,10 +16,10 @@ describe("TimeManagementService", function() {
             }]
         };
 
-        expect(TimeManagementService.isCompatibleTab(tab)).toBeTruthy();
+        expect(TimeManagementCompatibilityService.isCompatibleTab(tab)).toBeTruthy();
     }));
 
-    it("should find a tab with a show and close operation on the different days to be invalid", inject(function(TimeManagementService) {
+    it("should find a tab with a show and close operation on the different days to be invalid", inject(function(TimeManagementCompatibilityService) {
 
         var tab = {
             crons: [{
@@ -33,10 +33,10 @@ describe("TimeManagementService", function() {
             }]
         };
 
-        expect(TimeManagementService.isCompatibleTab(tab)).toBeFalsy();
+        expect(TimeManagementCompatibilityService.isCompatibleTab(tab)).toBeFalsy();
     }));
 
-    it("should find a tab with only a close operation to be invalid", inject(function(TimeManagementService) {
+    it("should find a tab with only a close operation to be invalid", inject(function(TimeManagementCompatibilityService) {
 
         var tab = {
             crons: [{
@@ -46,10 +46,10 @@ describe("TimeManagementService", function() {
             }]
         };
 
-        expect(TimeManagementService.isCompatibleTab(tab)).toBeFalsy();
+        expect(TimeManagementCompatibilityService.isCompatibleTab(tab)).toBeFalsy();
     }));
 
-    it("should find a tab with only a show operation to be valid", inject(function(TimeManagementService) {
+    it("should find a tab with only a show operation to be valid", inject(function(TimeManagementCompatibilityService) {
 
         var tab = {
             crons: [{
@@ -59,7 +59,7 @@ describe("TimeManagementService", function() {
             }]
         };
 
-        expect(TimeManagementService.isCompatibleTab(tab)).toBeTruthy();
+        expect(TimeManagementCompatibilityService.isCompatibleTab(tab)).toBeTruthy();
     }));
 
 });
