@@ -1,11 +1,12 @@
 angular.module("crontabs").factory("TimeManagementService", [
 
-        "TimeManagementCompatibilityService",
-        "TabStorage",
         "DaysOfWeek",
+        "Messaging",
         "ScheduleService",
+        "TabStorage",
+        "TimeManagementCompatibilityService",
 
-        function(TimeManagementCompatibilityService, TabStorage, DaysOfWeek, ScheduleService) {
+        function(DaysOfWeek, Messaging, ScheduleService, TabStorage, TimeManagementCompatibilityService) {
 
             function getNewTab() {
                 return {
@@ -20,11 +21,11 @@ angular.module("crontabs").factory("TimeManagementService", [
 
             function populateTabDays(tab) {
                 var cron = tab.crons[0];
-                if (!tab.days) {
-                    tab.days = [];
-                }
+                var result = ScheduleService.getScheduleForExpression(cron);
+
+                tab.days = [];
+
                 DaysOfWeek.forEach(function(day) {
-                    var result = ScheduleService.getScheduleForExpression(cron);
                     if (result.schedules && result.schedules.length && result.schedules[0].d && _.contains(result.schedules[0].d, day.num)) {
                         tab.days.push(day.num);
                     }
