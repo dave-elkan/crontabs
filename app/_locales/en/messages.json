@@ -41,6 +41,10 @@
         "message": "Tab URL",
         "description": "The label for the tab URL field."
     },
+    "validTabUrl": {
+        "message": "Valid tab URL",
+        "description": "The label shown when an invalid tab URL is entered."
+    },
     "expressionAction": {
         "message": "Action",
         "description": "The label for the expression's action field"
@@ -127,6 +131,18 @@
     "timeManagementTabOpenAt": {
         "message": "Open at",
         "description": "The label for the time management 'open at' field"
+    },
+    "timeManagementTabOpenAtTitle": {
+        "message": "The time to open the tab",
+        "description": "The title shown when an erroneous 'open at' entry is displayed"
+    },
+    "timeManagementTabCloseAtTitle": {
+        "message": "The time to close the tab",
+        "description": "The title shown when an erroneous 'close at' entry is displayed"
+    },
+    "timeManagementTabDaysTitle": {
+        "message": "Choose a day",
+        "description": "The title shown when no days are chosen"
     },
     "timeManagementTabCloseAt": {
         "message": "Close at",
