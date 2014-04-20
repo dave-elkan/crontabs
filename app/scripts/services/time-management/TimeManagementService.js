@@ -64,8 +64,10 @@ angular.module("crontabs").factory("TimeManagementService", [
             }
 
             function getCronForTimeAndDays(time, days) {
-                var segments = time.split(":");
-                days = _.map(days, function(day) {
+                var segments = time.split(":").map(function(time) {
+                    return parseInt(time);
+                });
+                days = days.map(function(day) {
                     return _.find(DaysOfWeek, function(dayOfWeek) {
                         return dayOfWeek.num === day;
                     }).id
@@ -108,6 +110,8 @@ angular.module("crontabs").factory("TimeManagementService", [
                         incompatible: TimeManagementCompatibilityService.getIncompatibleTabs(tabs)
                     };
                 },
+
+                buildTabs: buildTabs,
 
                 saveTabs: function(compatibleTabs, incompatibleTabs) {
                     TabStorage.setTabs(buildTabs(compatibleTabs, incompatibleTabs));

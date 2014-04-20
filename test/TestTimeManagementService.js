@@ -23,11 +23,11 @@ describe("TimeManagementService", function() {
             crons: [{
                 operation: "show",
                 type: "cron",
-                expression: "0 30 12 * * MON-FRI *"
+                expression: "0 30 12 * * MON-FRI"
             }, {
                 operation: "close",
                 type: "cron",
-                expression: "0 40 12 * * MON-FRI *"
+                expression: "0 40 12 * * MON-FRI"
             }]
         }];
 
@@ -42,7 +42,7 @@ describe("TimeManagementService", function() {
             crons: [{
                 operation: "showAndReload",
                 type: "cron",
-                expression: "0 30 12 * * MON,WED,SAT *"
+                expression: "0 30 12 * * MON,WED,SAT"
             }]
         }];
 
@@ -57,7 +57,7 @@ describe("TimeManagementService", function() {
             crons: [{
                 operation: "showAndReload",
                 type: "cron",
-                expression: "0 30 12 * * MON,WED,SAT *"
+                expression: "0 30 12 * * MON,WED,SAT"
             }]
         }];
 
@@ -72,11 +72,11 @@ describe("TimeManagementService", function() {
             crons: [{
                 operation: "open",
                 type: "cron",
-                expression: "0 31 12 * * MON-FRI *"
+                expression: "0 31 12 * * MON-FRI"
             }, {
                 operation: "close",
                 type: "cron",
-                expression: "0 40 12 * * MON-FRI *"
+                expression: "0 40 12 * * MON-FRI"
             }]
         }];
 
@@ -93,7 +93,7 @@ describe("TimeManagementService", function() {
             crons: [{
                 operation: "open",
                 type: "cron",
-                expression: "0 9 12 * * MON-FRI *"
+                expression: "0 9 12 * * MON-FRI"
             }]
         }];
 
@@ -108,13 +108,144 @@ describe("TimeManagementService", function() {
             crons: [{
                 operation: "open",
                 type: "cron",
-                expression: "0 9 2 * * MON-FRI *"
+                expression: "0 9 2 * * MON-FRI"
             }]
         }];
 
         var expectedOpenTime = "02:09";
 
         expect(TimeManagementService.getTabs(tabs).compatible[0].open).toEqual(expectedOpenTime);
+    }));
+
+    it("should build tabs and concatenate them onto any incompatible tabs", inject(function(TimeManagementService) {
+
+        var compatibleTabs = [{
+            url: "http://example.org/1",
+            open: "02:05",
+            close: "14:35",
+            days: [2, 5, 6]
+        }];
+
+        var incompatibleTabs = [{
+            url: "http://example.org/2",
+            crons: [{
+                operation: "reload",
+                type: "cron",
+                expression: "0 14 11 * * MON-FRI"
+            }]
+        }];
+
+        var expectedTabs = [{
+            url: "http://example.org/2",
+            crons: [{
+                operation: "reload",
+                type: "cron",
+                expression: "0 14 11 * * MON-FRI"
+            }]
+        }, {
+            url: "http://example.org/1",
+            crons: [{
+                operation: "show",
+                type: "cron",
+                expression: "0 5 2 * * MON,THU,FRI"
+            }, {
+                operation: "close",
+                type: "cron",
+                expression: "0 35 14 * * MON,THU,FRI"
+            }]
+        }];
+
+        expect(TimeManagementService.buildTabs(compatibleTabs, incompatibleTabs)).toEqual(expectedTabs);
+    }));
+
+    it("should build tabs for show and close tab", inject(function(TimeManagementService) {
+
+        var compatibleTabs = [{
+            url: "http://example.org/1",
+            open: "02:05",
+            close: "14:35",
+            days: [2, 5, 6]
+        }];
+
+        var incompatibleTabs = [];
+
+        var expectedTabs = [{
+            url: "http://example.org/1",
+            crons: [{
+                operation: "show",
+                type: "cron",
+                expression: "0 5 2 * * MON,THU,FRI"
+            }, {
+                operation: "close",
+                type: "cron",
+                expression: "0 35 14 * * MON,THU,FRI"
+            }]
+        }];
+
+        expect(TimeManagementService.buildTabs(compatibleTabs, incompatibleTabs)).toEqual(expectedTabs);
+    }));
+
+    it("should build tabs for show only tab", inject(function(TimeManagementService) {
+
+        var compatibleTabs = [{
+            url: "http://example.org/1",
+            open: "02:05",
+            days: [2, 5, 6]
+        }];
+
+        var incompatibleTabs = [];
+
+        var expectedTabs = [{
+            url: "http://example.org/1",
+            crons: [{
+                operation: "show",
+                type: "cron",
+                expression: "0 5 2 * * MON,THU,FRI"
+            }]
+        }];
+
+        expect(TimeManagementService.buildTabs(compatibleTabs, incompatibleTabs)).toEqual(expectedTabs);
+    }));
+
+    it("should not set midnight as double-zero", inject(function(TimeManagementService) {
+
+        var compatibleTabs = [{
+            url: "http://example.org/1",
+            open: "0:05",
+            close: "12:35",
+            days: [2, 5, 6]
+        }];
+
+        var incompatibleTabs = [{
+            url: "http://example.org/2",
+            crons: [{
+                operation: "reload",
+                type: "cron",
+                expression: "0 9 2 * * MON-FRI"
+            }]
+        }];
+
+        var expectedTabs = [{
+            url: "http://example.org/2",
+            crons: [{
+                operation: "reload",
+                type: "cron",
+                expression: "0 9 2 * * MON-FRI"
+            }]
+        }, {
+            url: "http://example.org/1",
+            crons: [{
+                operation: "show",
+                type: "cron",
+                expression: "0 5 0 * * MON,THU,FRI"
+            }, {
+                operation: "close",
+                type: "cron",
+                expression: "0 35 12 * * MON,THU,FRI"
+            }]
+        }];
+
+        expect(TimeManagementService.buildTabs(compatibleTabs, incompatibleTabs)).toEqual(expectedTabs);
     }));
 
 
