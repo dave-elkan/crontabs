@@ -248,5 +248,32 @@ describe("TimeManagementService", function() {
         expect(TimeManagementService.buildTabs(compatibleTabs, incompatibleTabs)).toEqual(expectedTabs);
     }));
 
+    it("should order days in weekday order", inject(function(TimeManagementService) {
+
+        var compatibleTabs = [{
+            url: "http://example.org/1",
+            open: "0:05",
+            close: "12:35",
+            days: [2, 4, 3]
+        }];
+
+        var incompatibleTabs = [];
+
+        var expectedTabs = [{
+            url: "http://example.org/1",
+            crons: [{
+                operation: "show",
+                type: "cron",
+                expression: "0 5 0 * * MON,TUE,WED"
+            }, {
+                operation: "close",
+                type: "cron",
+                expression: "0 35 12 * * MON,TUE,WED"
+            }]
+        }];
+
+        expect(TimeManagementService.buildTabs(compatibleTabs, incompatibleTabs)).toEqual(expectedTabs);
+    }));
+
 
 });

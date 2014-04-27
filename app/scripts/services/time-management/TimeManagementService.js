@@ -67,7 +67,7 @@ angular.module("crontabs").factory("TimeManagementService", [
                 var segments = time.split(":").map(function(time) {
                     return parseInt(time);
                 });
-                days = days.map(function(day) {
+                days = days.sort().map(function(day) {
                     return _.find(DaysOfWeek, function(dayOfWeek) {
                         return dayOfWeek.num === day;
                     }).id
