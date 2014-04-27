@@ -30,6 +30,10 @@ function($scope, Messaging, TabStorage, DaysOfWeek, i18nManager, TimeManagementS
         }
     };
 
+    $scope.isDayRequired = function(tab) {
+        return !tab.days || tab.days.length === 0;
+    };
+
     $scope.addTab = function() {
         $scope.compatibleTabs.unshift(TimeManagementService.getNewTab());
     };
