@@ -88,23 +88,20 @@ angular.module("crontabs").factory("TimeManagementCompatibilityService", [
 
         function getCompatibleTabs(tabs) {
 
-            var compatibleTabs = [];
-
-            if (!tabs || !tabs.length) {
-                return compatibleTabs;
-            }
-
-            compatibleTabs = _.filter(tabs, isCompatibleTab);
-
-            return compatibleTabs;
-        }
-
-        function getIncompatibleTabs(tabs) {
             if (!tabs || !tabs.length) {
                 return [];
             }
 
-            return _.filter(tabs, function(tab) {
+            return tabs.filter(isCompatibleTab);
+        }
+
+        function getIncompatibleTabs(tabs) {
+
+            if (!tabs || !tabs.length) {
+                return [];
+            }
+
+            return tabs.filter(function(tab) {
                 return !isCompatibleTab(tab);
             });
         }
