@@ -6,13 +6,13 @@
             <fieldset class="tab" ng-repeat="tab in tabs" ng-class="{'removable': isRemovable($first, tabs.length) }">
                 <div class="form-group">
                     <label for="url-{{tab.$$hashKey}}">{{i18nManager("tabUrl")}}</label>
-                    <input class="form-control" id="url-{{tab.$$hashKey}}" type="text" name="url" value="{{tab.url}}" ng-model="tab.url">
+                    <input class="form-control" id="url-{{tab.$$hashKey}}" type="url" name="url" title="{{i18nManager('validTabUrl')}}" value="{{tab.url}}" ng-model="tab.url" required>
                 </div>
                 <fieldset class="cron" ng-repeat="cron in tab.crons">
                     <div class="row">
                         <div class="col-md-8">
                             <label for="expression-{{cron.$$hashKey}}">{{i18nManager("expressionType" + cron.type)}}</label>
-                            <input class="form-control" type="text" value="{{cron.expression}}" name="expression" id="expression-{{cron.$$hashKey}}" ng-model="cron.expression">
+                            <input class="form-control" type="text" value="{{cron.expression}}" name="expression" title="{{i18nManager('expressionType' + cron.type)}}" id="expression-{{cron.$$hashKey}}" ng-model="cron.expression" required>
                         </div>
                         <div class="col-md-4">
                             <label for="operation-{{cron.$$hashKey}}">{{i18nManager("expressionAction")}}</label>
