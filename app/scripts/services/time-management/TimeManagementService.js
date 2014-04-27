@@ -8,17 +8,6 @@ angular.module("crontabs").factory("TimeManagementService", [
 
         function(DaysOfWeek, Messaging, ScheduleService, TabStorage, TimeManagementCompatibilityService) {
 
-            function getNewTab() {
-                return {
-                    url: "",
-                    crons: [{
-                        type: "cron",
-                        operation: "show",
-                        expression: ""
-                    }]
-                };
-            }
-
             function populateTabDays(tab) {
                 var cron = tab.crons[0];
                 var result = ScheduleService.getScheduleForExpression(cron);
@@ -101,8 +90,6 @@ angular.module("crontabs").factory("TimeManagementService", [
             }
 
             return {
-
-                getNewTab: getNewTab,
 
                 getTabs: function(tabs) {
                     return {

@@ -1,8 +1,9 @@
 angular.module("crontabs").factory("TimeManagementCompatibilityService", [
 
     'ScheduleService',
+    'TimeManagementTabService',
 
-    function(ScheduleService) {
+    function(ScheduleService, TimeManagementTabService) {
 
         function cronIsOpenOperation(cron) {
             return cron.operation === "show" ||
@@ -89,10 +90,16 @@ angular.module("crontabs").factory("TimeManagementCompatibilityService", [
         function getCompatibleTabs(tabs) {
 
             if (!tabs || !tabs.length) {
-                return [];
+                tabs = [];
             }
 
-            return tabs.filter(isCompatibleTab);
+            tabs = tabs.filter(isCompatibleTab);
+
+            if (!tabs.length) {
+                tabs = [TimeManagementTabService.getNewTab()];
+            }
+
+            return tabs;
         }
 
         function getIncompatibleTabs(tabs) {

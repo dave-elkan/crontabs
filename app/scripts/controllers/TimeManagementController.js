@@ -5,8 +5,15 @@ angular.module("crontabs").controller("TimeManagementCtrl", [
     'DaysOfWeek',
     'i18nManager',
     'TimeManagementService',
+    'TimeManagementTabService',
 
-function($scope, Messaging, TabStorage, DaysOfWeek, i18nManager, TimeManagementService) {
+function($scope,
+         Messaging,
+         TabStorage,
+         DaysOfWeek,
+         i18nManager,
+         TimeManagementService,
+         TimeManagementTabService) {
 
     AbstractTabEditorController($scope, TabStorage, i18nManager);
 
@@ -35,7 +42,7 @@ function($scope, Messaging, TabStorage, DaysOfWeek, i18nManager, TimeManagementS
     };
 
     $scope.addTab = function() {
-        $scope.compatibleTabs.unshift(TimeManagementService.getNewTab());
+        $scope.compatibleTabs.unshift(TimeManagementTabService.getNewTab());
     };
 
     $scope.onSubmit = function() {
