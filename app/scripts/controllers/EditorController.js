@@ -5,7 +5,17 @@ angular.module("crontabs").controller("EditorCtrl", [
     'TabOperations',
     'TabTriggerTypes',
     'i18nManager',
-function($scope, Messaging, TabStorage, TabOperations, TabTriggerTypes, i18nManager) {
+    'LaterService',
+
+function($scope,
+         Messaging,
+         TabStorage,
+         TabOperations,
+         TabTriggerTypes,
+         i18nManager,
+         LaterService) {
+
+    LaterService.date.localTime();
 
     AbstractTabEditorController($scope, TabStorage, i18nManager);
 
@@ -58,6 +68,24 @@ function($scope, Messaging, TabStorage, TabOperations, TabTriggerTypes, i18nMana
 
     $scope.onChangeOperation = function(cron, operation) {
         cron.operation = operation.id;
+    };
+
+    $scope.onCronExpressionChanged = function(cron) {
+        if (cron.expression) {
+            var spaceCount = cron.expression.split(" ").length;
+            if (spaceCount >= 5 && spaceCount <= 6) {
+                var schedule = LaterService.parse.cron(cron.expression, true);
+                if (schedule.schedules && schedule.schedules.length && _.keys(schedule.schedules[0]).length) {
+                    var description = moment(LaterService.schedule(schedule).next(1)).calendar();
+
+                    cron.description = " - Next occurrence " + description;
+
+                    return;
+                }
+            }
+        }
+
+        cron.description = "";
     };
 
     $scope.onSubmit = function() {

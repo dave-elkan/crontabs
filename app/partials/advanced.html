@@ -11,8 +11,8 @@
                 <fieldset class="cron" ng-repeat="cron in tab.crons">
                     <div class="row">
                         <div class="col-md-8">
-                            <label for="expression-{{cron.$$hashKey}}">{{i18nManager("expressionType" + cron.type)}}</label>
-                            <input class="form-control" type="text" value="{{cron.expression}}" name="expression" title="{{i18nManager('expressionType' + cron.type)}}" id="expression-{{cron.$$hashKey}}" ng-model="cron.expression" required>
+                            <label for="expression-{{cron.$$hashKey}}">{{i18nManager("expressionType" + cron.type)}}<span ng-show="cron.description">{{cron.description}}</span></label>
+                            <input class="form-control" type="text" value="{{cron.expression}}" name="expression" title="{{i18nManager('expressionType' + cron.type)}}" id="expression-{{cron.$$hashKey}}" ng-model="cron.expression" ng-change="onCronExpressionChanged(cron)" required>
                         </div>
                         <div class="col-md-4">
                             <label for="operation-{{cron.$$hashKey}}">{{i18nManager("expressionAction")}}</label>
