@@ -1,13 +1,11 @@
 angular.module("crontabs").controller("EditorCtrl", [
 
     '$scope',
-    'Messaging',
     'TabStorage',
     'i18nManager',
     'AdvancedScheduleService',
 
 function($scope,
-         Messaging,
          TabStorage,
          i18nManager,
          AdvancedScheduleService) {
