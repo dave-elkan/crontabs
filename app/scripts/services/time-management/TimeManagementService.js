@@ -109,13 +109,17 @@ angular.module("crontabs").factory("TimeManagementService", [
                     })
                 },
 
-                getTabs: function() {
-                    var tabs = TabStorage.getTabsOrNewTab();
-
+                getCompatibleAndIncompatibleTabs: function(tabs) {
                     return {
                         compatible: TimeManagementCompatibilityService.getCompatibleTabs(tabs).map(populateTab),
                         incompatible: TimeManagementCompatibilityService.getIncompatibleTabs(tabs)
                     };
+                },
+
+                getTabs: function() {
+                    var tabs = TabStorage.getTabsOrNewTab();
+
+                    return this.getCompatibleAndIncompatibleTabs(tabs);
                 },
 
                 buildTabs: buildTabs,
