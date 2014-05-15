@@ -8,8 +8,15 @@ crontabs.controller("NavigationCtrl", ['$scope', '$location', function($scope, $
     };
 }]);
 
-crontabs.config(['$routeProvider',
-    function($routeProvider) {
+crontabs.config([
+    '$routeProvider',
+    'LaterService',
+
+    function($routeProvider,
+             LaterService) {
+
+        LaterService.date.localTime();
+
         $routeProvider.
             when('/time-management', {
                 templateUrl: 'partials/time-management.html',

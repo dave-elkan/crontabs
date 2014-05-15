@@ -4,17 +4,13 @@ angular.module("crontabs").controller("EditorCtrl", [
     'Messaging',
     'TabStorage',
     'i18nManager',
-    'LaterService',
     'AdvancedScheduleService',
 
 function($scope,
          Messaging,
          TabStorage,
          i18nManager,
-         LaterService,
          AdvancedScheduleService) {
-
-    LaterService.date.localTime();
 
     AbstractTabEditorController($scope, TabStorage, i18nManager);
 
