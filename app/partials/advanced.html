@@ -19,12 +19,12 @@
                             <select class="operation form-control" ng-model="cron.operation" ng-options="key as value for (key, value) in operations" id="operation-{{cron.$$hashKey}}"></select>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-link remove remove-operation" ng-click="removeCron(tab, cron)" ng-show="isRemovable($first, tab.crons.length)">{{i18nManager("removeOperation")}}</button>
+                    <button type="button" class="btn btn-link remove remove-operation" ng-click="removeCron(tab, cron)" ng-show="isRemovable($first, tab.crons)">{{i18nManager("removeOperation")}}</button>
                 </fieldset>
                 <div class="buttons">
                     <button type="button" class="btn btn-default" ng-click="addCron(tab)"><span class="glyphicon glyphicon-plus" data-type="cron"></span> {{i18nManager("operationCronAdd")}}</button>
                     <button type="button" class="btn btn-default" ng-click="addTextExpression(tab)"><span class="glyphicon glyphicon-plus" data-type="text"></span>  {{i18nManager("operationTextAdd")}}</button>
-                    <button type="button" class="btn btn-default remove remove-tab" ng-click="removeTab(tab)" ng-show="isRemovable($first, tabs.length)"><span class="glyphicon glyphicon-remove"></span> {{i18nManager("removeTab")}}</button>
+                    <button type="button" class="btn btn-default remove remove-tab" ng-click="removeTab(tab)" ng-show="isRemovable($first, tabs)"><span class="glyphicon glyphicon-remove"></span> {{i18nManager("removeTab")}}</button>
                 </div>
             </fieldset>
         </div>

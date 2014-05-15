@@ -5,13 +5,14 @@ angular.module("crontabs").factory("AdvancedScheduleService", [
     "Messaging",
     "TabOperations",
     "TabTriggerTypes",
-
+    "NotFirstOrLastRemovableService",
 
     function(LaterService,
              TabStorage,
              Messaging,
              TabOperations,
-             TabTriggerTypes) {
+             TabTriggerTypes,
+             NotFirstOrLastRemovableService) {
 
         function getDefaultCronDefinition(type) {
             return {
@@ -73,12 +74,18 @@ angular.module("crontabs").factory("AdvancedScheduleService", [
 
             },
 
+            isRemovable: NotFirstOrLastRemovableService.isRemovable,
+
             getOperations: function() {
                 return TabOperations;
             },
 
             getTabTriggerTypes: function() {
                 return TabTriggerTypes;
+            },
+
+            getTabs: function() {
+                return TabStorage.getTabsOrNewTab();
             }
         }
     }
