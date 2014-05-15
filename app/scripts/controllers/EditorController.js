@@ -1,17 +1,16 @@
 angular.module("crontabs").controller("EditorCtrl", [
 
     '$scope',
-    'TabStorage',
     'i18nManager',
     'AdvancedScheduleService',
 
 function($scope,
-         TabStorage,
          i18nManager,
          AdvancedScheduleService) {
 
-    AbstractTabEditorController($scope, TabStorage, i18nManager);
-
+    $scope.i18nManager = i18nManager;
+    $scope.isRemovable = AdvancedScheduleService.isRemovable;
+    $scope.tabs = AdvancedScheduleService.getTabs();
     $scope.operations = AdvancedScheduleService.getOperations();
     $scope.types = AdvancedScheduleService.getTabTriggerTypes();
 
