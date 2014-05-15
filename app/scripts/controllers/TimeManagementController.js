@@ -3,13 +3,11 @@ angular.module("crontabs").controller("TimeManagementCtrl", [
     'DaysOfWeek',
     'i18nManager',
     'TimeManagementService',
-    'TimeManagementTabService',
 
 function($scope,
          DaysOfWeek,
          i18nManager,
-         TimeManagementService,
-         TimeManagementTabService) {
+         TimeManagementService) {
 
     $scope.i18nManager = i18nManager;
     $scope.isRemovable = TimeManagementService.isRemovable;
