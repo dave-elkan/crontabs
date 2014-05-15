@@ -1,40 +1,27 @@
 angular.module("crontabs").controller("TimeManagementCtrl", [
     '$scope',
-    'Messaging',
-    'TabStorage',
     'DaysOfWeek',
     'i18nManager',
     'TimeManagementService',
     'TimeManagementTabService',
 
 function($scope,
-         Messaging,
-         TabStorage,
          DaysOfWeek,
          i18nManager,
          TimeManagementService,
          TimeManagementTabService) {
 
-    AbstractTabEditorController($scope, TabStorage, i18nManager);
+    $scope.i18nManager = i18nManager;
+    $scope.isRemovable = TimeManagementService.isRemovable;
+    $scope.tabs = TimeManagementService.getTabs();
 
     $scope.DaysOfWeek = DaysOfWeek;
 
-    var tabs = TimeManagementService.getTabs($scope.tabs);
-
-    $scope.compatibleTabs = tabs.compatible;
+    $scope.compatibleTabs = $scope.tabs.compatible;
 
     $scope.removeTab = function(tabToRemove) {
-        if ($scope.compatibleTabs.length > 1) {
-            var tabs = [];
-            $scope.compatibleTabs.forEach(function(tab) {
-                if (tab !== tabToRemove) {
-                    tabs.push(tab);
-                }
-            });
-
-            $scope.compatibleTabs = tabs;
-            $scope.editor.$setDirty();
-        }
+        $scope.compatibleTabs = TimeManagementService.removeTab($scope.compatibleTabs, tabToRemove);
+        $scope.editor.$setDirty();
     };
 
     $scope.isDayRequired = function(tab) {
@@ -42,11 +29,12 @@ function($scope,
     };
 
     $scope.addTab = function() {
-        $scope.compatibleTabs.unshift(TimeManagementTabService.getNewTab());
+        TimeManagementService.addTab($scope.compatibleTabs);
+        $scope.editor.$setDirty();
     };
 
     $scope.onSubmit = function() {
-        TimeManagementService.saveTabs($scope.compatibleTabs, tabs.incompatible);
+        TimeManagementService.saveTabs($scope.compatibleTabs, $scope.tabs.incompatible);
         $scope.editor.$setPristine();
     }
 

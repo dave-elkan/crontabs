@@ -5,8 +5,16 @@ angular.module("crontabs").factory("TimeManagementService", [
         "ScheduleService",
         "TabStorage",
         "TimeManagementCompatibilityService",
+        "TimeManagementTabService",
+        "NotFirstOrLastRemovableService",
 
-        function(DaysOfWeek, Messaging, ScheduleService, TabStorage, TimeManagementCompatibilityService) {
+        function(DaysOfWeek,
+                 Messaging,
+                 ScheduleService,
+                 TabStorage,
+                 TimeManagementCompatibilityService,
+                 TimeManagementTabService,
+                 NotFirstOrLastRemovableService) {
 
             function populateTabDays(tab) {
                 var cron = tab.crons[0];
@@ -91,7 +99,19 @@ angular.module("crontabs").factory("TimeManagementService", [
 
             return {
 
-                getTabs: function(tabs) {
+                addTab: function(tabs) {
+                    tabs.unshift(TimeManagementTabService.getNewTab());
+                },
+
+                removeTab: function(tabs, tabToRemove) {
+                    return _.filter(tabs, function(tab) {
+                        return tabToRemove !== tab;
+                    })
+                },
+
+                getTabs: function() {
+                    var tabs = TabStorage.getTabsOrNewTab();
+
                     return {
                         compatible: TimeManagementCompatibilityService.getCompatibleTabs(tabs).map(populateTab),
                         incompatible: TimeManagementCompatibilityService.getIncompatibleTabs(tabs)
@@ -103,7 +123,9 @@ angular.module("crontabs").factory("TimeManagementService", [
                 saveTabs: function(compatibleTabs, incompatibleTabs) {
                     TabStorage.setTabs(buildTabs(compatibleTabs, incompatibleTabs));
                     Messaging.sendMessage("saved");
-                }
+                },
+
+                isRemovable: NotFirstOrLastRemovableService.isRemovable
 
             };
         }]

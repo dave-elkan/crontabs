@@ -3,7 +3,7 @@
 <div class="row">
     <form role="form" name="editor" ng-submit="onSubmit()">
         <div class="col-md-7">
-            <fieldset class="tab" ng-repeat="tab in compatibleTabs" ng-class="{'removable': isRemovable($first, compatibleTabs.length) }">
+            <fieldset class="tab" ng-repeat="tab in compatibleTabs" ng-class="{'removable': isRemovable($first, compatibleTabs) }">
                 <div class="form-group">
                     <label for="url-{{tab.$$hashKey}}">{{i18nManager("tabUrl")}}</label>
                     <input class="form-control" id="url-{{tab.$$hashKey}}" type="url" name="url" value="{{tab.url}}" ng-model="tab.url" title="{{i18nManager('validTabUrl')}}" required>
@@ -24,7 +24,7 @@
                 <div class="form-group">
                     <label class="checkbox-inline" ng-repeat="day in DaysOfWeek"><input class="checkbox" type="checkbox" name="{{day.id}}" id="{{day.id}}-{{tab.$$hashKey}}" checklist-model="tab.days" checklist-value="day.num" title="{{i18nManager('timeManagementTabDaysTitle')}}" ng-required="isDayRequired(tab)">{{day.name}}</label>
                 </div>
-                <button type="button" class="btn btn-default remove remove-tab" ng-click="removeTab(tab)" ng-show="isRemovable($first, compatibleTabs.length)"><span class="glyphicon glyphicon-remove"></span> {{i18nManager("removeTab")}}</button>
+                <button type="button" class="btn btn-default remove remove-tab" ng-click="removeTab(tab)" ng-show="isRemovable($first, compatibleTabs)"><span class="glyphicon glyphicon-remove"></span> {{i18nManager("removeTab")}}</button>
             </fieldset>
         </div>
         <div class="col-md-5 controls">
