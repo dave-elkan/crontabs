@@ -9,13 +9,10 @@ crontabs.controller("NavigationCtrl", ['$scope', '$location', function($scope, $
 }]);
 
 crontabs.config([
+
     '$routeProvider',
-    'LaterService',
 
-    function($routeProvider,
-             LaterService) {
-
-        LaterService.date.localTime();
+    function($routeProvider) {
 
         $routeProvider.
             when('/time-management', {
