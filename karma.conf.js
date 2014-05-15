@@ -13,8 +13,7 @@ module.exports = function(config) {
             'bower_components/angular-webstorage/angular-webstorage.js',
             'bower_components/later/later.js',
             'scripts/crontabs.js',
-            'scripts/services/*.js',
-            'scripts/services/time-management/*.js',
+            'scripts/services/**/*.js',
             '../test/**/*.js'
         ]
     });
