@@ -36,10 +36,10 @@ const Nav = () => {
             to={'/'}
           />
           <Tab
-            label="Cron"
+            label="Advanced"
             component={Link}
-            value="/cron"
-            to={'/cron'}
+            value="/advanced"
+            to={'/advanced'}
           />
         </Tabs>
         <Status />

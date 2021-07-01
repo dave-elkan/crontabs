@@ -7,9 +7,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Page = ({ children }: { children: any }) => {
+const Page = ({
+  children,
+  title,
+  description,
+}: {
+  title: string;
+  description: string;
+  children: any;
+}) => {
   const classes = useStyles();
-  return <Box className={classes.root}>{children}</Box>;
+  return (
+    <Box className={classes.root}>
+      <h1>{title}</h1>
+      <h4>{description}</h4>
+      {children}
+    </Box>
+  );
 };
 
 export default Page;

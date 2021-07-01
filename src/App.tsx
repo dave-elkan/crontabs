@@ -5,7 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import TimeManagementPage from './pages/TimeManagementPage';
-import CronPage from './pages/CronPage';
+import AdvancedPage from './pages/AdvancedPage';
 import Nav from './components/nav/Nav';
 import Container from '@material-ui/core/Container';
 
@@ -15,8 +15,8 @@ function App() {
       <Router>
         <Nav />
         <Switch>
-          <Route path="/cron">
-            <CronPage />
+          <Route path="/advanced">
+            <AdvancedPage />
           </Route>
           <Route path="/">
             <TimeManagementPage />
