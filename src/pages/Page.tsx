@@ -1,18 +1,15 @@
-import { Box } from '@material-ui/core';
+import { Box, makeStyles } from '@material-ui/core';
 import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-  },
-  nav: {
-    flexGrow: 1,
-    marginLeft: theme.spacing(3),
+    padding: theme.spacing(3),
   },
 }));
 
-const Page = ({ children }: { children: any }) => (
-  <Box>{children}</Box>
-);
+const Page = ({ children }: { children: any }) => {
+  const classes = useStyles();
+  return <Box className={classes.root}>{children}</Box>;
+};
 
 export default Page;
