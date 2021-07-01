@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Toolbar from '@material-ui/core/Toolbar';
+import Status from './Status';
 
 const useStyles = makeStyles((theme) => ({
   nav: {
@@ -41,6 +42,7 @@ const Nav = () => {
             to={'/cron'}
           />
         </Tabs>
+        <Status />
       </Toolbar>
     </AppBar>
   );

@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
+import Box from '@material-ui/core/Box';
+import Page from './Page';
 
-const TimeManagementPage = () => (
-    <h3>Time Management</h3>
-)
+const TimeManagementPage = () => <Page>This is time management</Page>;
 
 export default TimeManagementPage;

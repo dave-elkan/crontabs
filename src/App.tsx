@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import TimeManagementPage from './pages/TimeManagementPage';
 import CronPage from './pages/CronPage';
-import Nav from './Nav';
+import Nav from './components/nav/Nav';
 import Container from '@material-ui/core/Container';
 
 function App() {

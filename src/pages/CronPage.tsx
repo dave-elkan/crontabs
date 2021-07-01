@@ -1,7 +1,6 @@
-import React from "react";
+import React from 'react';
+import Page from './Page';
 
-const CronPage = () => (
-    <h3>Cron Page</h3>
-)
+const CronPage = () => <Page>Cron Page</Page>;
 
 export default CronPage;
