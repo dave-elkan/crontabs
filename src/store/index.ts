@@ -6,7 +6,7 @@ import { restoreTabs } from "./localStorage"
 
 const { tabs, schedules } = initialState(restoreTabs());
 
-export default configureStore({
+const store = configureStore({
   reducer: {
     tabs: tabsReducer,
     schedules: schedulesReducer
@@ -16,3 +16,7 @@ export default configureStore({
     schedules
   }
 })
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch;
+export default store;

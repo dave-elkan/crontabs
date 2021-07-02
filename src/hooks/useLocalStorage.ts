@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../store";
 
 export default function useLocalStorage<T>(key: string, initialValue: T) {
     // State to store our value
@@ -34,3 +36,6 @@ export default function useLocalStorage<T>(key: string, initialValue: T) {
     
     return [storedValue, setValue] as const;
   }
+
+export const useAppDispatch = () => useDispatch<AppDispatch>()
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
