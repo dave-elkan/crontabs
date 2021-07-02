@@ -15,6 +15,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function a11yProps(name: string) {
+  return {
+    'aria-label': `crontabs-tab-${name}`,
+    'aria-controls': `crontabs-tabpanel-${name}`,
+  };
+}
+
 const Nav = () => {
   const location = useLocation();
   const classes = useStyles();
@@ -26,7 +33,7 @@ const Nav = () => {
         </Typography>
         <Tabs
           value={location.pathname}
-          aria-label="simple tabs example"
+          aria-label="Crontabs tabs"
           className={classes.nav}
         >
           <Tab
@@ -34,12 +41,14 @@ const Nav = () => {
             component={Link}
             value="/"
             to={'/'}
+            {...a11yProps('Time Management')}
           />
           <Tab
             label="Advanced"
             component={Link}
             value="/advanced"
             to={'/advanced'}
+            {...a11yProps('Advanced')}
           />
         </Tabs>
         <Status />
