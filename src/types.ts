@@ -1,15 +1,13 @@
-export enum OperationType {
-  "Close",
-  "Open in background",
-  "Reload",
-  "Show",
-  "Show and reload"
+export type OperationType = "Close" | "Open in background" | "Reload" | "Show" | "Show and reload";
+export type StoredTab = {
+  id?: string,
+  url: string,
+  crons: Partial<Schedule>[]
 }
 
-export enum ScheduleType {
-  "cron",
-  "text"
-}
+export type StoredState = StoredTab[]
+
+export type ScheduleType = "cron" | "text";
 
 export type Schedule = {
   id: string,
@@ -21,6 +19,5 @@ export type Schedule = {
 
 export type Tab = {
   id: string,
-  url: string,
-  crons: Schedule[]
+  url: string
 }

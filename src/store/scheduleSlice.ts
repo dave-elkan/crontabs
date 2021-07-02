@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import * as uuid from "uuid";
 import { Schedule } from '../types';
 
-type AddSchedulePayload = Omit<Schedule, "id">;
+export type AddSchedulePayload = Omit<Schedule, "id">;
 
 const initialState: Schedule[] = [];
 

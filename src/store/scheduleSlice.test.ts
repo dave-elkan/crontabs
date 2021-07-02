@@ -1,5 +1,5 @@
 import { OperationType, Schedule, Tab, ScheduleType } from '../types';
-import reducer, { addSchedule, removeSchedule } from './scheduleSlice'
+import reducer, { addSchedule, AddSchedulePayload, removeSchedule } from './scheduleSlice'
 import * as uuid from 'uuid';
 jest.mock('uuid');
 
@@ -11,17 +11,17 @@ test('should handle a schedule being added to an empty list', () => {
   const anonymousId = 'testid';
   const uuidSpy = jest.spyOn(uuid, 'v4').mockReturnValue(anonymousId);
   const previousState: Schedule[] = [];
-  const schedule = {
+  const schedule: AddSchedulePayload = {
     expression: "expression value",
-    operation: OperationType['Open in background'],
-    type: ScheduleType.cron,
+    operation: "Open in background",
+    type: 'cron',
     tabId: "tab-1-id"
   }
 
   expect(reducer(previousState, addSchedule(schedule))).toEqual([{
     expression: "expression value",
-    operation: OperationType['Open in background'],
-    type: ScheduleType.cron,
+    operation: "Open in background",
+    type: 'cron',
     tabId: "tab-1-id",
     id: 'testid'
   }]);
