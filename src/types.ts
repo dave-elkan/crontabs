@@ -1,4 +1,4 @@
-export enum ActionType {
+export enum OperationType {
   "Close",
   "Open in background",
   "Reload",
@@ -6,12 +6,21 @@ export enum ActionType {
   "Show and reload"
 }
 
-export type Cron = {
+export enum ScheduleType {
+  "cron",
+  "text"
+}
+
+export type Schedule = {
+  id: string,
+  tabId: string,
+  type: ScheduleType,
+  operation: OperationType,
   expression: string
 }
 
 export type Tab = {
   id: string,
   url: string,
-  crons: Cron[]
+  crons: Schedule[]
 }
