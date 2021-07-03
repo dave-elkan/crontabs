@@ -7,7 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { BrowserRouter as Router } from 'react-router-dom';
 import store from './store';
 import { Provider } from 'react-redux';
-console.log(store);
+
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
