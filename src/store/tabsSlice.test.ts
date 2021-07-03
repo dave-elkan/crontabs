@@ -13,12 +13,10 @@ test('should handle a tab being added to an empty list', () => {
   const previousState: Tab[] = [];
   const tab = {
     url: "https://www.crontabs.org",
-    crons: [],
   }
 
   expect(reducer(previousState, addTab(tab))).toEqual([{
     url: "https://www.crontabs.org",
-    crons: [],
     id: 'testid'
   }]);
 
@@ -28,18 +26,15 @@ test('should handle a tab being added to an empty list', () => {
 test("removing a tab", () => {
   const previousState: Tab[] = [{
     id: "id-1",
-    crons: [],
     url: "https://www.crontabs.org"
   }, {
     id: "id-2",
-    crons: [],
     url: "https://www.crontabs.org"
   }];
 
   expect(reducer(previousState, removeTab("id-2"))).toEqual([
     {
       id: "id-1",
-      crons: [],
       url: "https://www.crontabs.org"
     } 
   ])
