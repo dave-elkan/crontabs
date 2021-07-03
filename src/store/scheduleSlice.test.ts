@@ -13,14 +13,14 @@ test('should handle a schedule being added to an empty list', () => {
   const previousState: Schedule[] = [];
   const schedule: AddSchedulePayload = {
     expression: "expression value",
-    operation: "Open in background",
+    operation: "open",
     type: 'cron',
     tabId: "tab-1-id"
   }
 
   expect(reducer(previousState, addSchedule(schedule))).toEqual([{
     expression: "expression value",
-    operation: "Open in background",
+    operation: "open",
     type: 'cron',
     tabId: "tab-1-id",
     id: 'testid'

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import * as uuid from "uuid";
+import { RootState } from '.';
 import { Schedule } from '../types';
 
 export type AddSchedulePayload = Omit<Schedule, "id">;
@@ -19,5 +20,6 @@ export const scheduleSlice = createSlice({
 })
 
 export const { addSchedule, removeSchedule } = scheduleSlice.actions;
+export const selectSchedulesByTabId = (tabId: string) => (state: RootState) => state.schedules.filter(schedule => schedule.tabId === tabId);
 
 export default scheduleSlice.reducer;
