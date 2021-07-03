@@ -3,11 +3,11 @@ import { Switch, Route } from 'react-router-dom';
 import TimeManagementPage from './pages/TimeManagementPage';
 import AdvancedPage from './pages/AdvancedPage';
 import Nav from './components/nav/Nav';
-import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 
 function App() {
   return (
-    <Container>
+    <Box>
       <Nav />
       <Switch>
         <Route path="/advanced">
@@ -17,7 +17,7 @@ function App() {
           <TimeManagementPage />
         </Route>
       </Switch>
-    </Container>
+    </Box>
   );
 }
 

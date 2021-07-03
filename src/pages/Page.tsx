@@ -1,5 +1,6 @@
 import { Box, makeStyles } from '@material-ui/core';
 import React from 'react';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,11 +19,11 @@ const Page = ({
 }) => {
   const classes = useStyles();
   return (
-    <Box className={classes.root}>
+    <Container fixed className={classes.root}>
       <h1>{title}</h1>
       <h4>{description}</h4>
       {children}
-    </Box>
+    </Container>
   );
 };
 
