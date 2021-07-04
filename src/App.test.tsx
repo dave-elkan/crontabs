@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ComponentType } from 'react';
 import {
   render,
   screen,
@@ -8,15 +8,23 @@ import {
 import App from './App';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
+import { Provider } from 'react-redux';
+import store from './store';
+
+function Wrapper({ children }: { children: any }) {
+  const history = createMemoryHistory();
+
+  return (
+    <Provider store={store}>
+      <Router history={history}>{children}</Router>
+    </Provider>
+  );
+}
 
 test('renders the Time Mangement screen by default', async () => {
   const history = createMemoryHistory();
 
-  render(
-    <Router history={history}>
-      <App />
-    </Router>,
-  );
+  render(<App />, { wrapper: Wrapper as ComponentType });
 
   await waitFor(() => screen.findByRole('heading', { level: 1 }));
   expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
@@ -28,9 +36,11 @@ test('renders the Advanced screen when clicked', async () => {
   const history = createMemoryHistory();
 
   render(
-    <Router history={history}>
-      <App />
-    </Router>,
+    <Provider store={store}>
+      <Router history={history}>
+        <App />
+      </Router>
+    </Provider>,
   );
 
   fireEvent.click(
