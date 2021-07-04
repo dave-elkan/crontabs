@@ -22,8 +22,6 @@ function Wrapper({ children }: { children: any }) {
 }
 
 test('renders the Time Mangement screen by default', async () => {
-  const history = createMemoryHistory();
-
   render(<App />, { wrapper: Wrapper as ComponentType });
 
   await waitFor(() => screen.findByRole('heading', { level: 1 }));
@@ -33,15 +31,7 @@ test('renders the Time Mangement screen by default', async () => {
 });
 
 test('renders the Advanced screen when clicked', async () => {
-  const history = createMemoryHistory();
-
-  render(
-    <Provider store={store}>
-      <Router history={history}>
-        <App />
-      </Router>
-    </Provider>,
-  );
+  render(<App />, { wrapper: Wrapper as ComponentType });
 
   fireEvent.click(
     screen.getByRole('tab', { name: 'crontabs-tab-Advanced' }),
