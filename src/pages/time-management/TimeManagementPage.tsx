@@ -1,5 +1,5 @@
 import React from 'react';
-import Page from './Page';
+import Page from '../Page';
 const description =
   'Increase your productivity by automating tabs to open and close throughout the week to streamline daily tasks.';
 

@@ -1,7 +1,14 @@
-export const OperationTypes = ["close", "open", "reload", "show", "showAndReload"] as const;
+export const OperationTypes = {
+  "close": "Close",
+  "open": "Open in background",
+  "reload": "Reload",
+  "show": "Show",
+  "showAndReload": "Show and reload"
+} as const;
 
 export type ScheduleType = "cron" | "text"
-export type OperationType = typeof OperationTypes[number];
+export type OperationType = keyof typeof OperationTypes;
+export type OperationTypeDisplayNames = typeof OperationTypes[OperationType]
 
 export type Schedule = {
   id: string,
