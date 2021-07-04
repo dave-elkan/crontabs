@@ -9,7 +9,8 @@ import FormControl from '@material-ui/core/FormControl';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     formControl: {
-      margin: theme.spacing(1),
+      marginTop: theme.spacing(1),
+      marginBottom: theme.spacing(1),
       minWidth: 120,
     },
     selectEmpty: {
