@@ -3,20 +3,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import React from 'react';
 import { OperationType, OperationTypes, Schedule } from '../../types';
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-} from '@material-ui/core/styles';
 import CrontabsFormControl from '../../components/form/CrontabsFormControl';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
-  }),
-);
 
 type PropsType = {
   schedule: Schedule;
@@ -34,7 +21,6 @@ function OperationTypeMenuItems(schedule: Schedule) {
 }
 
 const ScheduleOperationSelect = ({ schedule }: PropsType) => {
-  const classes = useStyles();
   return (
     <CrontabsFormControl>
       <InputLabel id={`schedule-operation-${schedule.id}`}>
