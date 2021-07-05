@@ -7,21 +7,39 @@ test('should return the initial state', () => {
   expect(reducer(undefined, { type: "" })).toEqual([]);
 })
 
-test('should handle a schedule being added to an empty list', () => {
+test('should handle a cron schedule being added to an empty list', () => {
   const anonymousId = 'testid';
   const uuidSpy = jest.spyOn(uuid, 'v4').mockReturnValue(anonymousId);
   const previousState: Schedule[] = [];
   const schedule: AddSchedulePayload = {
-    expression: "expression value",
-    operation: "open",
     type: 'cron',
     tabId: "tab-1-id"
   }
 
   expect(reducer(previousState, addSchedule(schedule))).toEqual([{
-    expression: "expression value",
+    expression: "",
     operation: "open",
     type: 'cron',
+    tabId: "tab-1-id",
+    id: 'testid'
+  }]);
+
+  expect(uuidSpy).toBeCalledTimes(1);
+});
+
+test('should handle a text schedule being added to an empty list', () => {
+  const anonymousId = 'testid';
+  const uuidSpy = jest.spyOn(uuid, 'v4').mockReturnValue(anonymousId);
+  const previousState: Schedule[] = [];
+  const schedule: AddSchedulePayload = {
+    type: 'text',
+    tabId: "tab-1-id"
+  }
+
+  expect(reducer(previousState, addSchedule(schedule))).toEqual([{
+    expression: "",
+    operation: "open",
+    type: 'text',
     tabId: "tab-1-id",
     id: 'testid'
   }]);
