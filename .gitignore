@@ -1,9 +1,0 @@
-.DS_Store
-.idea
-node_modules
-*.iml
-atlassian-ide-plugin.xml
-app/bower_components
-dist
-package
-build.sh
