@@ -43,9 +43,7 @@ const ScheduleForm = ({ schedule }: PropsType) => {
         <ScheduleOperationSelect schedule={schedule} />
       </Grid>
       <Grid item xs={1} className={classes.removeButton}>
-        <div>
-          <RemoveScheduleButton schedule={schedule} />
-        </div>
+        <RemoveScheduleButton schedule={schedule} />
       </Grid>
     </Grid>
   );
