@@ -47,7 +47,9 @@ const ScheduleForm = ({ schedule }: PropsType) => {
           <TextField
             fullWidth
             required
-            label="Schedule"
+            label={`${
+              schedule.type === 'cron' ? 'Cron' : 'Text'
+            } Expression`}
             onChange={updateScheduleExpression}
             value={schedule.expression}
           />
