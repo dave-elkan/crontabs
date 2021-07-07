@@ -3,7 +3,7 @@ import * as uuid from "uuid";
 import { Tab } from '../types';
 import type { RootState } from '../store/index'
 
-type AddTabPayload = Omit<Tab, "id">;
+export type TabSansId = Omit<Tab, "id">;
 
 export type TabsStateType = { 
   [index: string]: Tab
@@ -15,7 +15,7 @@ export const tabsSlice = createSlice({
   name: "tabs",
   initialState,
   reducers: {
-    addTab: (state, action: PayloadAction<AddTabPayload>) => {
+    addTab: (state, action: PayloadAction<TabSansId>) => {
       const { payload: tab } = action;
       const id = uuid.v4();
       return {
