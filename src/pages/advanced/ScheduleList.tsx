@@ -18,13 +18,16 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: theme.spacing(1),
       marginBottom: theme.spacing(1),
     },
+    container: {
+      marginTop: theme.spacing(1),
+    },
   }),
 );
 
 const ScheduleList = ({ schedules }: PropsType) => {
   const classes = useStyles();
   return (
-    <>
+    <div className={classes.container}>
       {schedules.map((schedule) => (
         <Box
           className={classes.scheduleListItem}
@@ -33,7 +36,7 @@ const ScheduleList = ({ schedules }: PropsType) => {
           <ScheduleForm schedule={schedule} />
         </Box>
       ))}
-    </>
+    </div>
   );
 };
 
