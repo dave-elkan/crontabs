@@ -10,6 +10,8 @@ import CrontabsFormControl from '../../components/form/CrontabsFormControl';
 import { Schedule } from '../../types';
 import RemoveScheduleButton from './RemoveScheduleButton';
 import ScheduleOperationSelect from './ScheduleOperationSelect';
+import { useDispatch } from 'react-redux';
+import { updateSchedule } from '../../store/scheduleSlice';
 
 type PropsType = {
   schedule: Schedule;
@@ -27,6 +29,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const ScheduleForm = ({ schedule }: PropsType) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
   return (
     <Grid container>
       <Grid item xs={8} className={classes.schedule}>
@@ -35,7 +39,17 @@ const ScheduleForm = ({ schedule }: PropsType) => {
             fullWidth
             required
             label="Schedule"
-            defaultValue={schedule.expression}
+            onChange={(event) => {
+              dispatch(
+                updateSchedule({
+                  scheduleId: schedule.id,
+                  schedule: {
+                    expression: event.target?.value?.trim(),
+                  },
+                }),
+              );
+            }}
+            value={schedule.expression}
           />
         </CrontabsFormControl>
       </Grid>
