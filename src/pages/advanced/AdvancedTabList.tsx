@@ -10,6 +10,13 @@ type PropsType = {
 
 const TabList = ({ tabs }: PropsType) => {
   const tabsArray = Object.values(tabs);
+  if (!tabsArray.length) {
+    return (
+      <h2 style={{ textAlign: 'center' }}>
+        Click the Add new tab button below to get started.
+      </h2>
+    );
+  }
 
   return (
     <>
