@@ -31,6 +31,19 @@ const ScheduleForm = ({ schedule }: PropsType) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  function updateScheduleExpression(
+    event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+  ) {
+    dispatch(
+      updateSchedule({
+        scheduleId: schedule.id,
+        schedule: {
+          expression: event.target?.value?.trim(),
+        },
+      }),
+    );
+  }
+
   return (
     <Grid container>
       <Grid item xs={8} className={classes.schedule}>
@@ -39,16 +52,7 @@ const ScheduleForm = ({ schedule }: PropsType) => {
             fullWidth
             required
             label="Schedule"
-            onChange={(event) => {
-              dispatch(
-                updateSchedule({
-                  scheduleId: schedule.id,
-                  schedule: {
-                    expression: event.target?.value?.trim(),
-                  },
-                }),
-              );
-            }}
+            onChange={updateScheduleExpression}
             value={schedule.expression}
           />
         </CrontabsFormControl>
