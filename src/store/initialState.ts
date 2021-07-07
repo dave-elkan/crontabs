@@ -1,5 +1,6 @@
 import * as uuid from "uuid"
 import { OperationType, Schedule, ScheduleType, Tab } from "../types";
+import { SchedulesStateType } from "./scheduleSlice";
 
 export type StoredState = StoredTab[];
 
@@ -35,11 +36,17 @@ export default function initialState(storedState: StoredState) {
     id: tab.id
   }));
   
-  const schedules: Schedule[] = storedTabs.flatMap(tab => tab.schedules.map(schedule => ({
+  const scheduleArray: Schedule[] = storedTabs.flatMap(tab => tab.schedules.map(schedule => ({
     ...schedule,
     tabId: tab.id,
     id: schedule.id || uuid.v4()
   })));
+
+  const schedules: SchedulesStateType = {};
+
+  for (const schedule of scheduleArray) {
+    schedules[schedule.id] = schedule;
+  }
 
   return {
     tabs,

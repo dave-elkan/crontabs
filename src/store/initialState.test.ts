@@ -41,11 +41,11 @@ test("extracting old-format tabs and cron", () => {
         url: "https://www.smh.com.au",
       }
     ],
-    schedules: [
-      { id: "test-tab-1-schedule-id-1", tabId: "test-tab-id-1", type: "cron", operation: "open", expression: "0 0 0 * * SUN,FRI" },
-      { id: "test-tab-2-schedule-id-1", tabId: "test-tab-id-2", type: "cron", expression: "0 0 0 * * SUN,THU", operation: "show" },
-      { id: "test-tab-2-schedule-id-2", tabId: "test-tab-id-2", type: "cron", expression: "0 0 1 * * SUN,THU", operation: "close" },
-    ]
+    schedules: {
+      "test-tab-1-schedule-id-1": { id: "test-tab-1-schedule-id-1", tabId: "test-tab-id-1", type: "cron", operation: "open", expression: "0 0 0 * * SUN,FRI" },
+      "test-tab-2-schedule-id-1": { id: "test-tab-2-schedule-id-1", tabId: "test-tab-id-2", type: "cron", expression: "0 0 0 * * SUN,THU", operation: "show" },
+      "test-tab-2-schedule-id-2": { id: "test-tab-2-schedule-id-2", tabId: "test-tab-id-2", type: "cron", expression: "0 0 1 * * SUN,THU", operation: "close" },
+    }
   })
 
   expect(uuidSpy).toBeCalledTimes(5);
@@ -83,11 +83,11 @@ test("extracting new-format tabs and crons", () => {
         url: "https://www.smh.com.au",
       }
     ],
-    schedules: [
-      { id: "test-tab-1-schedule-id-1", tabId: "test-tab-id-1", type: "cron", operation: "open", expression: "0 0 0 * * SUN,FRI" },
-      { id: "test-tab-2-schedule-id-1", tabId: "test-tab-id-2", type: "cron", expression: "0 0 0 * * SUN,THU", operation: "show" },
-      { id: "test-tab-2-schedule-id-2", tabId: "test-tab-id-2", type: "cron", expression: "0 0 1 * * SUN,THU", operation: "close" },
-    ]
+    schedules: {
+      "test-tab-1-schedule-id-1": { id: "test-tab-1-schedule-id-1", tabId: "test-tab-id-1", type: "cron", operation: "open", expression: "0 0 0 * * SUN,FRI" },
+      "test-tab-2-schedule-id-1": { id: "test-tab-2-schedule-id-1", tabId: "test-tab-id-2", type: "cron", expression: "0 0 0 * * SUN,THU", operation: "show" },
+      "test-tab-2-schedule-id-2": { id: "test-tab-2-schedule-id-2", tabId: "test-tab-id-2", type: "cron", expression: "0 0 1 * * SUN,THU", operation: "close" },
+    }
   })
 
   expect(uuidSpy).toHaveBeenCalledTimes(0)
