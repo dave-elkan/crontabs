@@ -1,10 +1,6 @@
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import {
-  createStyles,
-  makeStyles,
-  Theme,
-} from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import React from 'react';
 import CrontabsFormControl from '../../components/form/CrontabsFormControl';
 import { Schedule } from '../../types';
