@@ -3,7 +3,6 @@ import Box from '@material-ui/core/Box';
 import { Tab } from '../../types';
 import AdvancedTabForm from './AdvancedTabForm';
 import { TabsStateType } from '../../store/tabsSlice';
-import AddInitialTabButton from '../../components/form/AddInitialTabButton';
 
 type PropsType = {
   tabs: TabsStateType;
@@ -11,9 +10,6 @@ type PropsType = {
 
 const TabList = ({ tabs }: PropsType) => {
   const tabsArray = Object.values(tabs);
-  if (!tabsArray.length) {
-    return <AddInitialTabButton />;
-  }
 
   return (
     <>
