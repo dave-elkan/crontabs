@@ -31,16 +31,16 @@ test("extracting old-format tabs and cron", () => {
     .mockReturnValueOnce("test-tab-2-schedule-id-2")
   
   expect(initialState(oldState)).toEqual({
-    tabs: [
-      {
+    tabs: {
+      "test-tab-id-1": {
         id: "test-tab-id-1",
         url: "https://www.news.com.au",
       }, 
-      {
+      "test-tab-id-2": {
         id: "test-tab-id-2",
         url: "https://www.smh.com.au",
       }
-    ],
+    },
     schedules: {
       "test-tab-1-schedule-id-1": { id: "test-tab-1-schedule-id-1", tabId: "test-tab-id-1", type: "cron", operation: "open", expression: "0 0 0 * * SUN,FRI" },
       "test-tab-2-schedule-id-1": { id: "test-tab-2-schedule-id-1", tabId: "test-tab-id-2", type: "cron", expression: "0 0 0 * * SUN,THU", operation: "show" },
@@ -73,16 +73,16 @@ test("extracting new-format tabs and crons", () => {
   const uuidSpy = jest.spyOn(uuid, 'v4');
   
   expect(initialState(newState)).toEqual({
-    tabs: [
-      {
+    tabs: {
+      "test-tab-id-1": {
         id: "test-tab-id-1",
         url: "https://www.news.com.au",
       }, 
-      {
+      "test-tab-id-2": {
         id: "test-tab-id-2",
         url: "https://www.smh.com.au",
       }
-    ],
+    },
     schedules: {
       "test-tab-1-schedule-id-1": { id: "test-tab-1-schedule-id-1", tabId: "test-tab-id-1", type: "cron", operation: "open", expression: "0 0 0 * * SUN,FRI" },
       "test-tab-2-schedule-id-1": { id: "test-tab-2-schedule-id-1", tabId: "test-tab-id-2", type: "cron", expression: "0 0 0 * * SUN,THU", operation: "show" },

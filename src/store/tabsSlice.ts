@@ -5,7 +5,11 @@ import type { RootState } from '../store/index'
 
 type AddTabPayload = Omit<Tab, "id">;
 
-const initialState: Tab[] = [];
+export type TabsStateType = { 
+  [index: string]: Tab
+};
+
+const initialState: TabsStateType = {};
 
 export const tabsSlice = createSlice({
   name: "tabs",
@@ -14,12 +18,20 @@ export const tabsSlice = createSlice({
     addTab: (state, action: PayloadAction<AddTabPayload>) => {
       const { payload: tab } = action;
       const id = uuid.v4();
-      return state.concat({
-        ...tab,
-        id,
-      })
+      return {
+        ...state,
+        [id]: {
+          id,
+          ...tab
+        }
+      }
     },
-    removeTab: (state, action: PayloadAction<string>) => state.filter(tab => tab.id !== action.payload),
+    removeTab: (state, action: PayloadAction<string>) => {
+      const {[action.payload]: omittedKey, ...remainder} = state;
+      return {
+        ...remainder
+      };
+    }
   }
 })
 

@@ -1,6 +1,7 @@
 import * as uuid from "uuid"
 import { OperationType, Schedule, ScheduleType, Tab } from "../types";
 import { SchedulesStateType } from "./scheduleSlice";
+import { TabsStateType } from "./tabsSlice";
 
 export type StoredState = StoredTab[];
 
@@ -31,10 +32,15 @@ export default function initialState(storedState: StoredState) {
     url: tab.url,
   }));
 
-  const tabs: Tab[] = storedTabs.map(tab => ({
+  const tabsArray: Tab[] = storedTabs.map(tab => ({
     url: tab.url,
     id: tab.id
   }));
+
+  const tabs: TabsStateType = {};
+  for (const tab of tabsArray) {
+    tabs[tab.id] = tab;
+  }
   
   const scheduleArray: Schedule[] = storedTabs.flatMap(tab => tab.schedules.map(schedule => ({
     ...schedule,
