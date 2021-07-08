@@ -36,6 +36,8 @@ export const tabsSlice = createSlice({
 })
 
 export const { addTab, removeTab } = tabsSlice.actions;
-export const selectTabs = (state: RootState) => state.tabs;
+export const selectTabs = (state: RootState) => Object.values(state.tabs);
+export const selectAdvancedTabs = (state: RootState) => selectTabs(state).filter(tab => !tab.timeManagement);
+export const selectTimeManagementTabs = (state: RootState) => selectTabs(state).filter(tab => tab.timeManagement);
 
 export default tabsSlice.reducer;
