@@ -30,9 +30,15 @@ function storeTabIsTimeManagement(storedTab: StoredTab) {
     // Old format support based on there being one show and one close schedule only for a tab.
     storedTab.timeManagement === undefined &&
     storedTab.crons?.length === 2 &&
-    storedTab.crons?.filter(schedule => schedule.type === "cron" && schedule.operation === "show").length === 1 &&
+    storedTab.crons?.filter(schedule => schedule.type === "cron" && scheduleIsOpenOperation(schedule)).length === 1 &&
     storedTab.crons?.filter(schedule => schedule.type === "cron" && schedule.operation === "close").length === 1
   );
+}
+
+function scheduleIsOpenOperation(schedule: StoredSchedule) {
+  return schedule.operation === "show" ||
+         schedule.operation === "showAndReload" ||
+         schedule.operation === "open";
 }
 
 export default function initialState(storedState: StoredState) {
