@@ -7,9 +7,9 @@ export type StoredState = StoredTab[];
 
 type StoredTab = {
   id?: string,
-  url: string;
-  crons?: StoredSchedule[]
-  schedules?: StoredSchedule[]
+  url: string,
+  crons?: StoredSchedule[],
+  schedules?: StoredSchedule[],
 }
 
 type StoredSchedule = {
@@ -17,7 +17,7 @@ type StoredSchedule = {
   tabId?: string,
   type: ScheduleType,
   operation: OperationType,
-  expression: string
+  expression: string,
 }
 
 type TabWithSchedules = Tab & {
