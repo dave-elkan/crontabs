@@ -35,10 +35,12 @@ test("extracting old-format tabs and cron", () => {
       "test-tab-id-1": {
         id: "test-tab-id-1",
         url: "https://www.news.com.au",
+        timeManagement: false,
       }, 
       "test-tab-id-2": {
         id: "test-tab-id-2",
         url: "https://www.smh.com.au",
+        timeManagement: true,
       }
     },
     schedules: {
@@ -59,6 +61,7 @@ test("extracting new-format tabs and crons", () => {
       crons: [
         { id: "test-tab-1-schedule-id-1", type: "cron", operation: "open", expression: "0 0 0 * * SUN,FRI" },
       ],
+      timeManagement: false,
     },
     {
       id: "test-tab-id-2",
@@ -67,6 +70,16 @@ test("extracting new-format tabs and crons", () => {
         { id: "test-tab-2-schedule-id-1", type: "cron", expression: "0 0 0 * * SUN,THU", operation: "show" },
         { id: "test-tab-2-schedule-id-2", type: "cron", expression: "0 0 1 * * SUN,THU", operation: "close" },
       ],
+      timeManagement: false,
+    },
+    {
+      id: "test-tab-id-3",
+      url: "https://www.smh.com.au",
+      crons: [
+        { id: "test-tab-3-schedule-id-1", type: "cron", expression: "0 0 0 * * SUN,THU", operation: "show" },
+        { id: "test-tab-3-schedule-id-2", type: "cron", expression: "0 0 1 * * SUN,THU", operation: "close" },
+      ],
+      timeManagement: true,
     },
   ];
 
@@ -77,19 +90,27 @@ test("extracting new-format tabs and crons", () => {
       "test-tab-id-1": {
         id: "test-tab-id-1",
         url: "https://www.news.com.au",
+        timeManagement: false,
       }, 
       "test-tab-id-2": {
         id: "test-tab-id-2",
         url: "https://www.smh.com.au",
+        timeManagement: false,
+      }, 
+      "test-tab-id-3": {
+        id: "test-tab-id-3",
+        url: "https://www.smh.com.au",
+        timeManagement: true,
       }
     },
     schedules: {
       "test-tab-1-schedule-id-1": { id: "test-tab-1-schedule-id-1", tabId: "test-tab-id-1", type: "cron", operation: "open", expression: "0 0 0 * * SUN,FRI" },
       "test-tab-2-schedule-id-1": { id: "test-tab-2-schedule-id-1", tabId: "test-tab-id-2", type: "cron", expression: "0 0 0 * * SUN,THU", operation: "show" },
       "test-tab-2-schedule-id-2": { id: "test-tab-2-schedule-id-2", tabId: "test-tab-id-2", type: "cron", expression: "0 0 1 * * SUN,THU", operation: "close" },
+      "test-tab-3-schedule-id-1": { id: "test-tab-3-schedule-id-1", tabId: "test-tab-id-3", type: "cron", expression: "0 0 0 * * SUN,THU", operation: "show" },
+      "test-tab-3-schedule-id-2": { id: "test-tab-3-schedule-id-2", tabId: "test-tab-id-3", type: "cron", expression: "0 0 1 * * SUN,THU", operation: "close" },
     }
   })
 
   expect(uuidSpy).toHaveBeenCalledTimes(0)
-
 })

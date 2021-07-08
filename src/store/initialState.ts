@@ -10,6 +10,7 @@ type StoredTab = {
   url: string,
   crons?: StoredSchedule[],
   schedules?: StoredSchedule[],
+  timeManagement?: boolean,
 }
 
 type StoredSchedule = {
@@ -24,17 +25,29 @@ type TabWithSchedules = Tab & {
   schedules: StoredSchedule[]
 }
 
+function storeTabIsTimeManagement(storedTab: StoredTab) {
+  return storedTab.timeManagement === true || (
+    // Old format support based on there being one show and one close schedule only for a tab.
+    storedTab.timeManagement === undefined &&
+    storedTab.crons?.length === 2 &&
+    storedTab.crons?.filter(schedule => schedule.type === "cron" && schedule.operation === "show").length === 1 &&
+    storedTab.crons?.filter(schedule => schedule.type === "cron" && schedule.operation === "close").length === 1
+  );
+}
+
 export default function initialState(storedState: StoredState) {
   // Add tab IDs if there isn't one (old style format).
   const storedTabs: TabWithSchedules[] = storedState.map(tab => ({
     id: tab.id || uuid.v4(),
     schedules: tab.crons || tab.schedules || [],
     url: tab.url,
+    timeManagement: storeTabIsTimeManagement(tab)
   }));
 
   const tabsArray: Tab[] = storedTabs.map(tab => ({
     url: tab.url,
-    id: tab.id
+    id: tab.id,
+    timeManagement: tab.timeManagement
   }));
 
   const tabs: TabsStateType = {};

@@ -21,4 +21,5 @@ export type Schedule = {
 export type Tab = {
   id: string,
   url: string
+  timeManagement: boolean,
 }
