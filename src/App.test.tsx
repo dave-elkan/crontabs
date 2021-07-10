@@ -26,7 +26,7 @@ test('renders the Time Mangement screen by default', async () => {
 
   await waitFor(() => screen.findByRole('heading', { level: 1 }));
   expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
-    'Time management',
+    'Time Management',
   );
 });
 
