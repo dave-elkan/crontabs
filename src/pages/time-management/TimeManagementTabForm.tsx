@@ -2,8 +2,8 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { useAppSelector } from '../../hooks/useLocalStorage';
-import { selectSchedulesByTabId } from '../../store/scheduleSlice';
-import { Schedule, Tab } from '../../types';
+import { selectAdvancedSchedulesByTabId } from '../../store/scheduleSlice';
+import { Tab } from '../../types';
 import CrontabsFormControl from '../../components/form/CrontabsFormControl';
 import RemoveTabButton from '../../components/form/RemoveTabButton';
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,8 +11,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import { DaysOfWeek } from '../../helpers/daysOfWeek';
-import { getLaterScheduleForExpression } from '../../helpers/laterHelper';
-import { scheduleIsOpenOperation } from '../../helpers/timeManagementTabCompatibilityHelper';
 
 type PropsType = {
   tab: Tab;
@@ -28,48 +26,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function tabDays(schedule: Schedule): number[] {
-  let result: number[] = [];
-  if (!schedule) {
-    return result;
-  }
-
-  const laterSchedule = getLaterScheduleForExpression(schedule);
-
-  return laterSchedule?.schedules[0]?.d as number[];
-}
-
-function populateTimes(schedules: Schedule[]): string[] {
-  return schedules.map((schedule) => {
-    var laterSchedule = getLaterScheduleForExpression(schedule);
-    var hour = laterSchedule?.schedules[0].h;
-    var minute = laterSchedule?.schedules[0].m;
-
-    if (minute < 10) {
-      minute = '0' + minute;
-    }
-
-    if (hour < 10) {
-      hour = '0' + hour;
-    }
-
-    return [hour, minute].join(':');
-  });
-}
-
 const TimeManagementTabForm = ({ tab }: PropsType) => {
-  const schedules = useAppSelector(selectSchedulesByTabId(tab.id));
+  const schedules = useAppSelector(
+    selectAdvancedSchedulesByTabId(tab.id),
+  );
   const classes = useStyles();
-
-  const showSchedule = schedules.find(scheduleIsOpenOperation);
-
+  const showSchedule = schedules.find((s) => s.isOpen);
+  const closeSchedule = schedules.find((s) => !s.isOpen);
   if (!showSchedule) {
     // TODO handle invalid time Management value here
     return null;
   }
 
-  const selectedTabDays = tabDays(showSchedule);
-  const scheduleTimes = populateTimes(schedules);
   return (
     <Grid container className={classes.root}>
       <Grid item sm={12}>
@@ -94,7 +62,7 @@ const TimeManagementTabForm = ({ tab }: PropsType) => {
                 required
                 label="Open at"
                 type="time"
-                defaultValue={scheduleTimes[0]}
+                defaultValue={showSchedule.time}
               />
             </CrontabsFormControl>
           </Grid>
@@ -102,10 +70,9 @@ const TimeManagementTabForm = ({ tab }: PropsType) => {
             <CrontabsFormControl>
               <TextField
                 fullWidth
-                required
                 label="Close at"
                 type="time"
-                defaultValue={scheduleTimes[1] || ''}
+                defaultValue={closeSchedule?.time || ''}
               />
             </CrontabsFormControl>
           </Grid>
@@ -116,7 +83,7 @@ const TimeManagementTabForm = ({ tab }: PropsType) => {
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={selectedTabDays.indexOf(day.num) > -1}
+                    checked={showSchedule.days.indexOf(day.num) > -1}
                     name={day.id}
                   />
                 }

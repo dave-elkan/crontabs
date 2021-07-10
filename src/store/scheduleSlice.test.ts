@@ -1,6 +1,7 @@
 import { OperationType, Schedule, Tab, ScheduleType } from '../types';
-import reducer, { addSchedule, AddSchedulePayload, removeSchedule, SchedulesStateType, updateSchedule } from './scheduleSlice'
+import reducer, { addSchedule, AddSchedulePayload, removeSchedule, SchedulesStateType, selectAdvancedSchedulesByTabId, updateSchedule } from './scheduleSlice'
 import * as uuid from 'uuid';
+import { RootState } from '.';
 jest.mock('uuid');
 
 test('should return the initial state', () => {
@@ -101,4 +102,44 @@ test("Updating a schedule", () => {
       type: "text"
     }
   })
+})
+
+test("selecting advanced tabs", () => {
+  const state: RootState = {
+    tabs: {},
+    schedules: {
+      "id-1": {
+        id: "id-1",
+        expression: "0 0 0 * * SUN,THU",
+        operation: "open",
+        tabId: "Tab-id",
+        type: "cron"
+      },
+      "id-2": {
+        id: "id-2",
+        expression: "0 0 1 * * SUN,THU",
+        operation: "close",
+        tabId: "Tab-id",
+        type: "cron"
+      },
+      "id-3": {
+        id: "id-3",
+        expression: "0 0 1 * * SUN,THU",
+        operation: "close",
+        tabId: "Tab-id-other",
+        type: "cron"
+      }
+    }
+  };
+
+  const advacedTabs = selectAdvancedSchedulesByTabId("Tab-id")(state);
+  expect(advacedTabs).toEqual([{
+    isOpen: true,
+    time: "00:00",
+    days: [1, 5]
+  }, {
+    isOpen: false,
+    time: "01:00",
+    days: [1, 5]
+  }])
 })
