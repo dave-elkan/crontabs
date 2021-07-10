@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import * as uuid from "uuid";
 import { RootState } from '.';
-import { OperationType, Schedule, ScheduleType } from '../types';
+import { Schedule, ScheduleType } from '../types';
 
 export type AddSchedulePayload = {
   tabId: string,
