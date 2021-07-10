@@ -13,6 +13,7 @@ test('should handle a tab being added to an empty list', () => {
   const previousState: TabsStateType = {};
   const tab = {
     url: "https://www.crontabs.org",
+    timeManagement: false,
   }
 
   expect(reducer(previousState, addTab(tab))).toEqual({
@@ -29,11 +30,13 @@ test("removing a tab", () => {
   const previousState: TabsStateType = {
     "id-1": {
       id: "id-1",
-      url: "https://www.crontabs.org"
+      url: "https://www.crontabs.org",
+      timeManagement: false,
     }, 
     "id-2": {
       id: "id-2",
-      url: "https://www.crontabs.org"
+      url: "https://www.crontabs.org",
+      timeManagement: false,
     }
   };
 
