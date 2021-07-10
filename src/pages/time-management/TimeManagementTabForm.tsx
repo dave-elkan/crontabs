@@ -12,6 +12,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import { DaysOfWeek } from '../../helpers/daysOfWeek';
 import { getLaterScheduleForExpression } from '../../helpers/laterHelper';
+import { scheduleIsOpenOperation } from '../../helpers/timeManagementTabCompatibilityHelper';
 
 type PropsType = {
   tab: Tab;
@@ -60,12 +61,7 @@ const TimeManagementTabForm = ({ tab }: PropsType) => {
   const schedules = useAppSelector(selectSchedulesByTabId(tab.id));
   const classes = useStyles();
 
-  const showSchedule = schedules.find(
-    (s) => s.type === 'cron' && s.operation === 'show',
-  );
-  const closeSchedule = schedules.find(
-    (s) => s.type === 'cron' && s.operation === 'close',
-  );
+  const showSchedule = schedules.find(scheduleIsOpenOperation);
 
   if (!showSchedule) {
     // TODO handle invalid time Management value here
