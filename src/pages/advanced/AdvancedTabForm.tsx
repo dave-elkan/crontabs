@@ -7,7 +7,7 @@ import { Tab } from '../../types';
 import ScheduleList from './ScheduleList';
 import CrontabsFormControl from '../../components/form/CrontabsFormControl';
 import AddScheduleButtons from './AddScheduleButtons';
-import RemoveTabButton from './RemoveTabButton';
+import RemoveTabButton from '../../components/form/RemoveTabButton';
 import { makeStyles } from '@material-ui/core/styles';
 
 type PropsType = {

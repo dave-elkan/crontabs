@@ -1,0 +1,29 @@
+export const DaysOfWeek =[{
+  id: "MON",
+  num: 2,
+  name: "Monday"
+}, {
+  id: "TUE",
+  num: 3,
+  name: "Tuesday"
+}, {
+  id: "WED",
+  num: 4,
+  name: "Wednesday"
+}, {
+  id: "THU",
+  num: 5,
+  name: "Thursday"
+}, {
+  id: "FRI",
+  num: 6,
+  name: "Friday"
+}, {
+  id: "SAT",
+  num: 7,
+  name: "Saturday"
+}, {
+  id: "SUN",
+  num: 1,
+  name: "Sunday"
+}];

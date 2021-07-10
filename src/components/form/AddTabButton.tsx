@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const initialTab: TabSansId = {
   url: '',
+  timeManagement: false,
 };
 
 const useStyles = makeStyles((theme) => ({

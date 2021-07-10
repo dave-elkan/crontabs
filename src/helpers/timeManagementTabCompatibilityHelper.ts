@@ -1,8 +1,8 @@
-import later from "@breejs/later"
 import isEqual from "lodash/isEqual"
 import { StoredSchedule, StoredTab } from "../types";
+import { getLaterScheduleForExpression } from "./laterHelper";
  
-function scheduleIsOpenOperation(schedule: StoredSchedule) {
+export function scheduleIsOpenOperation(schedule: StoredSchedule) {
   return schedule.operation === "show" ||
          schedule.operation === "showAndReload" ||
          schedule.operation === "open";
@@ -42,14 +42,6 @@ function tabOperationDefinesSingleHoursMinutesAndSeconds(schedule: StoredSchedul
     laterSchedule?.schedules[0]?.h.length === 1 &&
     laterSchedule?.schedules[0]?.m.length === 1 &&
     laterSchedule?.schedules[0]?.s.length === 1;
-}
-
-function getLaterScheduleForExpression(schedule: StoredSchedule) {
-  if (schedule.type === "cron") {
-      return later.parse.cron(schedule.expression, true);
-  } else {
-      return later.parse.text(schedule.expression, true);
-  }
 }
 
 function tabOperationsAreOnSameDays(storedTab: StoredTab) {
