@@ -23,3 +23,22 @@ export type Tab = {
   url: string
   timeManagement: boolean,
 }
+
+export type StoredState = StoredTab[];
+
+export type StoredTab = {
+  id?: string,
+  url: string,
+  crons?: StoredSchedule[],
+  schedules?: StoredSchedule[],
+  timeManagement?: boolean,
+}
+
+export type StoredSchedule = {
+  id?: string,
+  tabId?: string,
+  type: ScheduleType,
+  operation: OperationType,
+  expression: string,
+}
+

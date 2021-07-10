@@ -1,25 +1,8 @@
 import * as uuid from "uuid"
-import { OperationType, Schedule, ScheduleType, Tab } from "../types";
+import { isTimeManagementCompatibleTab } from "../helpers/timeManagementTabCompatibilityHelper";
+import { Schedule, StoredSchedule, StoredState, StoredTab, Tab } from "../types";
 import { SchedulesStateType } from "./scheduleSlice";
 import { TabsStateType } from "./tabsSlice";
-
-export type StoredState = StoredTab[];
-
-type StoredTab = {
-  id?: string,
-  url: string,
-  crons?: StoredSchedule[],
-  schedules?: StoredSchedule[],
-  timeManagement?: boolean,
-}
-
-type StoredSchedule = {
-  id?: string,
-  tabId?: string,
-  type: ScheduleType,
-  operation: OperationType,
-  expression: string,
-}
 
 type TabWithSchedules = Tab & {
   schedules: StoredSchedule[]
@@ -29,16 +12,8 @@ function storeTabIsTimeManagement(storedTab: StoredTab) {
   return storedTab.timeManagement === true || (
     // Old format support based on there being one show and one close schedule only for a tab.
     storedTab.timeManagement === undefined &&
-    storedTab.crons?.length === 2 &&
-    storedTab.crons?.filter(schedule => schedule.type === "cron" && scheduleIsOpenOperation(schedule)).length === 1 &&
-    storedTab.crons?.filter(schedule => schedule.type === "cron" && schedule.operation === "close").length === 1
+    isTimeManagementCompatibleTab(storedTab)
   );
-}
-
-function scheduleIsOpenOperation(schedule: StoredSchedule) {
-  return schedule.operation === "show" ||
-         schedule.operation === "showAndReload" ||
-         schedule.operation === "open";
 }
 
 export default function initialState(storedState: StoredState) {

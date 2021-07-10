@@ -1,5 +1,6 @@
-import initialState, { StoredState } from "./initialState";
+import initialState from "./initialState";
 import * as uuid from 'uuid';
+import { StoredState } from "../types";
 jest.mock('uuid');
 
 beforeEach(() => {
@@ -12,6 +13,7 @@ test("extracting old-format tabs and cron", () => {
       url: "https://www.news.com.au",
       crons: [
         { type: "cron", operation: "open", expression: "0 0 0 * * SUN,FRI" },
+        { type: "cron", operation: "reload", expression: "0 0 1 * * MON-FRI" },
       ],
     },
     {
@@ -27,6 +29,7 @@ test("extracting old-format tabs and cron", () => {
     .mockReturnValueOnce("test-tab-id-1")
     .mockReturnValueOnce("test-tab-id-2")
     .mockReturnValueOnce("test-tab-1-schedule-id-1")
+    .mockReturnValueOnce("test-tab-1-schedule-id-2")
     .mockReturnValueOnce("test-tab-2-schedule-id-1")
     .mockReturnValueOnce("test-tab-2-schedule-id-2")
   
@@ -45,12 +48,13 @@ test("extracting old-format tabs and cron", () => {
     },
     schedules: {
       "test-tab-1-schedule-id-1": { id: "test-tab-1-schedule-id-1", tabId: "test-tab-id-1", type: "cron", operation: "open", expression: "0 0 0 * * SUN,FRI" },
+      "test-tab-1-schedule-id-2": { id: "test-tab-1-schedule-id-2", tabId: "test-tab-id-1", type: "cron", operation: "reload", expression: "0 0 1 * * MON-FRI" },
       "test-tab-2-schedule-id-1": { id: "test-tab-2-schedule-id-1", tabId: "test-tab-id-2", type: "cron", expression: "0 0 0 * * SUN,THU", operation: "show" },
       "test-tab-2-schedule-id-2": { id: "test-tab-2-schedule-id-2", tabId: "test-tab-id-2", type: "cron", expression: "0 0 1 * * SUN,THU", operation: "close" },
     }
   })
 
-  expect(uuidSpy).toBeCalledTimes(5);
+  expect(uuidSpy).toBeCalledTimes(6);
 })
 
 test("extracting new-format tabs and crons", () => {

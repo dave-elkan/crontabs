@@ -1,4 +1,5 @@
-import { StoredState } from "./initialState";
+import { StoredState } from "../types";
+
 const CRONTABS_KEY = "crontabs";
 
 export function restoreTabs() {
